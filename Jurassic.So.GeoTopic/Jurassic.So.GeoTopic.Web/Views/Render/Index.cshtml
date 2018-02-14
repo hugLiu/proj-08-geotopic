@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "~/Views/shared/Layout_GT.cshtml";
+}
+@section HeadSection
+{
+    <style>
+        #buttons {
+            display: none;
+        }
+    </style>
+}
+<div style="height: 60px; background-color: seagreen">详情页</div>
+@if (@ViewBag.viewType == "detail")
+{
+    <div id="detail">
+        <gt:ptdetail host="@ViewBag.host" :iiid="iiid"></gt:ptdetail>
+    </div>
+}
+else if (@ViewBag.viewType == "list")
+{
+    <div id="list">
+        <gt:ptlist host="@ViewBag.host"></gt:ptlist>
+    </div>
+}
+else if (@ViewBag.viewType == "pt")
+{
+    <div id="pt">
+        <gt:ptrender :pram="pram" token="token" host="host"></gt:ptrender>
+    </div>
+}
+else if (@ViewBag.viewType == "comment")
+{
+    <div id="comment">
+        <so:commentlist :title="replytitle"
+                        :filters="filters"
+                        :size="pagesize"
+                        :initsize="initsize"
+                        :onreply="onaddreply"
+                        :ondelete="ondeleteremarks"
+                        :ongetdata="ongetdata">
+        </so:commentlist>
+    </div>
+}
+
+@section ScriptSection
+{
+    <script>
+        //B11D9E877FF98B66DADDD74D7ED28073
+
+        //将json字符串转换为json对象
+        if ("@ViewBag.jsonParam" != "") {
+            var jp = "@ViewBag.jsonParam";
+            var jp2 = jp.replace(/&quot;/g, '"');
+            var jsonParam = JSON.parse(jp2);
+            var iiid = jsonParam.iiid;
+        }
+
+        gtUI.bind({
+            model: "@ViewBag.model",
+            scope: "@ViewBag.viewType"
+        });
+    </script>
+}

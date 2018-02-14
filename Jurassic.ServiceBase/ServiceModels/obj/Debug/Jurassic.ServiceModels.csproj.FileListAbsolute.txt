@@ -1,0 +1,8 @@
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.ServiceBase\ServiceModels\bin\Debug\Jurassic.ServiceModels.XML
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.ServiceBase\ServiceModels\bin\Debug\Jurassic.ServiceModels.dll
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.ServiceBase\ServiceModels\bin\Debug\Jurassic.ServiceModels.pdb
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.ServiceBase\ServiceModels\bin\Debug\Newtonsoft.Json.dll
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.ServiceBase\ServiceModels\bin\Debug\Newtonsoft.Json.xml
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.ServiceBase\ServiceModels\obj\Debug\Jurassic.ServiceModels.dll
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.ServiceBase\ServiceModels\obj\Debug\Jurassic.ServiceModels.pdb
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.ServiceBase\ServiceModels\obj\Debug\Jurassic.ServiceModels.csprojResolveAssemblyReference.cache

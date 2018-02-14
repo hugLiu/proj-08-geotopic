@@ -1,0 +1,305 @@
+﻿
+@*获取参数的隐藏控件*@
+<input id="ParamEditor" textfield="Title" valuefield="Name" class="mini-combobox" url="@Url.Action("GetMetaDataDefinition", "PageDetails")" visible="false" />
+
+<div id="paramToolbar" class="mini-toolbar">
+    <a id="addParamBtn" class="mini-button frame-submit mini-button-plain" onclick="onAddParam()">
+        <span class="mini-button-text  mini-button-icon icon-new-add">添加参数</span>
+    </a>
+    <a id="removeParamBtn" class="mini-button frame-submit mini-button-plain" onclick="onRemoveParam()">
+        <span class="mini-button-text  mini-button-icon icon-new-delete">删除所选参数</span>
+    </a>
+</div>
+
+@*参数配置表格(DataGrid)*@
+<div id="paramsGrid" class="mini-datagrid" url="" idfield="Id" multiselect="true" showpager="false" allowcelledit="true" allowcellselect="true" multiselect="true" oncellendedit="OnParamEndEdit">
+    <div property="columns">
+        <div type="checkcolumn" headeralign="center" align="center" width="15"></div>
+        <div name="action" width="25" headeralign="center" align="center" renderer="onActionRendererParamInfo" cellstyle="padding:0;">操作</div>
+        <div field="Name" name="Name" displayfield="Title" renderer="onParamNameRenderer" @*width="30%"*@ width="85" headeralign="left">
+            元数据项
+            <input property="editor" class="mini-combobox" style="width: 100%;" textfield="Title" valuefield="Name" allowinput="false" url="@Url.Action("GetMetaDataDefinition", "PageDetails")" />
+        </div>
+        <div field="Value" name="Value" width="90" headeralign="left">
+            参数值
+            <input property="editor" class="mini-textbox" style="width: 100%;" />
+        </div>
+        <div field="SetUp" width="100" renderer="" headeralign="center">设置类型</div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    mini.parse();
+</script>
+
+<script>
+    //加载主页面名称
+    var mainName = '@ViewBag.MainName';
+
+    var paramsGrid = mini.get("paramsGrid");
+    var paramToolbar = mini.get("paramToolbar");
+    var addParamBtn = mini.get("addParamBtn");
+    var removeParamBtn = mini.get("removeParamBtn");
+    var ParamEditor = mini.get("ParamEditor");
+
+    //保存常量、变量值、变量标记
+    var variableValue = 1;
+    var constantValue = 2;
+    var variableFlag = "@@";
+    var mainNameDic = "dic";
+    var mainNameCont = "cont";
+
+    //设置DicMain主页面局部视图样式页面
+    function setDicViewStyle() {
+        $('#paramToolbar').css('width', '45%');
+        $('#paramToolbar').css('height', '10%');
+        $('#paramsGrid').css('width', '45%');
+        $('#paramsGrid').css('height', '90%');
+    }
+    //设置Content主页面局部视图样式页面
+    function setContViewStyle() {
+        $('#paramToolbar').css('width', '100%');
+        $('#paramToolbar').css('height', '40px');
+        $('#paramToolbar').css('position', 'absolute');
+        $('#paramsGrid').css('width', '100%');
+        $('#paramsGrid').css('margin-top', '40px');
+        $('#paramsGrid').css('height', 'calc(100% - 40px)');
+    }
+
+    //根据不同的主页面加载不同视图样式
+    function setViewStyle(mainName) {
+        if (mainName == mainNameDic) {
+            setDicViewStyle();
+        } if (mainName == mainNameCont) {
+            setContViewStyle();
+        }
+    }
+
+    //根据不同的主页面--加载不同的局部视图样式
+    setViewStyle(mainName);
+
+    /*
+    局部视图页面的内部逻辑
+    */
+    function onParamNameRenderer(e) {
+        var paramArr = ParamEditor.data;
+        for (var i = 0; i < paramArr.length; i++) {
+            var typeRecord = paramArr[i];
+            if (typeRecord.Name == e.value)
+                return typeRecord.Title;
+        }
+        return "";
+    }
+
+    function onActionRendererParamInfo(e) {
+        var uid = e.record._uid;
+        var s = '<a class="mini-button frame-submit mini-button-plain" title="删除该行" onclick="onDeleteParamGridRow(\'' + uid + '\')">'
+            + '<span class="mini-button-text mini-button-icon icon-new-delete"  style="margin-top:9px"></span></a>';
+        return s;
+    }
+
+    paramsGrid.on("drawcell", function(e) {
+        var sender = e.sender,
+            record = e.record,
+            column = e.column,
+            field = e.field,
+            id = record._uid,
+            setUp = record.SetUp;
+
+        //画出可视参数设置列
+        function createRadioboxs() {
+            var html = "";
+            var clickFn = 'checkFunc(\'' + id + '\')';
+            var checked = 'checked';
+            var constantChecked = "";
+            var variableChecked = "";
+            if (setUp == variableValue) {
+                variableChecked = checked;
+            }
+            if (setUp == constantValue) {
+                constantChecked = checked;
+            }
+            html += '<label style="margin-left: 15px"><input onclick="' + clickFn + '" ' + variableChecked + ' type="radio" value =' + variableValue + ' name="' + id + '" hideFocus/>' + "变量" + '</label>';
+            html += '<label style="margin-left: 15px"><input onclick="' + clickFn + '" ' + constantChecked + ' type="radio" value =' + constantValue + ' name="' + id + '" hideFocus/>' + "常量" + '</label>';
+            return html;
+        }
+
+        if (field == 'SetUp') {
+            e.cellHtml = createRadioboxs();
+        }
+    });
+
+    function onDeleteParamGridRow(uid) {
+        var row = paramsGrid.getRowByUID(uid);
+        paramsGrid.removeRow(row);
+        deleteParamGridRowEvent(paramsGrid);
+    }
+
+    //删除ParamGrid行响应事件
+    function deleteParamGridRowEvent(paramGrid) {
+        areaTextParam.setValue(JsonFormat(getParamStr(paramGrid.data), false));
+        tryMainFunc();
+    }
+
+    //可视化参数设置  --添加、删除参数
+    function onAddParam() {
+        var newRow = { Name: "", Value: "" };
+        paramsGrid.addRow(newRow, paramsGrid.data.length);
+        paramsGrid.cancelEdit();
+        paramsGrid.beginEditCell(newRow, "Name");
+    }
+
+    function onRemoveParam() {
+        var rows = paramsGrid.getSelecteds();
+        if (rows.length > 0) {
+            if (confirm("确定删除所选参数？")) {
+                paramsGrid.removeRows(rows, true);
+                deleteParamGridRowEvent(paramsGrid);
+            }
+        } else {
+            toastr["info"]("请先勾选需要删除参数！");
+        }
+    }
+
+    //但可视参数编辑完成
+    function OnParamEndEdit(e) {
+        var sender = e.sender;
+        var record = e.record;
+        var field = e.field;
+        var SetUp = record.SetUp;
+
+        if (field == "Name") {
+            if (record.Name == "") {
+                record.Value = "";
+            } else {
+                record.Value = variableFlag + record.Name;
+                record.SetUp = variableValue;
+            }
+            sender.updateRow(record);
+        }
+        if (field == "Value") {
+            if (record.Value.indexOf(variableFlag) == -1) {
+                record.SetUp = constantValue;
+                sender.updateRow(record);
+            }
+        }
+        if (field == "Value" && SetUp == constantValue) {
+            if (record.Value.indexOf(variableFlag) >= 0) {
+                alert("输入参数值不符合常量规范，常量参数不能存在@字符。");
+                return;
+            }
+        }
+        areaTextParam.setValue(JsonFormat(getParamStr(sender.data), false));
+        tryMainFunc();
+    }
+
+    //调用主页面方法 ...有待优化
+    function tryMainFunc() {
+        try {
+            onSaveParam(); //----考虑如何抽离方法  模板配置不需要保存
+        } catch (e) {
+
+        }
+    }
+
+    //(视图)paramsGridArr-->（代码）paramStr
+    function getParamStr(paramData) {
+        var param = {};
+        param.filter = {};
+        param.filter.$and = [];
+        paramData.forEach(function(row) {
+            var rowObj = {};
+            rowObj[row.Name] = row.Value;
+            param.filter.$and.push(rowObj);
+        });
+        return JSON.stringify(param);
+    }
+
+
+
+    //代码）paramStr-->（视图）paramsGrid
+    function getParamGrid(paramStr) {
+        var paramObj = JSON.parse(paramStr);
+        var paramArr;
+        var filterAnd="$and", filterOr = "$or", filterIn = "$in";
+
+        if (paramStr.indexOf(filterAnd) > 0) {
+            paramArr = paramObj.filter.$and;
+        }
+        if (paramStr.indexOf(filterOr) > 0) {
+            paramArr = paramObj.filter.$or;
+        }
+        if (paramStr.indexOf(filterIn) > 0) {
+            paramArr = paramObj.filter.$in;
+        } 
+
+        //可改进
+        if (typeof (paramArr) == "undefined") {
+            toastr["info"]("参数结构错误，无法加载参数视图！");
+            return;
+        }
+
+        var girdData = [];
+        paramArr.forEach(function(e) {
+            for (var item in e) {
+                if (typeof (item) == "function")
+                    continue;
+                function getSetUp() {
+                    if (e[item].charAt(0) == variableFlag) {
+                        return variableValue;
+                    } else {
+                        return constantValue;
+                    }
+                }
+                girdData.push({ Name: item, Value: e[item], SetUp: getSetUp() });
+            }
+        });
+        return girdData;
+    }
+
+    //参数列表设置变量、常量
+    function checkFunc(id) {
+        var sender = paramsGrid;
+        var record = paramsGrid.getRowByUID(id);
+        if (!record) return;
+        //初步加载过程中  加载出设置状态
+        var SetUp = record.SetUp;
+        if (!SetUp)
+            return;
+        var radios = document.getElementsByName(id);
+        var radioLength = radios.length;
+        for (var i = 0; i < radioLength; i++) {
+            if (radios[i].checked) {
+                var radioValue = radios[i].value;
+                function radioChangeEvent(setup, value) {
+                    record.SetUp = setup;
+                    record.Value = value;
+                    sender.updateRow(record);
+                    sender.beginEditCell(record, "Value");
+                }
+                if (radioValue == variableValue) {
+                    radioChangeEvent(radioValue, variableFlag + record.Name);
+                }
+                if (radioValue == constantValue) {
+                    radioChangeEvent(radioValue, record.Value);
+                }
+            }
+        }
+    }
+
+
+    /*
+    主视图页面调用接口
+    */
+    //加载局部视图数据  --主页已调用
+    function PartialParamLoadData(paramStr) {
+        var gridData = getParamGrid(paramStr);
+        paramsGrid.loadData(gridData);
+    }
+
+    //清除局部视图修改痕迹  --主页已调用
+    function PartialParamAccept() {
+        paramsGrid.accept();
+    }
+</script>

@@ -1,0 +1,615 @@
+﻿@{
+    ViewBag.Title = "TCardContext";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .layoutGround {
+        /*/width: 220px;*/
+        background-color:aliceblue; 
+        /*background-size: 10px;*/
+        background-image: linear-gradient(0deg, rgba(144,144,144 .3) 50%, transparent 60%, transparent);
+        min-height: 110px;
+        /*width:110px;*/
+        /*height: 110px;*/
+        /*width: 110px;*/  
+        /*height: 100%;
+        width:17%;*/
+        border:1px solid gray;
+    }
+</style>
+
+<div class="mini-fit" style="height: 100%; width: 100%;">
+    @*现在布局参数布局页面  Walt add  --20161103*@
+
+    @*获取参数的隐藏控件*@
+    <input name="typeEditor" id="typeEditor" shownullitem="layoutType" class="mini-combobox" textfield="Title" valuefield="Code" url="@Url.Action("QueryAllType", "DicMaintain")" visible="false"/>
+    <input id="UrlEditor" textfield="Description" valuefield="Url" class="mini-combobox" url="@Url.Action("GetAllUrl", "DicMaintain")" visible="false"/>
+    <input id="ParamEditor" textfield="Title" valuefield="Name" class="mini-combobox" url="@Url.Action("GetMetaDataDefinition", "PageDetails")" visible="false"/>
+
+    <div style="height: 6%; padding: 0px 0px 0px 5px;">
+        <a class="mini-button" iconcls="icon-new-save" onclick="onSave(true)">保存</a>
+    </div>
+
+    <div id="tCardSplit" class="mini-splitter" vertical="true" allowResize="true" style="width:100%;height:94%; ">
+        <div size="55%" showCollapseButton="true">
+            <div class="mini-splitter" vertical="false" allowResize="true" style="width: 100%; height: 100%;">
+                <div size="50%" showCollapseButton="true">
+                        <div class="mini-toolbar" style="width: 100%; position: absolute; height: 40px;">
+                           
+                            <a class="mini-button frame-submit mini-button-plain" onclick="onAddPTempEdit()">
+                                <span class="mini-button-text  mini-button-icon icon-new-add">添加成果</span>
+                            </a>
+                            <a class="mini-button frame-submit mini-button-plain" onclick="onRemovePts()">
+                                <span class="mini-button-text  mini-button-icon icon-new-delete">删除所选成果</span>
+                            </a>
+                        </div>
+
+                        @*cell信息表格(DataGrid)*@
+                        <div id="cellInfoGrid" class="mini-datagrid" style="margin-top: 40px; width: 100%; height: calc(100% - 40px);" url="" idfield="Id" multiselect="true" showpager="false" allowResizeColumn="true" allowcelledit="true" allowcellselect="true" multiselect="true" cellEditAction="celldblclick" onselectionchanged="onselectionchanged" oncellcommitedit="OnCellCommitEdit" oncellbeginedit="OnCellBeginEdit">
+                            <div property="columns">
+                                <div type="checkcolumn" headeralign="center" align="center" width="5"></div>
+                                <div name="action" width="10" headeralign="center" align="center" renderer="onActionRendererCellInfo" cellstyle="padding:0;">操作</div>
+                                <div field="id" width="9px;" headeralign="left">
+                                    标记
+                                </div>
+                                <div field="title" name="title" width="34px;" align="left" headeralign="left" required="true">
+                                    标题
+                                    <input property="editor" class="mini-textbox" style="width: 100%;"/>
+                                </div>
+                                <div field="type" renderer="onTypeRenderer" width="15px;">
+                                    类型
+                                    <input property="editor" class="mini-combobox" style="width: 100%;" textfield="Title" valuefield="Code" url="@Url.Action("QueryAllType", "DicMaintain")"/>
+                                </div>
+                                <div field="url" width="28px;" align="left" renderer="onUrlRenderer" headeralign="left">
+                                    页面
+                                    <input property="editor" textfield="Description" valuefield="Url" class="mini-combobox" url="@Url.Action("GetAllUrl", "DicMaintain")" style="width: 100%;"/>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </div>
+                <div showCollapseButton="true">
+                    <div class="mini-fit" style="height: 100%; width: 100%">
+                        <div class="mini-toolbar" style="padding-left: 5px; position:absolute;height: 40px; width: 100%"> @*height: 17%;*@
+                            <span>页面参数维护：</span>
+                            <a class="mini-button frame-submit mini-button-plain" onclick="onSaveParam">
+                                <span class="mini-button-text  mini-button-icon icon-new-save">保存</span>
+                            </a>
+                        </div>
+                        <div id="tabsParam" class="mini-tabs" activeindex="0" tabposition="top" style="margin-top:40px; width: 100%; height: calc(100% - 40px);" plain="false">
+                            <div title="视图">
+                                <div id="paramView" class="mini-fit" style="height: 100%; width: 100%"> 
+                                </div>
+                            </div>
+                            <div title="代码">
+                                <textarea id="areaTextParam" class="mini-textarea" allowinput="true" emptytext="页面配置参数信息..." style="height:100%; width: 100%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div showCollapseButton="true">
+            <div style="background-color: #f5f5f5; height: 100%; padding: 5px 0px 0px 8px;">
+                <div style="position:absolute;height:25px;">
+                    快速布局：
+                    <input id="layoutType" name="layoutType" shownullitem="layoutType" class="mini-combobox" value="0" textfield="text" valuefield="id" onvaluechanged="onLayoutChanged" style="width: 80px;" data="[{id:0,text:'请选择...'},{id:1,text:'一列'},{id:2,text:'两列'},{id:3,text:'三列'}]"/>
+                    <span class="separator"></span>
+                    <a class="mini-button" iconcls="icon-new-edit" onclick="onNewLayout">可视化布局</a>
+                </div>
+
+                <div id="layoutTabs" class="mini-tabs" activeindex="0" tabposition="bottom" style="margin-top:25px; height:calc(100% - 25px); width:100%">
+                    <div title="布局预览">
+                        <div class="mini-fit" style="height: 100%; width: 100%;">
+                            
+                            <div class="layoutGround" style="min-width:220px;"> @*overflow: hidden*@
+                                <div id="layoutPreview" style="padding: 2px; ">
+                                    <gt:layoutview :data="layoutObj" :size="100"></gt:layoutview> @*子div*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div title="Layout">
+                        <div class="mini-fit" style="height: 100%; width: 100%;">
+                            <textarea id="layoutHtmlText" class="mini-textarea" allowinput="true" emptytext="" style="height: 100%; width: 100%; float: left;"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/scripts/LayoutWidget/geoConvert.js"></script>
+<script src="~/scripts/LayoutWidget/JsonFormat.js"></script>
+<script src="~/scripts/LayoutWidget/gtUI-layoutview.js"></script>
+
+<script type="text/javascript">
+    mini.parse();
+
+    var cellInfoGrid = mini.get("cellInfoGrid");
+    var layoutHtmlText = mini.get("layoutHtmlText");
+    var layoutTypeCombox = mini.get("layoutType");
+    var areaTextParam = mini.get("areaTextParam");
+    var layoutTabs = mini.get("layoutTabs");
+
+    var paramViewDiv = $('#paramView');
+
+    var typeEditor = mini.get("typeEditor");
+    var UrlEditor = mini.get("UrlEditor");
+    var ParamEditor = mini.get("ParamEditor");
+
+    var data = decodeURIComponent("@ViewBag.Data");
+    var dataObj = JSON.parse(data);//tcard信息
+    
+    var layoutObj = {};
+    
+    var gtvm = gtUI.bind({
+        scope: "layoutPreview",
+        model: "gt:layoutview"
+    });
+    
+    function onActionRendererCellInfo(e) {
+        var uid = e.record._uid;
+        var s = '<a class="mini-button frame-submit mini-button-plain" title="删除该行" onclick="onDeletePtGridRow(\'' + uid + '\')">'
+            + '<span class="mini-button-text mini-button-icon icon-new-delete"  style="margin-top:9px"></span></a>';
+        return s;
+    }
+
+    //删除成果列表一条记录
+    function onDeletePtGridRow(uid) {
+        var row = cellInfoGrid.getRowByUID(uid);
+        if (confirm("确定删除该行数据？")) {
+            cellInfoGrid.removeRow(row);
+            areaTextParam.setValue("");
+            paramViewDiv.empty();
+            layoutChangeEvent();
+        }
+    }
+
+    Load(dataObj);
+
+    //加载所有控件绑定数据
+    function Load(data) {
+        $.ajax({
+            type:"get",
+            url: "/PageDetails/GetKCardLayoutNoConvert",
+            dataType: "text",
+            data: { id: data.Id },
+            async:false,
+            success: function (text) {
+                var paramObj = JSON.parse(text);
+                var paramEntity = JSON.parse(paramObj);
+                //加载cellInfoGrid数据
+                var cellInfoData = paramEntity.cells;
+                cellInfoGrid.loadData(cellInfoData);
+                //加载layoutHtmlText数据
+
+                //加载布局视图
+                gtUI.setData(gtvm, "layoutObj", paramEntity.layout);
+                layoutHtmlText.setValue(JsonFormat(JSON.stringify(paramEntity.layout), false));
+
+                var colArr = [];
+                paramEntity.layout.Rows.forEach(function (e) {
+                    colArr.push(e.Cols.length);
+                });
+                //Math.max.apply(Math, array)
+                var colValue = Math.max.apply(Math, colArr);
+                layoutTypeCombox.setValue(colValue);
+                //layoutTypeCombox.setValue(paramEntity.layout.Rows[0].Cols.length);
+            },
+            error:function(er) {
+                console(JSON.stringify(er));
+            }
+        });
+    }
+
+    //获取到Type的数组所有值,渲染cellInfo中type值
+    function onTypeRenderer(e) {
+        var TypeArr = typeEditor.data;
+        for (var i = 0; i < TypeArr.length; i++) {
+            var typeRecord = TypeArr[i];
+            if (typeRecord.Code == e.value)
+                return typeRecord.Title;
+        }
+        return "";
+    }
+
+    function onUrlRenderer(e) {
+        var UrlArr = UrlEditor.data;
+        for (var i = 0; i < UrlArr.length; i++) {
+            var typeRecord = UrlArr[i];
+            if (typeRecord.Url == e.value)
+                return typeRecord.Description;
+        }
+        return "";
+    }
+
+    //获取编辑参数界面数据
+    function getData() {
+        var paramData = {};
+        paramData.cells = GetGridData();
+
+        var colValue = layoutTypeCombox.getValue();  //当是请选择的默认值时，保存数据为2列布局
+        //获取布局样式
+        //paramData.layout = BuildLayout(paramData, layoutTypeCombox.getValue());
+        if (colValue==0) {  //当选择是默认值时
+            paramData.layout = BuildLayout(paramData, 2);
+        } else {
+            paramData.layout = JSON.parse(layoutHtmlText.getValue());
+        }
+        dataObj.Definition = JSON.stringify(paramData);
+        return JSON.stringify(dataObj);
+    }
+
+    //检查成果列表设置的数据
+    function checkcellInfo() {
+        var rowNull = cellInfoGrid.findRow(function (row) {
+            if (row.title.trim() == "" || row.type.trim() == "" || row.url.trim() == "")
+                return true;
+        });
+        if (rowNull) {
+            toastr["error"]("成果列表标记为" + rowNull.id + '记录存在空值！');
+            return false;
+        }
+        return true;
+    }
+
+    //获取成果列表数据
+    function GetGridData() {
+        var cellArr = [];
+        var cellInfoData = cellInfoGrid.data;
+        for (var i = 0; i < cellInfoData.length; i++) {
+            var flagId = "G" + (i + 1);
+            cellArr.push({ id: flagId, type: cellInfoData[i].type, url: cellInfoData[i].url, title: cellInfoData[i].title, param: cellInfoData[i].param });
+        }
+        return cellArr;
+    }
+
+    //获取参数数据
+    function getAreaTextParamData() {
+        var paramData=areaTextParam.getValue();
+        return paramData;
+    }
+
+    //保存areaTextParam页面信息在cells的param节点
+    function onSaveParam() {
+        if (!JsonValiable(areaTextParam.getValue())) {
+            toastr["error"]("页面参数配置不符合JSON语法规范！");
+            return;
+        }
+        var selectedRow = cellInfoGrid.getSelected();
+        selectedRow.param = getAreaTextParamData();
+    }
+
+
+    //当areaText中的值改变的时候，触发onSaveParam()
+    areaTextParam.on("valuechanged", function (e) {
+        if (!JsonValiable(areaTextParam.getValue())) {
+            toastr["error"]("页面参数配置不符合JSON语法规范！");
+            return;
+        }
+        //格式化代码，同步更新参数视图
+        areaTextParam.setValue(JsonFormat(areaTextParam.getValue(), false));
+        onSaveParam();
+        PartialParamLoadData(areaTextParam.getValue());
+    });
+
+
+    var count = getCount();
+    function getCount() {
+        var count = 0;
+        var cellInfoData = cellInfoGrid.data;
+        for (var i = 0; i < cellInfoData.length; i++) {
+            var flagId = cellInfoData[i].id;
+            var countId = Number(flagId.substr(1));
+            if (count < countId)
+                count = countId;
+        }
+        return count;
+    }
+
+    //增加一行设置成果参数
+    function onAddPTempEdit() {
+        //直接添加行编辑
+        var flagId = cellInfoGrid.data.length + 1;
+        var newRow = { id: "G" + flagId, title: "", type: "", url: "", param: "" };
+        cellInfoGrid.addRow(newRow, cellInfoGrid.data.length);
+
+        cellInfoGrid.cancelEdit();
+        cellInfoGrid.beginEditCell(newRow, "title");
+        layoutChangeEvent();
+    }
+
+    //删除所选成果
+    function onRemovePts() {
+        var rows = cellInfoGrid.getSelecteds();
+        if (rows.length > 0) {
+            if (confirm("确定删除所选成果信息？"))
+            {
+                cellInfoGrid.removeRows(rows, true);
+                layoutChangeEvent();
+            }
+        } else {
+            toastr["info"]("请先勾选需要删除成果！");
+        }
+    }
+
+
+    //编辑成果列表，联动布局样式
+    function layoutChangeEvent() {
+        var data = { cells: cellInfoGrid.data };
+        var value = layoutTypeCombox.getValue();
+        if (value==0) {
+            return;
+        }
+        var layoutHtml = BuildLayout(data, value);
+        layoutHtmlText.setValue(JsonFormat(JSON.stringify(layoutHtml), false));
+        gtUI.setData(gtvm, "layoutObj", layoutHtml);
+    }
+
+
+    function addPtGridRow(data) {
+        var newRow = { id: data.id, title: data.title, type: data.type, url: data.url, param: data.param };
+        cellInfoGrid.addRow(newRow);
+    }
+
+    function onselectionchanged(e) {
+        //先清除areaTextParam数据
+        areaTextParam.setValue("");
+        paramViewDiv.empty();
+
+        var seletedRow = e.selected;
+        //加载参数视图、代码 Walt add --20161127
+        areaTextParam.setValue(JsonFormat(seletedRow.param, false));
+        //当不存在的展示url时，不加载数据
+        var url = seletedRow.url;
+        if (url.length <= 0)
+            return;
+        //加载参数视图
+        var currentViewName = getPartViewName(seletedRow.url);
+        //Walt add--20161218
+        loadParamView(currentViewName);
+        //加载参数数据
+        PartialParamLoadData(seletedRow.param);
+    }
+
+    //布局下拉框布局改变事件   
+    function onLayoutChanged(e) {
+        var sender = e.sender;
+        var value = sender.getValue();
+        if (value == 0) {
+            layoutHtmlText.setValue("");
+            gtUI.setData(gtvm, "layoutObj", "");
+            return;
+        }
+        var data = { cells: cellInfoGrid.data };
+        var layoutHtml = BuildLayout(data, value);
+        layoutHtmlText.setValue(JsonFormat(JSON.stringify(layoutHtml),false));
+        gtUI.setData(gtvm, "layoutObj", layoutHtml);
+        //保存参数数据到后台
+        //onSave(false);
+    }
+
+    //设置布局预览数据
+    function setLayout(grid,layoutCol) {
+        var data = { cells: grid.data };
+        var layoutHtml = BuildLayout(data, value);
+        layoutHtmlText.setValue(JsonFormat(JSON.stringify(layoutHtml),false));
+        gtUI.setData(gtvm, "layoutObj", layoutHtml);
+
+    }
+
+    //保存知识卡数据
+    function onSave(isTip) {
+        if (isTip) {
+            //检测cellInfo记录是否有存在空值
+            if (!checkcellInfo()) {
+                return;
+            }
+            //先验证获取数据layout和param的参数json格式是否正确,不符合验证无法保存
+            var isJson = aviliableJson();
+            if (!isJson)
+                return;
+        }
+        var tCardJson = getData();
+        $.ajax({
+            type: "POST",
+            url: "/PageDetails/SaveTCardLayoutNoConvert?data=" + encodeURIComponent(tCardJson),
+            dataType: "json",
+            async: false,
+            success: function (text) {
+                if (isTip) {
+                    if (text == "succ") {
+                        toastr["success"]("数据保存成功！");
+                    }
+                }
+            },
+            error: function () {
+                if (isTip) {
+                    toastr["error"]("数据保存失败！");
+                }
+            }
+        });
+    }
+
+    //验证cellInfo的param和Layout字符串是否为有效的Json
+    function aviliableJson() {
+        var isJson = true;
+        var cellArr = GetGridData();
+        for (var i=0;i<cellArr.length;i++) {
+            isJson = JsonValiable(cellArr[i].param);
+            if (!isJson) {
+                toastr["error"](cellArr[i].title + "的参数配置信息不符JSON语法规范！");
+                return isJson;
+            }
+        }
+        isJson = JsonValiable(layoutHtmlText.value);
+        if (!isJson)
+            toastr["error"]("布局样式Layout字符串不符JSON语法规范！");
+        return isJson;
+    }
+
+    //当值改变的时候验证
+    layoutHtmlText.on("valuechanged", function () {
+        var layoutStr = layoutHtmlText.getValue();
+        var isJson = JsonValiable(layoutStr);
+        if (!isJson) {
+            toastr["error"]("布局样式Layout字符串不符JSON语法规范！");
+        }
+        layoutHtmlText.setValue(JsonFormat(layoutStr, false));
+    });
+
+
+    layoutTabs.on("activechanged",function(e) {
+        var sender = e.sender;
+        var tab = e.tab;
+        if (tab.title == "布局预览") {
+            gtUI.setData(gtvm, "layoutObj", JSON.parse(layoutHtmlText.getValue())); 
+        }
+    });
+    
+
+    //新建样式布局
+    function onNewLayout() {
+        //先保存页面数据
+        onSave(false);
+
+        setTimeout(function() {
+            //弹出一个页面单独显示可视化布局
+            mini.open({
+                url: "/PageDetails/LayoutVisual?data=" + "@ViewBag.Data" + "&gridData=" + JSON.stringify(GetGridData()),
+                title: "编辑布局",
+                allowResize: false,       //允许尺寸调节
+                allowDrag: false,         //允许拖拽位置
+                width: 700,
+                height: 450,
+                onload: function () {
+                },
+                ondestroy: function (action) {
+                    if (action == "Ok") {
+                        Load(dataObj);
+
+                        //由于可视化操作生成布局与界面布局不一致，为了统一布局，暂时如此处理
+                        //再根据根据DataGridData重新加载出布局样式视图和Layout
+                        //layoutChangeEvent();
+                    }
+                }
+            });
+        }, 1000);
+    }
+</script>
+
+
+@*cellInfoGrid的type和url联动*@
+<script>
+    function OnCellCommitEdit(e) {
+        var grid = e.sender;
+        var record = e.record;
+        var field = e.field;
+        if (field == "type") {
+            grid.updateRow(record, { type: "", url: "" });
+        }
+    }
+
+    function OnCellBeginEdit(e) {
+        var record = e.record;
+        var field = e.field;
+        var editor = e.editor;
+        if (field == "url") {
+            //获取所以的typeData数据
+            var typeList = typeEditor.data;
+            var typeid = 0;
+            for (var i=0; i<typeList.length;i++ ) {
+                if (typeList[i].Code == record.type)
+                    typeid = typeList[i].Id;
+            }
+            if (typeid) {
+                //cellInfo的type联动参数配置文本信息
+
+                var url = "@Url.Action("QueryAllUrl", "DicMaintain")?typeId=" + typeid;
+                editor.setUrl(url);
+                //type联动参数配置
+                editor.on("itemclick", function (data) {
+                    //var selectedUrl = data.selected;
+                    //data.item
+                    var selectedUrl = data.item;
+                    paramViewDiv.empty();
+                    areaTextParam.setValue("");
+                    $.ajax({
+                        url: "/DicMaintain/GetPTempByUrlId",
+                        data: { urlId: selectedUrl.Id },
+                        type: "post",
+                        success: function (text) {
+                            //加载参数页面
+                            //Walt add--20161218
+                            var currentViewName = getPartViewName(selectedUrl.Url);
+                            loadParamView(currentViewName);
+
+                            if (text.length > 0) {
+                                areaTextParam.setValue(JsonFormat(text[0].Defintion, false));
+                                PartialParamLoadData(text[0].Defintion);
+                                onSaveParam();
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert(jqXHR.responseText);
+                        }
+                    });
+                });
+            } else {
+                e.cancel = true;
+            }
+        }
+    }
+
+    //根据展示Url获取参数模板名称
+    function getPartViewName(url) {
+        var partViewName = "";
+        $.ajax({
+            url: '@Url.Content("~/Data/partViewMap.js")',
+            dataType: "script",
+            async: false,
+            success: function () {
+                data.forEach(function (viewMap) {
+                    if (viewMap.url == url) {
+                        partViewName = viewMap.viewName;
+                    }
+                });
+            }
+        });
+        if (partViewName == "")
+            //toastr["info"]("没有对应参数视图模板类型，请在../Data/partViewMap.js文件修改配置！");
+            mini.showTips({
+                content: "<b>提示</b> <br/>没有配置对应参数模板类型，请在../Data/partViewMap.js文件修改配置！",
+                state: "info",
+                x: "right",
+                y: "top",
+                timeout: 2000
+            });
+        return partViewName;
+    }
+
+    //根据视图名称加载参数模板视图
+    function loadParamView(viewName) {
+        if (viewName == "")
+            return;
+        $.ajax({
+            url: '@Url.Content("/DicMaintain/DynamicLoadParamsView")',
+            data: { viewName: encodeURIComponent(viewName), mainName: encodeURIComponent("cont")},
+            type: "GET",
+            dataType: "html",
+            async: false,
+            success: function (html) {
+                if (html.length > 0) {
+                    //加载视图
+                    $('#paramView').html(html);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+</script>

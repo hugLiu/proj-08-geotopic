@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/shared/Layout_GT.cshtml";
+}
+
+<h2>主题测试及预览</h2>
+<h4>topic是主题树的过滤条件，topicindex是主题树的索引过滤条件，topic和topicindex是用来过滤树的；kmd是右边知识卡片的全局变量。都是以key，value的格式配置。</h4>
+<textarea id="text1" cols="100" rows="13" style="font-size: 20px">
+    {
+    "topic":{
+    "code":["",""],
+    "title":["",""]
+    },
+    "topicindex":{
+    "BOT":"井"
+    },
+    "kmd":{
+    "BoWell":"金龙10井"
+    }
+    }
+</textarea>
+<div>
+    <a></a>
+    <input type="button" value="进入主题" onclick="onC()" />
+</div>
+
+@section ScriptSection
+{
+    <script type="text/javascript">
+        function onC() {
+            var s = $("#text1").val();
+            window.location.href = "/GeoTopic/Index?param=" + s.replace(/\s/g, "");
+            //window.open("/GeoTopic/Index?param=" + s.replace(/\s/g, ""));
+        }
+    </script>
+}

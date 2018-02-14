@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Views/shared/Layout_GT.cshtml";
+}
+
+<gt:favorite :id="favorite1" :count="count"></gt:favorite>
+
+@section ScriptSection
+{
+    <script type="text/javascript">
+        var count =@ViewBag.count;
+    </script>
+}

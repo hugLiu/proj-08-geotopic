@@ -1,0 +1,1153 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GTAPI</name>
+    </assembly>
+    <members>
+        <member name="T:GTAPI.API.DataWebExceptionMap">
+            <summary>WEB异常映射</summary>
+        </member>
+        <member name="P:GTAPI.API.DataWebExceptionMap.ServiceName">
+            <summary>服务名称</summary>
+        </member>
+        <member name="M:GTAPI.API.DataWebExceptionMap.Config">
+            <summary>配置</summary>
+        </member>
+        <member name="T:GTAPI.API.IndexWebExceptionMap">
+            <summary>WEB异常映射</summary>
+        </member>
+        <member name="P:GTAPI.API.IndexWebExceptionMap.ServiceName">
+            <summary>服务名称</summary>
+        </member>
+        <member name="M:GTAPI.API.IndexWebExceptionMap.Config">
+            <summary>配置</summary>
+        </member>
+        <member name="T:GTAPI.API.SearchWebExceptionMap">
+            <summary>WEB异常映射</summary>
+        </member>
+        <member name="P:GTAPI.API.SearchWebExceptionMap.ServiceName">
+            <summary>服务名称</summary>
+        </member>
+        <member name="M:GTAPI.API.SearchWebExceptionMap.Config">
+            <summary>配置</summary>
+        </member>
+        <member name="T:GTAPI.API.SemanticsWebExceptionMap">
+            <summary>WEB异常映射</summary>
+        </member>
+        <member name="T:GTAPI.API.SubmissionWebExceptionMap">
+            <summary>WEB异常映射</summary>
+        </member>
+        <member name="P:GTAPI.API.SubmissionWebExceptionMap.ServiceName">
+            <summary>服务名称</summary>
+        </member>
+        <member name="M:GTAPI.API.SubmissionWebExceptionMap.Config">
+            <summary>配置</summary>
+        </member>
+        <member name="T:GTAPI.API.ApiActionParameterValidationAttribute">
+            <summary>GTAPI方法参数验证器</summary>
+        </member>
+        <member name="M:GTAPI.API.ApiActionParameterValidationAttribute.OnActionExecuting(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>Occurs before the action method is invoked.</summary>
+            <param name="actionContext">The action context.</param>
+        </member>
+        <member name="M:GTAPI.API.ApiActionParameterValidationAttribute.OnActionExecuted(System.Web.Http.Filters.HttpActionExecutedContext)">
+            <summary>Occurs after the action method is invoked.</summary>
+            <param name="actionExecutedContext">The action executed context.</param>
+        </member>
+        <member name="M:GTAPI.API.ApiActionParameterValidationAttribute.BuildErrorDetails(System.Web.Http.HttpError)">
+            <summary>生成错误明细</summary>
+            <param name="actionExecutedContext">The action executed context.</param>
+        </member>
+        <member name="T:GTAPI.API.ApiActionResult">
+            <summary>自定义方法输出结果</summary>
+        </member>
+        <member name="M:GTAPI.API.ApiActionResult.#ctor(System.String,System.Object,System.Web.Http.ApiController)">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:GTAPI.API.ApiActionResult.MimeType">
+            <summary>输出MIME类型</summary>
+        </member>
+        <member name="P:GTAPI.API.ApiActionResult.Content">
+            <summary>输出内容</summary>
+        </member>
+        <member name="P:GTAPI.API.ApiActionResult.Request">
+            <summary>请求</summary>
+        </member>
+        <member name="M:GTAPI.API.ApiActionResult.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>执行</summary>
+        </member>
+        <member name="M:GTAPI.API.ApiActionResult.Execute">
+            <summary>执行</summary>
+        </member>
+        <member name="T:GTAPI.API.ApiStreamResult">
+            <summary>自定义流结果</summary>
+        </member>
+        <member name="M:GTAPI.API.ApiStreamResult.#ctor(System.String,System.Object,System.Web.Http.ApiController)">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:GTAPI.API.ApiStreamResult.CanConvert(System.Object)">
+            <summary>是否能转换为输出</summary>
+        </member>
+        <member name="M:GTAPI.API.ApiStreamResult.Execute">
+            <summary>执行</summary>
+        </member>
+        <member name="M:GTAPI.API.ApiStreamResult.BuildContent">
+            <summary>生成内容</summary>
+        </member>
+        <member name="T:GTAPI.API.ApiTextResult">
+            <summary>自定义文本结果</summary>
+        </member>
+        <member name="M:GTAPI.API.ApiTextResult.#ctor(System.String,System.Object,System.Web.Http.ApiController)">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:GTAPI.API.ApiTextResult.Encoding">
+            <summary>编码</summary>
+        </member>
+        <member name="M:GTAPI.API.ApiTextResult.Execute">
+            <summary>执行</summary>
+        </member>
+        <member name="M:GTAPI.API.ApiTextResult.BuildContent">
+            <summary>生成内容</summary>
+        </member>
+        <member name="T:GTAPI.API.WebAPIController">
+            <summary>GTAPI控制器基类</summary>
+        </member>
+        <member name="M:GTAPI.API.WebAPIController.GetServiceInfo">
+            <summary>获得服务信息</summary>
+        </member>
+        <member name="M:GTAPI.API.WebAPIController.GetServiceCapabilities">
+            <summary>获得服务能力数据</summary>
+        </member>
+        <member name="M:GTAPI.API.WebAPIController.GetCapabilities">
+            <summary>获得服务支持能力数据</summary>
+            <returns>服务支持能力数据</returns>
+        </member>
+        <member name="F:GTAPI.API.Category.Source">
+            <summary>
+            数据来源信息
+            </summary>
+        </member>
+        <member name="F:GTAPI.API.Category.Dc">
+            <summary>
+            DC属性（基础标签）
+            </summary>
+        </member>
+        <member name="F:GTAPI.API.Category.Ep">
+            <summary>
+            EP属性（专业标签）
+            </summary>
+        </member>
+        <member name="F:GTAPI.API.Category.All">
+            <summary>
+            所有元数据
+            </summary>
+        </member>
+        <member name="P:GTAPI.API.Models.MultipartFormDataMemoryStreamProvider.FileContents">
+            <summary>  
+            获取文件对应的HttpContent集合,文件如何读取由实际使用方确定，可以ReadAsByteArrayAsync，也可以ReadAsStreamAsync  
+            </summary>  
+        </member>
+        <member name="P:GTAPI.API.Models.MultipartFormDataMemoryStreamProvider.FormData">
+            <summary>Gets a <see cref="T:System.Collections.Specialized.NameValueCollection" /> of form data passed as part of the multipart form data.</summary>  
+            <returns>The <see cref="T:System.Collections.Specialized.NameValueCollection" /> of form data.</returns>  
+        </member>
+        <member name="M:GTAPI.API.Models.MultipartFormDataMemoryStreamProvider.UnquoteToken(System.String)">
+            <summary>  
+            复制自 System.Net.Http.FormattingUtilities 下同名方法，因为该类为internal，不能在其它命名空间下被调用  
+            </summary>  
+            <param name="token"></param>  
+            <returns></returns>  
+        </member>
+        <member name="T:GTAPI.API.Version1.MockGBAdapterServiceController">
+            <summary>MockGB适配器服务API</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.MockGBAdapterServiceController.#ctor(Jurassic.PKS.Service.Adapter.IAdapter)">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.MockGBAdapterServiceController.Spider(Jurassic.PKS.WebAPI.Models.Adapter.AdapterSpiderRequest)">
+            <summary>分批或增量爬取某个域的成果的元数据集合</summary>
+            <param name="request">爬取成果的元数据集合请求数据</param>
+            <returns>爬取结果</returns>
+        </member>
+        <member name="T:GTAPI.API.Version1.AdapterServiceBaseController">
+            <summary>适配器服务基类API</summary>
+        </member>
+        <member name="P:GTAPI.API.Version1.AdapterServiceBaseController.AdapterService">
+            <summary>数据服务</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.AdapterServiceBaseController.#ctor(Jurassic.PKS.Service.Adapter.IAdapter)">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.AdapterServiceBaseController.GetServiceInfo">
+            <summary>获得服务信息</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.AdapterServiceBaseController.GetServiceCapabilities">
+            <summary>获得服务能力数据</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.AdapterServiceBaseController.Spider(Jurassic.PKS.WebAPI.Models.Adapter.AdapterSpiderRequest)">
+            <summary>分批或增量爬取某个域的成果的元数据集合</summary>
+            <param name="request">爬取成果的元数据集合请求数据</param>
+            <returns>爬取结果</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.AdapterServiceBaseController.Retrieve(Jurassic.PKS.WebAPI.Models.Adapter.AdapterRetrieveRequest)">
+            <summary>获取成果的内容项集合</summary>
+            <param name="request">获取成果的内容项集合请求数据</param>
+            <returns>成果的内容项集合</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.AdapterServiceBaseController.GetData(Jurassic.PKS.WebAPI.Models.Adapter.AdapterGetDataRequest)">
+            <summary>获取成果的数据项</summary>
+            <param name="request">获取成果的数据项请求数据</param>
+            <returns>成果的数据项结果</returns>
+        </member>
+        <member name="T:GTAPI.API.Version1.DataServiceController">
+            <summary>数据服务API</summary>
+        </member>
+        <member name="P:GTAPI.API.Version1.DataServiceController.DataService">
+            <summary>数据服务</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.DataServiceController.#ctor(Jurassic.PKS.Service.Data.IData)">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.DataServiceController.GetServiceInfo">
+            <summary>获得服务信息</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.DataServiceController.GetServiceCapabilities">
+            <summary>获得服务能力数据</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.DataServiceController.Spider(Jurassic.PKS.WebAPI.Models.Data.SpiderRequest)">
+            <summary>分批或增量爬取某个适配器的某个域的成果的元数据集合</summary>
+            <param name="request">爬取成果的元数据集合请求数据</param>
+            <returns>爬取结果</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.DataServiceController.Retrieve(Jurassic.PKS.WebAPI.Models.Data.RetrieveRequest)">
+            <summary>获取成果的内容项集合</summary>
+            <param name="request">获取成果的内容项集合请求数据</param>
+            <returns>成果的内容项集合</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.DataServiceController.GetData(Jurassic.PKS.WebAPI.Models.Data.GetDataRequest)">
+            <summary>获取成果的数据项</summary>
+            <param name="request">获取成果的数据项请求数据</param>
+            <returns>成果的数据项结果</returns>
+        </member>
+        <member name="T:GTAPI.API.Version1.IndexerServiceController">
+            <summary>索引服务API</summary>
+        </member>
+        <member name="P:GTAPI.API.Version1.IndexerServiceController.IndexerService">
+            <summary>索引服务</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.IndexerServiceController.#ctor(Jurassic.PKS.Service.Index.IIndexer)">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.IndexerServiceController.GetServiceInfo">
+            <summary>获得服务信息</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.IndexerServiceController.SendIndex(Jurassic.PKS.WebAPI.Models.Index.IndexInfoRequest)">
+            <summary>批量保存/更新/删除索引信息</summary>
+            <param name="request">索引操作信息请求数据</param>
+            <returns>索引操作结果</returns>
+        </member>
+        <member name="T:GTAPI.API.Version1.GetDictionaryTestController">
+            <summary>
+            搜索服务API
+            </summary>
+        </member>
+        <member name="T:GTAPI.API.Version1.BOServiceController">
+            <summary>
+            对象服务API
+            </summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.#ctor(Jurassic.PKS.Service.GF.IBO)">
+            <summary>
+            依赖注入
+            </summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.GetBOByName(System.String,System.String)">
+            <summary>
+            根据业务对象正式名或别名以及业务对象类型获取正式业务实体信息
+            </summary>
+            <param name="name">业务对象正式名或别名</param>
+            <param name="bot">业务对象类型</param>
+            <returns>如果找到，返回<c>BO</c>对象，否则返回<c>null</c></returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.GetBOById(System.String)">
+            <summary>
+            根据业务对象Id获取正式业务实体信息
+            </summary>
+            <param name="boid">业务对象Id</param>
+            <returns>如果找到，返回<c>BO</c>对象，否则返回<c>null</c></returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.GetBOByAlias(System.String,System.String)">
+            <summary>
+            根据业务对象别名和应用域获取正式业务对象信息
+            </summary>
+            <param name="alias">业务对象别名</param>
+            <param name="appdomain">业务域</param>
+            <returns>如果找到，返回<c>BO</c>对象，否则返回<c>null</c></returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.GetBOAliasByID(Jurassic.PKS.WebAPI.GF.GetBOAliasRequest)">
+            <summary>
+            根据业务对象ID获取业务对象别名
+            </summary>
+            <param name="boid">业务对象ID</param>
+            <param name="appdomains">应用域列表。如果为<c>null</c>，返回所有可能的应用域别名</param>
+            <returns>别名列表，<c>Alias</c>集合</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.Get3GXById(System.String,Jurassic.PKS.Service.GF.GGGXDataCategory)">
+            <summary>
+            根据业务对象ID和数据分类获取3GX数据
+            </summary>
+            <param name="boid">业务对象ID</param>
+            <param name="category"><c>GGGXDataCategory</c>对象，要返回的数据类别</param>
+            <returns><c>XmlDocument</c>的一个实例，该实例符合3GX数据规范</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.GetNearBOById(Jurassic.PKS.WebAPI.GF.GetNearBOByIdRequest)">
+            <summary>
+            获取指定对象附近的临近对象
+            </summary>
+            <param name="boid">指定业务对象ID</param>
+            <param name="distince">临近半径范围，单位为米</param>
+            <param name="bot">临近业务对象类型</param>
+            <param name="filter">符合filter规范的json字符串</param>
+            <returns><c>NearBOCollection</c>实例</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.GetNearBOByLocation(Jurassic.PKS.WebAPI.GF.GetNearBOByLocationRequest)">
+            <summary>
+            获取指定点坐标附近的临近对象
+            </summary>
+            <param name="pointWKT">指定符合Point定义的WKT格式坐标</param>
+            <param name="distince">临近半径范围，单位为米</param>
+            <param name="bot">临近业务对象类型</param>
+            <param name="filter">符合filter规范的json字符串</param>
+            <returns><c>NearBOCollection</c>实例</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.GetNearBOByName(Jurassic.PKS.WebAPI.GF.GetNearBOByNameRequest)">
+            <summary>
+            获取指定业务对象名称/类型附近的临近对象
+            </summary>
+            <param name="boName">指定业务对象名称（包括正式名和别名）</param>
+            <param name="boType">指定业务对象类型</param>
+            <param name="bot">临近业务对象类型</param>
+            <param name="filter">符合filter规范的json字符串</param>
+            <returns><c>NearBOCollection</c>实例</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.GetBOListByBOT(Jurassic.PKS.WebAPI.GF.GetBOListByBOTRequest)">
+            <summary>
+            获取指定业务对象类型/类别的业务对象
+            </summary>
+            <param name="bot">返回的业务对象类型</param>
+            <param name="filter">符合filter规范的json字符串</param>
+            <returns>业务对象集合<c>BOCollection</c></returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.GetBOListByFilter(Jurassic.PKS.WebAPI.GF.GetBOListByFilterRequest)">
+            <summary>
+            获取指定业务对象类型和符合属性过滤条件的业务对象
+            </summary>
+            <param name="bot">返回的业务对象类型</param>
+            <param name="wktBBox">符合WKT的格式空间范围</param>
+            <param name="filter">符合filter规范的json字符串</param>
+            <returns>业务对象集合<c>BOCollection</c></returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.GetBOTree(Jurassic.PKS.Service.GF.BOTreeTemplate)">
+            <summary>
+            根据业务对象树模板获取业务对象列表
+            </summary>
+            <param name="template">树模板<c>BOTreeTemplate</c></param>
+            <returns>业务对象集合<c>BOCollection</c></returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.GetPropertySchema(Jurassic.PKS.WebAPI.GF.GetPropertySchemaRequest)">
+            <summary>
+            根据业务对象类型和应用域获取属性定义信息
+            </summary>
+            <param name="request">请求参数</param>
+            <returns>返回属性定义集合</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.Get3GXByFilter(Jurassic.PKS.WebAPI.GF.Get3GxByFilterRequest)">
+            <summary>
+            根据filter获得3GX数据
+            </summary>
+            <param name="bot">对象类型</param>
+            <param name="bos">对象列表</param>
+            <param name="filter">过滤条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.GetServiceInfo">
+            <summary>获得服务信息</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.BOServiceController.GetServiceCapabilities">
+            <summary>获得服务能力数据</summary>
+        </member>
+        <member name="T:GTAPI.API.Version1.GGGXServiceController">
+            <summary>
+            3GX服务API
+            </summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.GGGXServiceController.#ctor(Jurassic.PKS.Service.GF.IGGGX)">
+            <summary>
+            依赖注入
+            </summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.GGGXServiceController.GetFeatures(Jurassic.PKS.Service.GF.FeatureFilter)">
+            <summary>
+            根据过滤条件获取3GX属性信息
+            </summary>
+            <param name="filter"></param>
+            <returns><c>XmlDocument</c>的json字符串，符合3GX数据规范</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.GGGXServiceController.GetDomain(System.String,System.String)">
+            <summary>
+            获取业务对象属性枚举值
+            </summary>
+            <param name="ft"></param>
+            <param name="parameter">NS.参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.GGGXServiceController.GetFeatureById(System.String,System.String)">
+            <summary>
+            根据条件获取3GX数据
+            </summary>
+            <param name="filter"></param>
+            <returns><c>XmlDocument</c>的json字符串，符合3GX数据规范</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.GGGXServiceController.GetBOsByFT(System.String)">
+            <summary>
+            获取指定特征类型所包含的业务对象集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.GGGXServiceController.GetBOsByBOT(System.String)">
+            <summary>
+            获取指定业务对象类型所包含的业务对象集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.GGGXServiceController.GetFTsByBO(System.String,System.String)">
+            <summary>
+            获取指定BO的特征类型集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.GGGXServiceController.GetFTCList">
+            <summary>
+            for test
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.GGGXServiceController.GetServiceCapabilities">
+            <summary>获得服务能力数据</summary>
+        </member>
+        <member name="T:GTAPI.API.Version1.GGGXSubmissionServiceController">
+            <summary>
+            3GX提交服务API
+            </summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.GGGXSubmissionServiceController.#ctor(Jurassic.PKS.Service.GF.ISubmission)">
+            <summary>
+            依赖注入
+            </summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.GGGXSubmissionServiceController.Submit(Jurassic.PKS.WebAPI.GF.SubmissionInfoRequest)">
+            <summary>
+            提交3GX数据到主数据库中
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.GGGXSubmissionServiceController.GetServiceInfo">
+            <summary>获得服务信息</summary>
+        </member>
+        <member name="T:GTAPI.API.Version1.SearchServiceController">
+            <summary>
+            搜索服务API
+            </summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.SearchServiceController.#ctor(Jurassic.PKS.Service.Search.ISearch,Jurassic.PKS.Service.Search.IQuery)">
+            <summary>
+            依赖注入
+            </summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.SearchServiceController.Search(Jurassic.PKS.Service.Search.SearchRequest)">
+            <summary>
+            从ES查询，支持全文检索，内部调用ISearch.Search方法
+            </summary>
+            <param name="request">查询参数</param>
+            <returns>返回搜索结果（记录总条数、文档集合、聚合结果）</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.SearchServiceController.Match(Jurassic.PKS.Service.Search.MatchRequest)">
+            <summary>
+            从MongoDB中查询，匹配标签查询，内部调用IQuery.Match方法
+            </summary>
+            <param name="request">查询参数</param>
+            <returns>返回搜索结果（记录总条数、文档集合、聚合结果）</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.SearchServiceController.GetMetaData(System.String,GTAPI.API.Category)">
+            <summary>
+            从MongoDB中查询，根据iiid获取元数据，内部调用IQuery.Match方法
+            </summary>
+            <param name="iiid">文档唯一标识</param>
+            <param name="category">元数据分类</param>
+            <returns>返回分类元数据信息</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.SearchServiceController.GetThumbnail(System.String)">
+            <summary>
+             从MongoDB中查询，根据iiid获取缩略图数据，内部调用IQuery.Match方法。
+            </summary>
+            <param name="iiid">文档唯一标识</param>
+            <returns>返回缩略图信息</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.SearchServiceController.GetFulltext(System.String)">
+            <summary>
+            从MongoDB中查询，根据iiid获取全文数据，内部调用IQuery.Match方法。
+            </summary>
+            <param name="iiid">文档唯一标识</param>
+            <returns>返回全文信息</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.SearchServiceController.Statistics">
+            <summary>
+            从MongoDB中查询，获取元数据统计信息，内部调用IQuery.Statistics
+            </summary>
+            <returns>返回索引统计信息</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.SearchServiceController.GetMetadataDefinition(System.String[])">
+            <summary>
+            从MongoDB中查询，获取标签信息，内部调用IQuery.GetMetadataDefinition
+            </summary>
+            <param name="tagNames">标签名称集合</param>
+            <returns>返回匹配标签的信息</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.SearchServiceController.GetServiceInfo">
+            <summary>获得服务信息</summary>
+        </member>
+        <member name="T:GTAPI.API.Version1.SemanticsServiceController">
+            <summary>语义服务API</summary>
+        </member>
+        <member name="P:GTAPI.API.Version1.SemanticsServiceController.SemanticsService">
+            <summary>语义服务</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.SemanticsServiceController.#ctor(Jurassic.PKS.Service.Semantics.ISemantics)">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.SemanticsServiceController.GetServiceInfo">
+            <summary>获得服务信息</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.SemanticsServiceController.Segment(Jurassic.PKS.WebAPI.Semantics.SegmentRequest)">
+            <summary>简单语义分词</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.SemanticsServiceController.GetTermInfo(Jurassic.PKS.WebAPI.Semantics.GetTermInfoRequest)">
+            <summary>根据叙词名称获得指定概念类的叙词信息</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.SemanticsServiceController.Hierarchy(Jurassic.PKS.WebAPI.Semantics.HierarchyRequest)">
+            <summary>根据叙词id返回对应的子树的层级结构，并限定返回叙词的概念类</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.SemanticsServiceController.GetCC">
+            <summary>获取所有的概念类</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.SemanticsServiceController.GetSemanticsType">
+            <summary>获取所有语义关系类型</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.SemanticsServiceController.Semantics(Jurassic.PKS.WebAPI.Semantics.SemanticsRequest)">
+            <summary>获取语义关系</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.SemanticsServiceController.GetDictionary(Jurassic.PKS.WebAPI.Semantics.GetDictionaryRequest)">
+            <summary>获得指定类型词库</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.SemanticsServiceController.GetDic4PanGu">
+            <summary>获取盘古分词词库</summary>
+        </member>
+        <member name="T:GTAPI.API.Version1.SubmissionServiceController">
+            <summary>成果提交服务API </summary>
+        </member>
+        <member name="P:GTAPI.API.Version1.SubmissionServiceController.SubmissionService">
+            <summary>成果提交服务</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.SubmissionServiceController.#ctor(Jurassic.PKS.Service.Submission.ISubmission)">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.SubmissionServiceController.GetServiceInfo">
+            <summary>获得服务信息</summary>
+        </member>
+        <member name="M:GTAPI.API.Version1.SubmissionServiceController.Upload">
+            <summary>
+            上传一个成果文件到目标系统中
+            </summary>
+            <param name="file">待上传的文件</param>
+            <returns>文件ID</returns>
+        </member>
+        <member name="M:GTAPI.API.Version1.SubmissionServiceController.Submit(Jurassic.PKS.WebAPI.Submission.SubmissionInfoRequest)">
+            <summary>
+            提交成果的文件集和元数据集到目标系统中
+            </summary>
+            <param name="info">提交信息</param>
+            <returns>成果ID</returns>
+        </member>
+        <member name="T:GTAPI.API.ApiExceptionFilter">
+            <summary>GTAPI异常处理拦截器</summary>
+        </member>
+        <member name="M:GTAPI.API.ApiExceptionFilter.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:GTAPI.API.ApiExceptionFilter.Config">
+            <summary>异常配置</summary>
+        </member>
+        <member name="P:GTAPI.API.ApiExceptionFilter.ContentType">
+            <summary>内容类型</summary>
+        </member>
+        <member name="P:GTAPI.API.ApiExceptionFilter.Bearer">
+            <summary>授权头值</summary>
+        </member>
+        <member name="M:GTAPI.API.ApiExceptionFilter.OnException(System.Web.Http.Filters.HttpActionExecutedContext)">
+            <summary>处理异常</summary>
+        </member>
+        <member name="T:GTAPI.App_Start.UnityWebApiActivator">
+            <summary>Provides the bootstrapping for integrating Unity with WebApi when it is hosted in ASP.NET</summary>
+        </member>
+        <member name="M:GTAPI.App_Start.UnityWebApiActivator.Start">
+            <summary>Integrates Unity when the application starts.</summary>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:GTAPI.Areas.HelpPage.App_Start.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:GTAPI.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,GTAPI.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:GTAPI.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:GTAPI.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:GTAPI.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:GTAPI.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:GTAPI.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:GTAPI.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:GTAPI.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:GTAPI.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:GTAPI.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:GTAPI.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:GTAPI.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:GTAPI.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="F:GTAPI.Areas.HelpPage.MultiXmlDocumentationProvider.Providers">
+            <summary>The internal documentation providers for specific files.</summary>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.MultiXmlDocumentationProvider.#ctor(System.String[])">
+            <summary>Construct an instance.</summary>
+            <param name='paths'>The physical paths to the XML documents.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.MultiXmlDocumentationProvider.GetDocumentation(System.Reflection.MemberInfo)">
+            <summary>Gets the documentation for a subject.</summary>
+            <param name='subject'>The subject to document.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.MultiXmlDocumentationProvider.GetDocumentation(System.Type)">
+            <summary>Gets the documentation for a subject.</summary>
+            <param name='subject'>The subject to document.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.MultiXmlDocumentationProvider.GetDocumentation(System.Web.Http.Controllers.HttpControllerDescriptor)">
+            <summary>Gets the documentation for a subject.</summary>
+            <param name='subject'>The subject to document.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.MultiXmlDocumentationProvider.GetDocumentation(System.Web.Http.Controllers.HttpActionDescriptor)">
+            <summary>Gets the documentation for a subject.</summary>
+            <param name='subject'>The subject to document.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.MultiXmlDocumentationProvider.GetDocumentation(System.Web.Http.Controllers.HttpParameterDescriptor)">
+            <summary>Gets the documentation for a subject.</summary>
+            <param name='subject'>The subject to document.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.MultiXmlDocumentationProvider.GetResponseDocumentation(System.Web.Http.Controllers.HttpActionDescriptor)">
+            <summary>Gets the documentation for a subject.</summary>
+            <param name='subject'>The subject to document.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.MultiXmlDocumentationProvider.GetFirstMatch(System.Func{GTAPI.Areas.HelpPage.XmlDocumentationProvider,System.String})">
+            <summary>Get the first valid result from the collection of XML documentation providers.</summary>
+            <param name='expr'>The method to invoke.</param>
+        </member>
+        <member name="T:GTAPI.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:GTAPI.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:GTAPI.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,GTAPI.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,GTAPI.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(GTAPI.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:GTAPI.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},GTAPI.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:GTAPI.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:GTAPI.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:GTAPI.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(GTAPI.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:GTAPI.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:GTAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:GTAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,GTAPI.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:GTAPI.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:GTAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:GTAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:GTAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:GTAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:GTAPI.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GTAPI.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:GTAPI.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:GTAPI.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:GTAPI.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:GTAPI.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:GTAPI.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:GTAPI.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GTAPI.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="T:GTAPI.Filters.LoggingRqrs">
+            <summary>
+            记录请求和应答
+            </summary>
+        </member>
+        <member name="M:GTAPI.Filters.LoggingRqrs.OnActionExecuted(System.Web.Http.Filters.HttpActionExecutedContext)">
+            <summary>
+            记录请求和应答
+            </summary>
+            <remarks>
+            会记录来自框架部分的方法，不只是Api部分的，框架也属于访问，所以暂时没有去掉。
+            </remarks>
+        </member>
+        <member name="M:GTAPI.Filters.LoggingRqrs.GetRequest(System.Web.Http.Filters.HttpActionExecutedContext)">
+            <summary>
+            获取请求数据
+            </summary>
+        </member>
+        <member name="M:GTAPI.Filters.LoggingRqrs.IsData(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            是否数据
+            </summary>
+        </member>
+        <member name="T:GTAPI.Application1">
+            <summary>
+            应用程序必须继承MvcApplication
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:GTAPI.Application1.ControllerNameSpaces" -->
+        <member name="M:GTAPI.Application1.RedefineViewLocator">
+            <summary>
+            追加或重新定义视图搜索路径
+            </summary>
+        </member>
+    </members>
+</doc>

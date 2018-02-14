@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "~/Views/shared/Layout_GT.cshtml";
+}
+
+<gt:downloadhistory :id="downloadhistory1" :count="count"></gt:downloadhistory>
+
+@section ScriptSection
+{
+    <script type="text/javascript">
+        var count =@ViewBag.count;
+    </script>
+}
+

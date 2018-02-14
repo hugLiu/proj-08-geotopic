@@ -1,0 +1,89 @@
+﻿@{
+    Layout = "~/Views/shared/Layout_GT.cshtml";
+}
+@section HeadSection
+{
+    <link href="~/Scripts/LayoutWidget/Plug/index.css" rel="stylesheet" />
+    <style>
+        th {
+            font-size: 14px;
+        }
+
+        td {
+            font-size: 12px;
+        }
+    </style>
+}
+<div id="firstDiv" class="center-in-center">
+    <span>页面加载中，请稍候...</span>
+</div>
+
+<gt:ptdetail2 :id="ptdetail2" :iiid="iiid" :style="ptstyle"></gt:ptdetail2>
+
+@section ScriptSection
+{
+    <script type="text/javascript" src="~/Scripts/LayoutWidget/Plug/spin.min.js"></script>
+    <script type="text/javascript">
+        //5431DF9DC879A7B10F35188072D4CBC1
+        var iiid = "@ViewBag.iiid";
+        //var detaildataurl = '@Url.Action("GetDetailData", "PTDetail")';
+
+        var detaildataurl = {};
+
+        var ptstyle = "width:95%; margin-left: auto;margin-right: auto;margin-top:20px;";
+
+        var opts = {
+            //innerImage: {url: '../img/logo.png', width: 56, height: 56 }, //内部图片
+            lines: 10, // 花瓣数目
+            length: 8, // 花瓣长度
+            width: 5, // 花瓣宽度
+            radius: 8, // 花瓣距中心半径
+            corners: 0.8, // 花瓣圆滑度 (0-1)
+            rotate: 0, // 花瓣旋转角度
+            direction: 1, // 花瓣旋转方向 1: 顺时针, -1: 逆时针
+            color: '#5882FA', // 花瓣颜色
+            speed: 1, // 花瓣旋转速度
+            trail: 60, // 花瓣旋转时的拖影(百分比)
+            shadow: false, // 花瓣是否显示阴影
+            hwaccel: false, //spinner 是否启用硬件加速及高速旋转
+            className: 'spinner', // spinner css 样式名称
+            zIndex: 2e9, // spinner的z轴 (默认是2000000000)
+            top: 'auto', // spinner 相对父容器Top定位 单位 px
+            left: 'auto', // spinner 相对父容器Left定位 单位 px
+            position: 'relative', // element position
+            progress: true,      // show progress tracker
+            progressTop: 0,       // offset top for progress tracker
+            progressLeft: 0       // offset left for progress tracker
+        };
+
+        var spinner = new Spinner(opts);
+
+        $(document).ready(function () {
+            $("#firstDiv").text("");
+            var target = $("#firstDiv").get(0);
+            spinner.spin(target);
+        });
+
+        $.ajax({
+            url: "/PTDetail/GetDetailData",
+            type: "post",
+            data: { iiid: iiid },
+            //beforeSend: function () {
+            //    //异步请求时spinner出现
+            //    $("#firstDiv").text("");
+            //    var target = $("#firstDiv").get(0);
+            //    spinner.spin(target);
+            //},
+            success: function (text) {
+                detaildataurl = text;
+                //关闭spinner
+                spinner.spin();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $("#firstDiv").text(errorThrown);
+                //关闭spinner
+                spinner.spin();
+            }
+        });
+    </script>
+}

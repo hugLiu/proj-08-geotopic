@@ -1,0 +1,98 @@
+﻿<ul class="nav navbar-nav navbar-right">
+    <li><a href="/WebApp/TopToolbar_UserCenter" target="_blank"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> @ViewBag.UserName</a></li>
+    <li><a href="/WebApp/TopToolbar_Collection" target="_blank"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> @Html.Str("S_T_Link_Collect")</a></li>
+    <li class="dropdown">
+        <a id="one1" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> @Html.Str("S_T_Link_Settting")<span class="caret"></span></a>
+        <ul class="dropdown-menu" aria-labelledby="one1">
+            <li><a data-toggle="modal" data-target="#Setting-Search">@Html.Str("S_T_Link_Search")</a></li>
+            @*<li><a data-toggle="modal" data-target="#Setting-Range">@Html.Str("S_T_Link_Range")</a></li>*@
+            <li><a id="AdvancedSearch">@Html.Str("S_T_Link_Advanced")</a></li>
+            <li><a id="RelatedSearch">@Html.Str("S_T_Link_Related")</a></li>
+            <li><a id="SearchHistory">@Html.Str("S_T_Link_History")</a></li>
+        </ul>
+    </li>
+    <li><a href="/WebAppAccount/Logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> @Html.Str("S_T_Link_Exit")</a></li>
+</ul>
+
+<div class="PopupWindow">
+    <div class="modal fade " id="Setting-Search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog" style="width:100%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">@Html.Str("S_T_Link_Search")</h4>
+                </div>
+                <div id="settingSearchmodal">
+                    @Html.Partial("Setting_Search")
+                </div>
+                @*<div class="modal-footer">
+                        <button type="button" id="save" data-dismiss="modal" class="btn btn-primary">@Html.Str("S_C_Button_Save")</button>
+                        <button type="button" id="cancel" class="btn btn-default" data-dismiss="modal">@Html.Str("S_C_Button_Cancle")</button>
+                    </div>*@
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="PopupWindow">
+    <div class="modal fade" id="Setting-Range" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog" style="width:100%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">@Html.Str("S_T_Link_Range")</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.Partial("Setting_Range")
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="save" data-dismiss="modal" class="btn btn-primary">@Html.Str("S_C_Button_Save")</button>
+                    <button type="button" id="cancel" class="btn btn-default" data-dismiss="modal">@Html.Str("S_C_Button_Cancle")</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="PopupWindow">
+        <div class="modal fade" id="Setting-Advanced" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+            <div class="modal-dialog" style="width:100%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">@Html.Str("S_T_Link_Advanced")</h4>
+                    </div>
+                    <div class="modal-body">
+                        @Html.Partial("Setting_AdvancedSearch")
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">@Html.Str("S_T_Link_Advanced")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="PopupWindow">
+        <div class="modal fade" id="Setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+            <div class="modal-dialog" style="width:100%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">tuichu</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        @Html.Partial("Setting")
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">@Html.Str("S_C_Button_Save")</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">@Html.Str("S_C_Button_Cancle")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+@*@Scripts.Render("~/Scripts/VM/InfoBarVMjs")*@
+@*<script src="/Scripts/VM/InfoBarVM.js"></script>*@

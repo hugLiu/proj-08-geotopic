@@ -1,0 +1,164 @@
+﻿@{
+    ViewBag.Title = "GeoTopicUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mini-splitter" allowResize="true" style="width:100%;height:100%;">
+    <div size="55%" showCollapseButton="false">
+        @*角色表*@
+        <div style="height: 45%">
+            <span>角色表</span>
+            <div id="grid_role" class="mini-datagrid" style="width: 100%; height: 92%;"
+                 url="@Url.Action("GetRoleMess", "GeoTopicInUser")" idField="id"
+                 multiSelect="true" allowResize="false" onrowclick="onRolesRowClick">
+                <div property="columns">
+                    <div field="RoleId" width="5%" align="center" headeralign="center">Id</div>
+                    <div name="RoleName" field="RoleName" width="30%" headeralign="left" align="left">
+                        角色名
+                        <input property="editor" class="mini-textbox" style="width: 100%;"/>
+                    </div>
+                    <div field="Description" width="65%" align="left" headeralign="left">描述</div>
+                </div>
+            </div>
+        </div>
+        @*角色对应的用户表*@
+        <div style="height: 55%">
+            <br/>
+            <span>用户表</span>
+            <div id="grid_user" class="mini-datagrid" style="width: 100%; height: 87%;"
+                 url="/GeoTopicInUser/GetUsersByRole/" idField="id" showPager="false"
+                 multiSelect="true" allowResize="false">
+                <div property="columns">
+                    <div field="UserId" width="5%" align="center" headeralign="center">Id</div>
+                    <div name="IndexName" field="UserName" width="25%" headeralign="left" align="left">
+                        用户名
+                        <input property="editor" class="mini-textbox" style="width: 100%;"/>
+                    </div>
+                    <div field="Email" width="40%" align="center" headeralign="center">邮件</div>
+                    <div field="PhoneNumber" width="30%" align="center" headeralign="center">电话号码</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div showCollapseButton="false">
+        <div class="mini-toolbar" style="padding: 2px 0px 5px 5px;">
+            <span>知识主题设置：</span>
+            <a class="mini-button frame-submit mini-button-plain" onclick="SaveData()">
+                <span class="mini-button-text  mini-button-icon icon-new-save">保存</span>
+            </a>
+        </div>
+        @*右半边布局*@
+        <div class="mini-fit" style="padding-top: 5px; height: 95%;">
+            @*权限表*@
+            <ul id="tree_topic" class="mini-tree"
+                showtreeicon="true"
+                textfield="Title" idfield="Id" parentfield="PId"
+                resultastree="false" expandonload="0" showCheckBox="true" checkRecursive="false"
+                onnodeclick="NodeClick" allowSelect="false"></ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    mini.parse();
+    var grid_role = mini.get("grid_role");
+    var grid_user = mini.get("grid_user");
+    var treeKTopic = mini.get("tree_topic");
+    grid_role.load();
+    var allFunctions;
+    var currentrow;  //当前点击的Role表的某一行
+    var topicMess;
+
+    $.newGET('@Url.Action("GetTopicsMess", "GeoTopicInUser")', function (zNodes) {
+        allFunctions = zNodes;
+        treeKTopic.loadList(allFunctions, "Id");
+    });
+
+    var currentUserMess;
+    //点击角色表的某一行时加载出对应的用户表和权限树
+    function onRolesRowClick(e) {
+        currentUserMess = null;
+        var grid = e.sender;
+        currentrow = grid.getSelected();
+        var roleId = currentrow.RoleId;
+        if (currentrow) {
+            getClickData(roleId);
+        }
+    }
+
+    function getClickData(roleId) {
+        grid_user.load({ RoleId: roleId }, function (Users) {
+            //拿到没有设置权限的权限树结构
+            currentUserMess = Users.data;
+            //加载权限树的所有权限
+            $.newGET('@Url.Action("Edit", "GeoTopicInUser")', { id: roleId }, showEdit);
+        });
+    }
+
+    //点击角色表的某一行时，拿到当前
+    function showEdit(topics) {
+        var arr = [];
+        for (var i = 0; i < topics.length; i++) {
+            arr.add(topics[i].Id);
+        }
+        setCheckStates(arr);
+    }
+
+    function setCheckStates(functionIds) {
+        treeKTopic.uncheckAllNodes();
+        $(allFunctions)
+            .each(function() {
+                var checked = $.inArray(this.Id, functionIds) >= 0;
+                if (checked) {
+                    treeKTopic.checkNode(this);
+                }
+            });
+    }
+
+    var currentCheckboxState; //用于保存上一次提交的树节点
+    //定义一个变量记录之前的选中checkbox的值，如果跟这次选中的一样就显示请勿重复提交
+    function SaveData() {
+        var data = treeKTopic.getCheckedNodes(); //获取所有选中的树节点
+        var currentChecked = mini.encode(data);
+        if (currentrow == undefined) {
+            toastr["info"]("请选择角色！");
+        } else if (data == currentCheckboxState) {
+            toastr["info"]("请勿重复提交！");
+        } else {
+            var test = 1;
+            var msgid = mini.loading("数据保存中，请稍后......", "保存数据");
+            var currentId = currentrow.RoleId;
+            $.ajax({
+                url: "/GeoTopicInUser/SaveTopicCheckbox?=",
+                data: { RoleId: currentrow.RoleId, currentChecked: currentChecked },
+                type: "post",
+                success: function(text) {
+                    mini.hideMessageBox(msgid);
+                    //当修改check的值成功之后，需要重新刷新树的数据
+                    toastr["success"]("保存成功！");
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                }
+            });
+            //保存这一次的选中所有的树节点，在下一次保存之前进行比较，如果一样就警告用户请勿重复提交
+            currentCheckboxState = data;
+        }
+    }
+
+    function NodeClick(e) {
+        var node = e.node;
+        if (node != null) {
+            var childNodes = treeKTopic.getAllChildNodes(node);
+            if (node.checked) {
+                treeKTopic.uncheckNode(node);
+                childNodes.forEach(function(n) { treeKTopic.uncheckNode(n); });
+            } else {
+                treeKTopic.checkNode(node);
+                childNodes.forEach(function(n) { treeKTopic.checkNode(n); });
+            }
+        }
+    }
+
+</script>
+

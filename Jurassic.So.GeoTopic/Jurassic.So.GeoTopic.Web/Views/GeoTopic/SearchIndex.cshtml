@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "SearchIndex";
+    Layout = "~/Views/shared/Layout_GT.cshtml";
+}
+
+<link href="~/content/Sooil/global.css" rel="stylesheet" type="text/css" />
+<link href="~/content/Sooil/layout.css" rel="stylesheet" type="text/css" />
+
+
+@*<h2>SearchIndex</h2>*@
+
+<div class="index">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
+                <input type="hidden" id="isinfobar" value="1,2,3,5" />
+
+                @{if (ViewBag.IsUser)
+                    {
+                        @Html.Partial("InfoBar")
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li> <a href="/Account/Login" class="navbar-link">@Html.Str("S_H_Link_Login")</a></li>
+                        </ul>
+                    }
+                }
+            </div>
+        </div>
+    </nav>
+    <div class="main">
+        <div class="logo"></div>
+        <div class="search">
+            @Html.Partial("Search")
+        </div>
+        <!--Add By Joker 11月份设计实现-->
+        @{if (ViewBag.IsUser)
+            {
+                <div class="RCHC clearfix" style="visibility:hidden;display:none">
+                    <div class="tab-left">
+                        <ul class="nav nav-pills nav-stacked" role="tablist">
+                            <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">@Html.Str("S_H_Label_Recommend")</a></li>
+                            <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">@Html.Str("S_H_Label_Collect")</a></li>
+                            <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">@Html.Str("S_H_Label_History")</a></li>
+                            <li role="presentation"><a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">@Html.Str("S_H_Label_HotSpot")</a></li>
+                        </ul>
+                    </div>
+                    <!-- 选项卡的内容定义 -->
+                    <div class="tab-right">
+                        <div class="tab-content-right">
+                            <div role="tabpanel" class="tab-pane active" id="tab1"></div>
+                            <div role="tabpanel" class="tab-pane" id="tab2"></div>
+                            <div role="tabpanel" class="tab-pane" id="tab3"></div>
+                            <div role="tabpanel" class="tab-pane" id="tab4"></div>
+                        </div>
+                    </div>
+                </div>
+            }}
+
+    </div>
+</div>

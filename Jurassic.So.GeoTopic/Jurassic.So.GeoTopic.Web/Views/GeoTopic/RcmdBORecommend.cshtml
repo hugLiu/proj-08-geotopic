@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "RcmdBORecommend";
+    Layout = "~/Views/shared/Layout_GT.cshtml";
+}
+<div style="float:right;padding:10px">
+    <div>
+        <gt:rcmdbonear :id="bonear" :bos="bos1" :name="相邻目标" :onclick="onclick" :distance=5000></gt:rcmdbonear>
+    </div>
+    <div style="padding-top:40px">
+        <gt:rcmdbosimilar :id="bosimilar" :bos="bos2" :name="相似目标" :onclick="onclick"></gt:rcmdbosimilar>
+    </div>
+    <div style="padding-top:40px">
+        <gt:rcmdboassociate :id="boassociate" :bos="bos3" :name="相关目标" :botreetemplate="botreetemplate" :onclick="onclick"></gt:rcmdboassociate>
+    </div>
+    <div style="padding-top:40px">
+        <gt:rcmdsemantics :id="semantics" :terms="terms" :relation="relation" :name="相关过程" :onclick="onclick"></gt:rcmdsemantics>
+    </div>
+</div>
+
+@section ScriptSection{
+    <script type="text/javascript">
+        var props = {
+            label: 'text',
+            children: 'children'
+        };
+
+        var bos1 = [{ "type": "井", "value": "XJ34-1-3" }, { "type": "圈闭", "value": "LF15-1-1" }];
+        var bos2 = [{ "type": "井", "value": "XJ34-1-3" }, { "type": "圈闭", "value": "LF15-1-1" }];
+        var bos3 = [{ "type": "井", "value": "XJ34-1-3" }, { "type": "圈闭", "value": "LF15-1-1" }];
+
+        var scene = ["基础参数"];
+        var botreetemplate = [
+    {
+        "bot": "盆地",
+        "bos": [
+            "珠江口盆地"
+        ],
+        "filter": null,
+        "relation": "F",
+        "children": [
+            {
+                "bot": "一级单元",
+                "bos": null,
+                "filter": null,
+                "relation": "F",
+                "children": [
+                    {
+                        "bot": "二级单元",
+                        "bos": null,
+                        "filter": null,
+                        "relation": "F",
+                        "children": [
+                            {
+                                "bot": "圈闭",
+                                "bos": null,
+                                "filter": "",
+                                "relation": "F",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+        ]
+        var terms = ["勘探/地质调查", "勘探/钻探"];
+        var relation = {
+            "parent": {
+                "sr": "R_BT_XF_BT",
+                "direction": "backward"
+            },
+            "brother": {
+                "sr": "R_BT_XF_BT",
+                "direction": "backward"
+            },
+            "child": {
+                "sr": "R_BT_XF_BT",
+                "direction": "forward"
+            }
+        };
+        function onclick(value) {
+            alert(value);
+        }
+    </script>
+}

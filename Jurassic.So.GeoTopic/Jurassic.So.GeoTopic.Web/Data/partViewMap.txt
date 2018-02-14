@@ -1,0 +1,7 @@
+[
+	{ "url": "/render/pt", "viewName": "PartialParamTemp1"},
+	{ "url": "/GeoModule/GetView", "viewName": "PartialParamTemp2"},
+	{ "url": "www.baidu.com", "viewName": "PartialParamTemp1"},
+	{ "url": "9", "viewName": "PartialParamTemp1"},
+	{ "url": "ptRender", "viewName": "PartialParamTemp2"}
+]

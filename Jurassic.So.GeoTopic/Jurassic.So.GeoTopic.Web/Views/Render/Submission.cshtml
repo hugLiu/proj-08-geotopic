@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "提交测试页面";
+    Layout = "~/Views/shared/Layout_GT.cshtml";
+}
+@section HeadSection
+{
+    <style>
+        /** {
+            font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+        }*/
+        /*解决bootstrap和elemnt样式冲突*/
+        .tag-editor {
+            list-style-type: none;
+            padding: 0 5px 0 0;
+            margin: 0;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            cursor: text;
+            font: normal 14px sans-serif;
+            color: #555;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .el-input__icon + .el-input__inner {
+            padding-right: 0;
+            height: 26px;
+        }
+
+        .el-input__inner {
+            padding-right: 5px;
+        }
+
+        .has-error.has-feedback:after {
+            display: none;
+        }
+
+        .has-success.has-feedback:after {
+            display: none;
+        }
+
+        input[type=file] {
+            display: none;
+        }
+
+        div.el-upload__inner.el-dragger {
+            width: 200px;
+            height: 150px;
+        }
+
+        .el-upload__tip {
+            width: 200px;
+        }
+    </style>
+}
+<div id="el">
+    <!--<so:form :data="data" :style="styleStr"></so:form>-->
+    <gt:submit :style="styleStr" :uploadapi="uploadapi" :metadataapi="metadataapi" :param="param"></gt:submit>
+</div>
+@section ScriptSection
+{
+    <script>
+        var styleStr = "width:800px";
+        var uploadapi = "@ViewBag.Upload";
+        var metadataapi = "@ViewBag.Metadata";
+        var param = JSON.parse(decodeURIComponent("@ViewBag.Param"));
+        gtUI.bind({
+            scope: "el",
+            model: "gt:submit"
+        });
+    </script>
+}

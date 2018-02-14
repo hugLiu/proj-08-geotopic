@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Scripts/GeoTopic/bootstrap-3.3.5-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/Scripts/GeoTopic/bootstrap-3.3.5-dist/css/font-awesome.css" />
+    @* GTUI引用css *@
+    <link rel="stylesheet" href="~/Content/gtui/elementui.styles.css">
+    <link rel="stylesheet" href="~/Content/gtui/gtui.styles.css">
+    @*彭婷的css*@
+    <link href="~/content/css/GeoTopic/addstyles.css" rel="stylesheet" />
+    @RenderSection("HeadSection", false)
+</head>
+<body>
+    <div id="app">
+        @RenderBody()
+    </div>
+    <script type="text/javascript" src="~/Scripts/GeoTopic/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/GeoTopic/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/GeoTopic/soUI-0.1.0.min.js"></script>*@
+    @* GTUI引用js *@
+    <script type="text/javascript" src="~/Content/gtui/manifest.js"></script>
+    <script type="text/javascript" src="~/Content/gtui/vuedll.js"></script>
+    <script type="text/javascript" src="~/Content/gtui/elementui.js"></script>
+    <script type="text/javascript" src="~/Content/gtui/gtui.js"></script>
+    @RenderSection("ScriptSection", false)
+</body>
+</html>

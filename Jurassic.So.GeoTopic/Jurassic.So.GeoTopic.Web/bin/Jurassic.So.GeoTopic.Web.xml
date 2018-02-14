@@ -1,0 +1,1007 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Jurassic.So.GeoTopic.Web</name>
+    </assembly>
+    <members>
+        <member name="M:Jurassic.So.GeoTopic.Web.App_Start.NinjectWebCommon.Start">
+            <summary>
+            Starts the application
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.App_Start.NinjectWebCommon.Stop">
+            <summary>
+            Stops the application.
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.App_Start.NinjectWebCommon.CreateKernel">
+            <summary>
+            Creates the kernel that will manage your application.
+            </summary>
+            <returns>The created kernel.</returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.App_Start.NinjectWebCommon.RegisterServices(Ninject.IKernel)">
+            <summary>
+            Load your modules or register your services here!
+            </summary>
+            <param name="kernel">The kernel.</param>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.DocumentController">
+            <summary>
+            文档显示类 控制器
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.DocumentController.DocumentManage(System.String)">
+            <summary>
+            文档显示   ------包含整套逻辑，给GTUI调用
+            </summary>fileFormat
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.DocumentController.GetFile(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            获取实体
+            </summary>
+            <param name="format"></param>
+            <param name="iiid"></param>
+            <param name="url"></param>
+            <param name="ticket"></param>
+            <param name="dataType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.DocumentController.Match(System.String)">
+            <summary>
+            Match接口方法
+            </summary>
+            <param name="pmdata"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.DocumentController.GetMatchData(System.String)">
+            <summary>
+            获取Match数据方法
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.DocumentController.GetSearchData(System.String)">
+            <summary>
+            获得Search Data
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.DocumentController.Retrieve(System.String)">
+            <summary>
+            调用Retrieve 接口获取 ticket 等信息
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.DocumentController.GetData(System.String,System.String)">
+            <summary>
+            调用GetData 接口 获取文件实体
+            </summary>
+            <param name="url"></param>
+            <param name="ticket"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.DocumentController.DownLoadFile(System.String)">
+            <summary>
+            文件下载
+            </summary>
+            <param name="param"></param>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.FileInfoController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.FileInfoController.GetStream(System.String,System.String)">
+            <summary>
+            页面中获取实体文件的方法
+            </summary>
+            <param name="url"></param>
+            <param name="ticket"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.FileInfoController.DownLoad(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            下载方法
+            </summary>
+            <param name="id"></param>
+            <param name="title"></param>
+            <param name="url"></param>
+            <param name="ticket"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.SubmitController">
+            <summary>
+            文件提交类
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.SubmitController.GetMetadata(System.String)">
+            <summary>
+            获取元数据 MetadataDefinition
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.SubmitController.Submited(System.String)">
+            <summary>
+            提交方法
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.SubmitController.GetKMD(Newtonsoft.Json.Linq.JArray)">
+            <summary>
+            构建元数据
+            </summary>
+            <param name="formlist">前台表单数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.SubmitController.GetISODate(System.String)">
+            <summary>
+            将Date字符串转为ISODate字符串
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.UserBehaviorController">
+            <summary>
+            对UserBehavior表的操作
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.UserBehaviorController.#ctor(Jurassic.So.GeoTopic.DataService.Service.IUserBehaviorService)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="userBehavior"></param>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.UserBehaviorController.Index">
+            <summary>
+            Index 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.UserBehaviorController.GetList(System.String,System.Int32,System.Int32)">
+            <summary>获得某类某页行为列表</summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.UserBehaviorController.GetDownloadMessByUserId(System.Int32)">
+            <summary>
+            通过用户Id获取用户的下载历史
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.UserBehaviorController.GetFavoriteMessByUserId(System.Int32)">
+            <summary>
+            通过用户Id获取用户的收藏信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.UserBehaviorController.GetAllFavoriteMessByUserId">
+            <summary>
+            通过用户Id获取用户的收藏信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.UserBehaviorController.GetOptionMessByUserId(System.Int32,System.String)">
+            <summary>
+            获取用户操作信息
+            </summary>
+            <param name="count"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.UserBehaviorController.AddFavoriteMess(System.String)">
+            <summary>
+            添加一条收藏信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopic.UserBehaviorController.Remove(System.Int32)">
+            <summary>删除用户行为日志</summary>
+            <param name="id">日志Id</param>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Controllers.GTBaseController">
+            <summary>
+            GT基类控制器
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GTBaseController.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Controllers.GTBaseController.ServiceProvider">
+            <summary>服务提供者</summary>
+            <remarks>不要使用MVC控制器提供的Resolver,内部使用的是缓存未使用Scope</remarks>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GTBaseController.GetService``1">
+            <summary>获得注入服务</summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Controllers.GTBaseController.CurrentUserRoleId">
+            <summary>当前用户默认角色ID</summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Controllers.GTBaseController.CurrentUserRoleName">
+            <summary>当前用户默认角色名称</summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GTBaseController.GetUserRoleName(System.String)">
+            <summary>获取角色名称</summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GTBaseController.GetUserRoleId(System.String)">
+            <summary>获取角色ID</summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GTBaseController.GetRoles">
+            <summary>获取全部角色</summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GTBaseController.GetRoleNames">
+            <summary>获取全部角色名称</summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GTBaseController.AddUserBehavior(System.String,System.String,System.String)">
+            <summary>
+            添加用户操作信息
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GTBaseController.AddUserBehavior(System.String,System.String,System.Object)">
+            <summary>
+            添加用户操作信息
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GTBaseController.AddUserBehavior(Jurassic.So.GeoTopic.DataService.Models.UserBehaviorModel)">
+            <summary>
+            添加用户操作信息
+            </summary>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Controllers.PTDetailController">
+            <summary>
+            前台获取详情页面数据
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PTDetailController.GetDetailData(System.String)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RemarkController.GetUserInfo">
+            <summary>
+            获取用户信息的方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RemarkController.GetRemarkList(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            获取评论列表
+            </summary>
+            <param name="scoap"></param>
+            <param name="naturekey"></param>
+            <param name="index"></param>
+            <param name="size"></param>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RemarkController.DeleteRemark(System.String)">
+            <summary>
+            删除评论
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RemarkController.AddRemark(Jurassic.So.GeoTopic.DataService.Models.RemarkModel)">
+            <summary>
+            发表评论
+            </summary>
+            <param name="model"></param>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RemarkController.PraiseRemark(System.String,System.String,System.String)">
+            <summary>
+            点赞
+            </summary>
+            <param name="id"></param>
+            <param name="userId"></param>
+            <param name="praised"></param>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Controllers.RenderController">
+            <summary>
+            GeoTopic体系外部使用SoUI和GtUI模块的统一访问接口。
+            目前考虑是公开访问，不需要登陆。
+            所有对外可以访问的页面入口都放到这里。逻辑方法可在各自控制器中。
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RenderController.PTDetail(System.String)">
+             <summary>
+             详情展示页面
+             </summary>
+             <param name="iiid"></param>
+             <returns></returns>
+            测试iiid :46F066E4BCB2210223CAADEB60B0D7CE
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RenderController.PtList(System.String)">
+            <summary>
+            列表展示页面
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RenderController.Topic(System.String)">
+            <summary>
+            展示主页面
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RenderController.Card(System.String)">
+            <summary>
+            整体成果展示页面
+            </summary>
+            <param name="topicId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RenderController.Pt(System.String,System.String,System.Int32)">
+            <summary>
+            单个成果展示，用于Url显示.
+            用于简单使用只需要param就可以，但是现在PtRender的逻辑是走的这边，所以要支持其他参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RenderController.PtUrl(System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+            展示单个文件的预览
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RenderController.NewEstPt">
+            <summary>
+            最新入库成果展示
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RenderController.Favorite(System.Int32)">
+            <summary>
+            成果收藏
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RenderController.DownloadHistory(System.Int32)">
+            <summary>
+            下载历史
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RenderController.Submission(System.String)">
+            <summary>
+            成果提交
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.RenderController.Remarks(System.String,System.String)">
+            <summary>
+            评论
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicController">
+            <summary>
+            GeoTopic主控制器
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicController.#ctor(Jurassic.So.GeoTopic.DataService.IGeoTopicService,Jurassic.So.GeoTopic.DataService.IPageDetailsService)">
+            <summary>
+            
+            </summary>
+            <param name="geoTopicService"></param>
+            <param name="pageDetailsService"></param>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicController.Index(System.String)">
+            <summary>
+            GeoTopic主页面
+            </summary>
+            <returns></returns>
+            这里会从其他页面传入参数，包含树的和展示卡片的全局参数。
+            树的参数用于过滤树，树参数的形式是keyValue。
+            卡片的参数用于合并到卡片参数中，卡片参数的形式也是KeyValue，没有结构，用于直接替换参数。
+            有一个问题是如果是卡片参数没有的参数，那么应该放在什么地方。
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicController.Compare">
+            <summary>
+            比较组件测试页面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicController.PTList">
+            <summary>
+            成果列表测试页面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicController.RcmdBORecommend">
+            <summary>
+            临近对象推荐组件测试页面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicController.GetCards(System.String)">
+            <summary>
+            获取卡片信息
+            </summary>
+            <param name="id">topicId</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicController.GetTopics(System.Collections.Generic.Dictionary{System.String,System.String},System.String[],System.String[],System.String)">
+            <summary>
+            获取知识树
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicController.RcmdTabs">
+            <summary>
+            推荐Tab页测试页面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.SettingsController.GetApiHost">
+            <summary>
+            获取Api服务的域名
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.SettingsController.GetModule">
+            <summary>
+            获取模块配置信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicInUserController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicInUserController.userProfileService">
+            <summary>
+            用户表的接口
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicInUserController.webpages_RolesService">
+            <summary>
+            角色表接口
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicInUserController.pageDetailsService">
+            <summary>
+            权限树的接口
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicInUserController.#ctor(Jurassic.So.GeoTopic.DataService.IUserProfileService,Jurassic.So.GeoTopic.DataService.IPageDetailsService,Jurassic.So.GeoTopic.DataService.Service.Iwebpages_RolesService)">
+            <summary>
+            依赖注入
+            </summary>
+            <param name="userProfile"></param>
+            <param name="pageDetails"></param>
+            <param name="webpages_Roles"></param>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicInUserController.Index">
+            <summary>
+            主视图
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicInUserController.GetUserMess">
+            <summary>
+            获取用户的全部信息 用户表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicInUserController.GetRoleMess">
+            <summary>
+            拿到整个角色表的内容
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicInUserController.GetUsersByRole(System.String)">
+            <summary>
+            根据角色Id获取对应的用户
+            </summary>
+            <param name="RoleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicInUserController.GetTopicsMess">
+            <summary>
+            加载主题树信息 右边的树
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicInUserController.Edit(System.String)">
+            <summary>
+            根据用户表的id来取出所有对应的权限
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicInUserController.SaveTopicCheckbox(System.Int32,System.String)">
+            <summary>
+            保存主题树 将checkbox的信息保存到用户权限表中
+            </summary>
+            <param name="RoleId"></param>
+            <param name="currentChecked">当前的checkbox的选中信息---新的</param>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Controllers.TokenController">
+            <summary>
+            界面中token授权管理
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.TokenController.GetToken">
+            <summary>
+            获取token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.TokenController.CleanToken(System.String)">
+            <summary>
+            清除token
+            </summary>
+            <param name="token"></param>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.DicMaintain">
+            <summary>
+            字典维护主界面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.GetDictIndexs">
+            <summary>
+            获取主题索引
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.GetPTemps">
+            <summary>
+            获取默认参数模板
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.GetPTempByUrlId(System.Int32)">
+            <summary>
+            根据urlId获取默认模板
+            </summary>
+            <param name="urlId">展示页面Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.GetPTempByUrl(System.String)">
+            <summary>
+            根据url获取默认模板
+            </summary>
+            <param name="urlId">展示页面Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.SaveDictIndexs(System.String)">
+            <summary>
+            保存主题索引
+            </summary>
+            <param name="nodeParams">主题索引节点信息</param>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.SavePTemps(System.String)">
+            <summary>
+            保存默认参数模板
+            </summary>
+            <param name="nodeParams"></param>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.GetType">
+            <summary>
+            查询所有类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.SaveDictType(System.String)">
+            <summary>
+            类型的增删改
+            </summary>
+            <param name="typeParams"></param>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.QueryUrl">
+            <summary>
+            根据展示类型查询所有展示页面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.SaveDictUrl(System.String,System.Int32)">
+            <summary>
+            保存展示页面信息
+            </summary>
+            <param name="urlParams">展示页面编辑节点</param>
+            <param name="TypeId">展示类型Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.QueryAllType">
+            <summary>
+            查询所有的展示类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.QueryAllUrl(System.String)">
+            <summary>
+            查询展示页面
+            </summary>
+            <param name="typeId">展示类型Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.GetAllUrl">
+            <summary>
+            获取所有展示页面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.GetAllUrlByTypeCode">
+            <summary>
+            通过展示的Code值获取展示页面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.DicMaintainController.DynamicLoadParamsView(System.String,System.String)">
+            <summary>
+            动态加载参数局部视图
+            </summary>
+            <param name="viewName">局部视图名称</param>
+            <param name="mainName">主视图名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicCodeController.GetAllCodeType">
+            <summary>
+            获取所有的码表类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicCodeController.GetCodes(System.Nullable{System.Int32},System.String,System.String)">
+            <summary>
+            获取码表记录
+            </summary>
+            <param name="codeTypeId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.GeoTopicCodeController.UpdateCode(System.String)">
+            <summary>
+            编辑码表信息
+            </summary>
+            <param name="codeModel">传入码表对象</param>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.PageDetails">
+            <summary>
+            页面详细主页面
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.GetKTopicModels">
+            <summary>
+            加载主题树信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.GetTIndexs(System.String)">
+            <summary>
+            获取主题索引
+            </summary>
+            <param name="TopicId">主题Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.GetDictIndexs">
+            <summary>
+            获取主题索引属性集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.SaveKTopic(System.String)">
+            <summary>
+            更新知识主题信息
+            </summary>
+            <param name="nodeParams"></param>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.SaveNewNode(System.String)">
+            <summary>
+            保存新的知识主题
+            </summary>
+            <param name="nodeParams">知识主题数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.SaveTIndex(System.String)">
+            <summary>
+            更新主题节点对应索引属性
+            </summary>
+            <param name="nodeParams"></param>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.SaveImportTindex(System.String)">
+            <summary>
+            保存导入主题属性数据模型
+            </summary>
+            <param name="paramStr"></param>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.SaveImportTCard(System.String)">
+            <summary>
+            保存导入知识卡片数据
+            </summary>
+            <param name="paramStr">导入知识卡数据</param>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.TCardContent(System.String)">
+            <summary>
+            获取当前TCard页面内容信息
+            </summary>
+            <param name="Id">TCardId</param>
+            <param name="data">TCard模型数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.TCardLayout(System.String,System.String)">
+            <summary>
+            跳转到知识卡页面
+            </summary>
+            <param name="data">知识卡数据</param>
+            <param name="gridData">成果列表数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.LayoutVisual(System.String,System.String)">
+            <summary>
+            跳转到可视化布局页面
+            </summary>
+            <param name="data">知识卡数据</param>
+            <param name="gridData">成果列表数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.ImportParams">
+            <summary>
+            跳转到数据导入参数设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.TCardEdit">
+             <summary>
+            跳转到知识卡片属性编辑页面
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.DeleteTCard(System.Int32)">
+            <summary>
+            删除已有知识卡
+            </summary>
+            <param name="Id">删除知识卡Id</param>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.MappingToTabModel(System.Collections.Generic.List{Jurassic.So.GeoTopic.DataService.Models.TCardModel})">
+            <summary>
+            将知识卡模型转化成前端Tab知识卡模型
+            </summary>
+            <param name="tCardModels">知识卡模型集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.SaveTCardLayout(System.String)">
+            <summary>
+            保存当前知识卡
+            </summary>
+            <param name="data">知识卡数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.SaveTCardLayoutNoConvert(System.String)">
+            <summary>
+            保存当前知识卡-不经过模型转换
+            </summary>
+            <param name="data">知识卡数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.UpdateGeoTCard(System.String)">
+            <summary>
+            更新知识卡数据
+            </summary>
+            <param name="data">当前知识卡数据</param>
+            <returns>返回"succ"成功标志</returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.GetKCardLayout(System.String)">
+            <summary>
+            设置布局样式和参数
+            </summary>
+            <param name="id">当前知识卡Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.GetKCardLayoutNoConvert(System.String)">
+            <summary>
+            设置布局样式和参数,如上方法，不需经过模型转换
+            </summary>
+            <param name="id">当前知识卡Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.GetImportParamsResult">
+            <summary>
+            返回设置导入模型模板参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.DonwnLoadTempFile">
+            <summary>
+            下载模板文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.ExportExcelTemplate(System.String)">
+            <summary>
+            导出知识主题链数据
+            </summary>
+            <param name="folderName">文件夹名称</param>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.DownLoadDataFile(System.String)">
+            <summary>
+            导出知识链数据到知识模板文件
+            </summary>
+            <param name="nodeParams"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.DonwnLoadDataFile">
+            <summary>
+            下载文件
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.PageDetailsController.GetMetaDataDefinition">
+            <summary>
+            获取元数据定义集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Controllers.WebServiceController">
+            <summary>
+            获取外部服务的总控制器
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.WebServiceController.PostFromBody">
+            <summary>
+            前端使用的通用方法，只负责调用不负责参数。get参数的post方法。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.WebServiceController.Post">
+            <summary>
+            前端使用的通用方法，只负责调用不负责参数。post
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.WebServiceController.Get(System.String,System.String)">
+            <summary>
+            前端使用的通用方法，只负责调用不负责参数。get
+            </summary>
+            <param name="pram"></param>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Controllers.WebServiceController.Get(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            
+            </summary>
+            <param name="parmOdj"></param>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Data.ConvertFormat">
+            <summary>
+            需要转化的文件格式
+            </summary>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.GTApplication">
+            <summary>
+            应用程序必须继承MvcApplication
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.GTApplication.RedefineViewLocator">
+            <summary>
+            追加或重新定义视图搜索路径
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.GTApplication.AddBindings(Ninject.IKernel)">
+            <summary>
+            加入注入服务绑定
+            </summary>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Models.FilesItem">
+            <summary>
+            FilesItem
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.FilesItem.Url">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.FilesItem.Format">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.FilesItem.Size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.FilesItem.FileName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.FilesItem.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.FilesItem.Data">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Models.PtRenderItem">
+            <summary>
+            PtRender返回类
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.PtRenderItem.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.PtRenderItem.BO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.PtRenderItem.PT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.PtRenderItem.FileCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.PtRenderItem.Files">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Models.SubmissionInfoRequset">
+            <summary>
+            提交信息
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.SubmissionInfoRequset.Action">
+            <summary>
+            提交命令类型
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.SubmissionInfoRequset.NatureKey">
+            <summary>
+            成果的唯一标记Key
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.SubmissionInfoRequset.FileIDs">
+            <summary>
+            成果文件ID集合
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.SubmissionInfoRequset.KMD">
+            <summary>
+            元数据集合，遵循元数据规范
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.GeoTopic.Web.Models.SubmissionInfoRequset.Option">
+            <summary>
+            选项参数
+            </summary>
+        </member>
+        <member name="T:Jurassic.So.GeoTopic.Web.Utility.TokenManmge">
+            <summary>
+            WebApp动态授权的帮助类，授权的维护和管理。
+            原方法是维护多个授权，现在的是只有在web配置中一套授权，所以沿用了以前的结构织使用一套授权。
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Utility.TokenManmge.GetTokenService">
+            <summary>
+            WebApp中获取Token 的统一方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.GeoTopic.Web.Utility.TokenManmge.CleanToken(System.String)">
+            <summary>
+            清除Token
+            </summary>
+        </member>
+    </members>
+</doc>

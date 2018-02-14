@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Jurassic.ServiceModels</name>
+    </assembly>
+    <members>
+        <member name="T:Jurassic.ServiceModels.DataFormat">
+            <summary>数据格式</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.Default">
+            <summary>默认</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.DOC">
+            <summary>Word文档</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.DOCX">
+            <summary>DOCX</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.PPT">
+            <summary>PPT</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.PPTX">
+            <summary>PPTX</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.XLS">
+            <summary>XLS</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.XLSX">
+            <summary>XLSX</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.HTML">
+            <summary>HTML</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.TEXT">
+            <summary>TEXT</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.XML">
+            <summary>XML</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.PNG">
+            <summary>PNG</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.JPG">
+            <summary>JPG</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.BMP">
+            <summary>BMP</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.TIF">
+            <summary>TIF</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.JSON">
+            <summary>JSON</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.URL">
+            <summary>链接</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.DataSet">
+            <summary>数据集</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat.GDB">
+            <summary>GDB</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.DataFormat._3GX">
+            <summary>3GX</summary>
+        </member>
+        <member name="T:Jurassic.ServiceModels.IMetadata">
+            <summary>元数据接口</summary>
+        </member>
+        <member name="P:Jurassic.ServiceModels.IMetadata.IIId">
+            <summary>ID，唯一标识元数据</summary>
+        </member>
+        <member name="P:Jurassic.ServiceModels.IMetadata.IndexedDate">
+            <summary>索引日期</summary>
+        </member>
+        <member name="P:Jurassic.ServiceModels.IMetadata.Url">
+            <summary>适配器URL，元数据源地址</summary>
+        </member>
+        <member name="P:Jurassic.ServiceModels.IMetadata.Title">
+            <summary>标题</summary>
+        </member>
+        <member name="P:Jurassic.ServiceModels.IMetadata.Description">
+            <summary>描述</summary>
+        </member>
+        <member name="P:Jurassic.ServiceModels.IMetadata.Creator">
+            <summary>创建者</summary>
+        </member>
+        <member name="P:Jurassic.ServiceModels.IMetadata.CreatedDate">
+            <summary>创建日期</summary>
+        </member>
+        <member name="P:Jurassic.ServiceModels.IMetadata.Thumbnail">
+            <summary>缩略图</summary>
+        </member>
+        <member name="P:Jurassic.ServiceModels.IMetadata.Fulltext">
+            <summary>全文</summary>
+        </member>
+        <member name="M:Jurassic.ServiceModels.IMetadata.GetValue(System.String)">
+            <summary>获得某个元数据值</summary>
+            <param name="key">元数据名称，如source.url或者dc.title[0].type</param>
+        </member>
+        <member name="M:Jurassic.ServiceModels.IMetadata.ToIndex">
+            <summary>转换为索引信息</summary>
+        </member>
+        <member name="T:Jurassic.ServiceModels.JsonUtil">
+            <summary>JSON工具</summary>
+        </member>
+        <member name="M:Jurassic.ServiceModels.JsonUtil.ToJsonString(System.Object,Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>生成对象JSON串</summary>
+        </member>
+        <member name="T:Jurassic.ServiceModels.MetadataCollection">
+            <summary>元数据集合</summary>
+        </member>
+        <member name="M:Jurassic.ServiceModels.MetadataCollection.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:Jurassic.ServiceModels.MetadataCollection.#ctor(System.Collections.Generic.IEnumerable{Jurassic.ServiceModels.IMetadata})">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:Jurassic.ServiceModels.MetadataCollection.ToString">
+            <summary>生成JSON串</summary>
+        </member>
+        <member name="T:Jurassic.ServiceModels.MimeTypeAttribute">
+            <summary>HTTP应答内容类型特性</summary>
+        </member>
+        <member name="M:Jurassic.ServiceModels.MimeTypeAttribute.#ctor(System.String,System.Boolean)">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.ServiceModels.MimeTypeAttribute.Value">
+            <summary>值</summary>
+        </member>
+        <member name="P:Jurassic.ServiceModels.MimeTypeAttribute.IsStreamOutput">
+            <summary>是否是流输出</summary>
+        </member>
+        <member name="T:Jurassic.ServiceModels.MimeTypeConst">
+            <summary>HTTP应答内容类型常量</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.Stream">
+            <summary>流</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.DOC">
+            <summary>DOC</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.DOCX">
+            <summary>DOCX</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.PPT">
+            <summary>PPT</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.PPTX">
+            <summary>PPTX</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.XLS">
+            <summary>XLS</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.XLSX">
+            <summary>XLSX</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.HTML">
+            <summary>HTML</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.TEXT">
+            <summary>TEXT</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.XML">
+            <summary>XML</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.PNG">
+            <summary>PNG</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.JPG">
+            <summary>JPG</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.BMP">
+            <summary>BMP</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.TIF">
+            <summary>TIF</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.JSON">
+            <summary>JSON</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.GDB">
+            <summary>GDB</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst._3GX">
+            <summary>3GX</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.DataSet">
+            <summary>数据集</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.Url">
+            <summary>Url</summary>
+        </member>
+        <member name="F:Jurassic.ServiceModels.MimeTypeConst.Exception">
+            <summary>异常</summary>
+        </member>
+        <member name="T:Jurassic.ServiceModels.Pager">
+            <summary>分页参数</summary>
+        </member>
+        <member name="M:Jurassic.ServiceModels.Pager.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:Jurassic.ServiceModels.Pager.#ctor(System.Int32,System.Int32)">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.ServiceModels.Pager.From">
+            <summary>起始索引</summary>
+        </member>
+        <member name="P:Jurassic.ServiceModels.Pager.Size">
+            <summary>每页数量</summary>
+        </member>
+        <member name="M:Jurassic.ServiceModels.Pager.ToString">
+            <summary>生成JSON串</summary>
+        </member>
+    </members>
+</doc>

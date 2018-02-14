@@ -1,0 +1,175 @@
+﻿{
+  "iiid": "id1",
+  "indexeddate": "2013-02-22T03:03:37.312Z",
+  "thumbnail": [ "SUQ9OQ==" ],
+  "fulltext": "xxxxxxxxxxxxxxxxxxxx",
+  "source": {
+    "url": "ADP://adapter/scope/SUQ9OQ==",
+    "type": "GeoBank",
+    "name": "科研成果库",
+    "format": "application/vnd.ms-powerpoint",
+    "media": "Offline Disk"
+  },
+  "dc": {
+    "title": [
+      {
+        "type": "Formal",
+        "text": "研究报告"
+      }
+    ],
+    "contributor": [
+      {
+        "type": "Author",
+        "name": "张三"
+      },
+      {
+        "type": "Auditor",
+        "name": "李四"
+      }
+    ],
+    "subject": [ "keyword1", "keyword2", "…." ],
+    "description": [
+      {
+        "type": "Abstract",
+        "text": "xxxxxxxxxxx"
+      },
+      {
+        "type": "Catalogue",
+        "text": "xxxxxxxxx"
+      },
+      {
+        "type": "Introduction",
+        "text": "xxxxxxxxx"
+      },
+      {
+        "type": "Summary",
+        "text": "xxxxxxxxx"
+      }
+    ],
+    "date": [
+      {
+        "type": "Created",
+        "value": "2013-02-22T03:03:37.312Z"
+      },
+      {
+        "type": "Valid",
+        "value": "2013-02-22T03:03:37.312Z"
+      },
+      {
+        "type": "Available",
+        "value": "2013-02-22T03:03:37.312Z"
+      },
+      {
+        "type": "Issued",
+        "value": "2013-02-22T03:03:37.312Z"
+      },
+      {
+        "type": "Submitted",
+        "value": "2013-02-22T03:03:37.312Z"
+      }
+    ],
+    "type": "报告",
+    "language": "abk",
+    "relation": [ "title1", "title2", "…" ],
+    "coverage": "WKTString",
+    "period": [ "xxxx" ],
+    "region": [
+      {
+        "type": "Country",
+        "name": "亚洲"
+      }
+    ],
+    "rights": "xxxxx",
+    "status": "已审核"
+  },
+  "ep": {
+    "bo": [
+      {
+        "type": "Workarea",
+        "value": "xx工区"
+      },
+      {
+        "type": "Basin",
+        "value": "xx盆地"
+      },
+      {
+        "type": "Play",
+        "value": "xx区带"
+      },
+      {
+        "type": "Trap",
+        "value": "xx圈闭"
+      },
+      {
+        "type": "Pool",
+        "value": "xx油气藏"
+      },
+      {
+        "type": "Reservoir",
+        "value": "xx储层"
+      },
+      {
+        "type": "Field",
+        "value": "xx油气田"
+      },
+      {
+        "type": "Stratum",
+        "value": "xx层位"
+      },
+      {
+        "type": "Zone",
+        "value": "xx油层组"
+      },
+      {
+        "type": "Well",
+        "value": "xx井"
+      },
+      {
+        "type": "Platform",
+        "value": "xx海上钻井平台"
+      },
+      {
+        "type": "Mineralright",
+        "value": "xx矿权区"
+      },
+      {
+        "type": "Organization",
+        "value": "xx组织机构"
+      }
+    ],
+    "project": "xx项目",
+    "producttype": "xx成果类型",
+    "theme": [
+      {
+        "type": "BD",
+        "value": "xx业务域"
+      },
+      {
+        "type": "BT",
+        "value": "xx业务类型"
+      },
+      {
+        "type": "BP",
+        "value": "xx业务程序"
+      },
+      {
+        "type": "BA",
+        "value": "xx业务活动"
+      },
+      {
+        "type": "BF",
+        "value": "xx地质特征"
+      },
+      {
+        "type": "DP",
+        "value": "xx学科"
+      },
+      {
+        "type": "RT",
+        "value": "xx资源类型"
+      }
+    ],
+    "tool": "xxx",
+    "scope": "勘探院/海外/全球所/李四"
+  }
+}

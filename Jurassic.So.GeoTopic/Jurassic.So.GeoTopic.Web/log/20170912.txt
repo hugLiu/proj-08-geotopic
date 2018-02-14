@@ -1,0 +1,8 @@
+
+ 
+记录时间：2017-09-12 11:27:34,776 
+线程ID:[1] 
+日志级别：  INFO  
+出错类：MyLog property: [(null)] - 
+错误描述：Application_Start
+ 

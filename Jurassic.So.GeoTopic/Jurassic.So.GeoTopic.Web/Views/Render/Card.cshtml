@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "~/Views/shared/Layout_GT.cshtml";
+}
+
+<gt:cards :id="@ViewBag.CardId" :topicId="topicId"></gt:cards>
+
+@section ScriptSection
+{
+    <script type="text/javascript">
+        var topicId = JSON.parse(decodeURIComponent("@ViewBag.TopicId"));
+
+    </script>
+}

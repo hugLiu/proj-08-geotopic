@@ -1,0 +1,121 @@
+﻿<script src="/Scripts/bootstrap-multiselect.js"></script>
+<link href="/Content/bootstrap-multiselect.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="modal-body">
+            <form id="setinfor">
+                <table class="table-no-bordered">
+                    <tbody>
+                        <tr>
+                            <th width=15% class="right">
+                                @Html.Str("S_SS_Label_SetBoxTips")：
+                            </th>
+                            <td width=25%>@Html.Str("S_SS_Label_ExShowTips")</td>
+                            <td width=60%>
+                                <input type="radio" name="sm" id="sm_1" value="1" />
+                                <label for="sm_1">@Html.Str("S_SS_Text_Show")</label>
+                                &nbsp; &nbsp;
+                                <input type="radio" name="sm" id="sm_2" value="0" />
+                                <label for="sm_2">@Html.Str("S_SS_Text_Hide")</label>
+                            </td>
+                            @*<td style="width:45%"></td>*@
+                        </tr>
+                        <tr>
+                            <th class="right">@Html.Str("S_SS_Label_SetShowCount")：</th>
+                            <td>@Html.Str("S_SS_Label_ExResultNum")</td>
+                            <td style="width:15%">
+                                <div style="width:17%" class="block">
+                                    <select class="form-control" id="displaycount" name="displaycount">
+                                        <option value="10" id="10">@Html.Str("S_SS_Text_10")</option>
+                                        <option value="20" id="20">@Html.Str("S_SS_Text_20")</option>
+                                        <option value="50" id="50">@Html.Str("S_SS_Text_50")</option>
+                                    </select>
+                                </div>
+                                <span>@Html.Str("S_SS_Label_BestNumber10")</span>
+                            </td>
+                            @*<td style="width:50%">
+                                    <strong>@Html.Str("S_SS_Label_BestNumber10")</strong>
+                                </td>*@
+                        </tr>
+                        <tr>
+                            <th class="right">
+                                @Html.Str("S_SS_Label_SetRealPre")：
+                            </th>
+                            <td>
+                                @Html.Str("S_SS_Label_ExShowResult")
+
+                            </td>
+                            <td>
+                                <input type="radio" name="rd" id="rd_1" value="1" />
+                                <label for="rd_1">
+                                    @Html.Str("S_SS_Text_Open")
+                                </label>
+                                &nbsp; &nbsp;
+                                <input type="radio" name="rd" id="rd_2" value="0" />
+                                <label for="rd_2">
+                                    @Html.Str("S_SS_Text_Close")
+                                </label>
+                            </td>
+                            @*<td></td>*@
+                        </tr>
+                        <tr>
+                            <th class="right">@Html.Str("S_SS_Label_SetHistory")：</th>
+                            <td>
+                                @Html.Str("S_SS_Label_ExShowHistory")
+
+                            </td>
+                            <td>
+                                <input type="radio" name="ls" id="ls_1" value="1" />
+                                <label for="ls_1">@Html.Str("S_SS_Text_Show")</label>
+                                &nbsp; &nbsp;
+                                <input type="radio" name="ls" id="ls_2" value="0" />
+                                <label for="ls_2">@Html.Str("S_SS_Text_Hide")</label>
+                            </td>
+                            @*<td></td>*@
+                        </tr>
+                        <tr>
+                            @*new { Controller = "Account", Action = "Login", }*@
+                            <th class="right">@Html.Str("S_SS_Label_SetLanguage")：</th>
+                            <td>@Html.Str("S_SS_Label_ExSetLanguage")</td>
+                            <td>
+                                <div style="width:28%">
+                                    <select class="form-control" id="language" name="language" style="display: inline-block">
+                                        @foreach (var langKey in ResHelper.GetUsedCultureNames())
+                                        {
+                                            var culture = new System.Globalization.CultureInfo(langKey);
+                                            <option id=@langKey>@culture.NativeName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </td>
+                            @*<td></td>*@
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <table class="table-no-bordered">
+                <tr>
+                    <td width="15%"></td>
+                    <td width="25%"></td>
+                    <td width="60%" style="text-align:left">
+                        <button type="button" id="save" data-dismiss="modal" class="btn btn-primary btn-sm">@Html.Str("S_C_Button_Save")</button>
+                        <button type="button" id="cancel" class="btn btn-default btn-sm" data-dismiss="modal">@Html.Str("S_C_Button_Cancle")</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    var language = "@System.Threading.Thread.CurrentThread.CurrentCulture.NativeName";
+</script>
+@*<script src="/Scripts/VM/Setting_SearchVM.js"></script>*@

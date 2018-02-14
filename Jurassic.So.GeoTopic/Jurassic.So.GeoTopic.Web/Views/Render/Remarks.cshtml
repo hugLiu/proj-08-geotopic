@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "~/Views/shared/Layout_GT.cshtml";
+}
+
+@section HeadSection
+{
+    <link href="~/scripts/GeoTopic/remark/css/comment.css" rel="stylesheet" />
+}
+
+<gt:remark :scoap="@ViewBag.scoap" :naturekey="@ViewBag.key" :id="remarkId"></gt:remark>
+

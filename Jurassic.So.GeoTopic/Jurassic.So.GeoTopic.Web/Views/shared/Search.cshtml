@@ -1,0 +1,10 @@
+﻿@*<script src="/Scripts/bootstrap-typeahead.js"></script>*@
+@*<script src="/Scripts/jquery.blockUI.js"></script>  style="ime-mode: disabled"*@
+<div class="input-group">
+    <input id="searchInput" type="text" class="form-control" value="@ViewBag.keywords" data-provide="typeahead" aria-label="Text input with segmented button dropdown">
+    <input type="hidden" id="typeKey"/>
+    <span class="input-group-btn">
+            <button id="search" type="button" class="btn btn-primary">@Html.Str("S_C_Button_Search")</button>
+    </span>
+</div>
+@*<script src="/Scripts/VM/SearchVM.js"></script>*@

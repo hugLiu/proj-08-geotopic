@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "RcmdTabs";
+    Layout = "~/Views/shared/Layout_GT.cshtml";
+}
+<h1>RcmdTabs</h1>
+<div style="width: 80%;">
+    <gt:rcmdtabs :id="tabs" :displayfield="_displayfield" :tabs="_tabs" :itemsize=8 :matchapi="_matchapi" :onitemclick="_onitemclick"></gt:rcmdtabs>
+</div>
+<div style="float:right;padding:10px">
+    <div>
+        <gt:rcmdsemantics :id="semantics" :terms="terms" :relation="relation" :name="相关" :onclick="_onitemclick"></gt:rcmdsemantics>
+    </div>
+</div>
+<script type="text/javascript">
+    var terms = ["勘探/地质调查", "勘探/钻探"];
+    var relation = {
+        "parent": {
+            "sr": "R_BT_XF_BT",
+            "direction": "backward"
+        },
+        "brother": {
+            "sr": "R_BT_XF_BT",
+            "direction": "backward"
+        },
+        "child": {
+            "sr": "R_BT_XF_BT",
+            "direction": "forward"
+        }
+    };
+
+    var _displayfield = ["IIId", "FormalTitle", "SourceFormat"];
+    var _matchapi = "http://192.168.1.152:8077/API/SearchService/Match";
+    var _tabs = [
+        {
+            name: "不同版本成果",
+            filter: {
+                "filter": {
+                    "$and": [{
+                        "dc.contributor.type": {
+                            "$eq": "Author"
+                        }
+                    }, {
+                        "dc.contributor.name": {
+                            "$eq": "袁权"
+                        }
+                    }]
+                },
+                "pager": {
+                    "from": 0,
+                    "size": 10
+                }
+            }
+        }, {
+            name: "相同项目成果",
+            filter: {
+                "filter": {
+                    "$and": [{
+                        "dc.contributor.type": {
+                            "$eq": "Author"
+                        }
+                    }, {
+                        "dc.contributor.name": {
+                            "$eq": "xiaofangfeng"
+                        }
+                    }]
+                },
+                "pager": {
+                    "from": 0,
+                    "size": 10
+                }
+            }
+        }
+        , {
+            name: "相同环节成果",
+            filter: {
+                "filter": {
+                    "$and": [{
+                        "dc.contributor.type": {
+                            "$eq": "Author"
+                        }
+                    }, {
+                        "dc.contributor.name": {
+                            "$eq": "崔立叶"
+                        }
+                    }]
+                },
+                "pager": {
+                    "from": 0,
+                    "size": 10
+                }
+            }
+        }, {
+            name: "相同特点的成果",
+            filter: {
+                "filter": {
+                    "$and": [{
+                        "dc.contributor.type": {
+                            "$eq": "Author"
+                        }
+                    }, {
+                        "dc.contributor.name": {
+                            "$eq": "王瑞菊"
+                        }
+                    }]
+                },
+                "pager": {
+                    "from": 0,
+                    "size": 10
+                }
+            }
+        }
+    ];
+    var _onitemclick = function(id) {
+        console.log(id);
+        window.open("http://www.baidu.com" + "/s?wd=" + id);
+    }
+</script>

@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "~/Views/shared/Layout_GT.cshtml";
+}
+@section HeadSection
+{
+    @*<link href="~/content/GeoTopic/bootcss/css/comment.css" rel="stylesheet" />*@
+    @*下面这几个引用需要封装大到gtUI中，不需要再外面引用*@
+    @*树用到的外部引用，vue升级到2.0后无法封装到gtUI中*@
+    <link rel="stylesheet" href="/scripts/GeoTopic/jstree/css/jstree.min.css">
+    <style>
+        div.panel > div.panel-body > div > ol > li.active {
+            background-color: #5bc0de;
+        }
+
+        div.panel > div.panel-body > div > ol > li {
+            border: 1px solid #5bc0de;
+        }
+
+        .carousel-indicators {
+            bottom: -20px;
+        }
+    </style>
+}
+<main class="main">
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-lg-3 col-md-3 col-sm-4 ">
+                <div class="ibox" style="width: 300px">
+                    <div class="ibox-title navarea">
+                        <span class="glyphicon glyphicon-folder-close"></span>
+                        知识主题
+                    </div>
+                    <div class="ibox-content ">
+                        <div id="treediv" style="position:absolute; width: 290px;  overflow:auto">
+                            <gt:ktree :id="tree1" :topicIndex="topicIndex" :topicCode="topicCode" :topicTitle="topicTitle" :onClick="nodeClick"></gt:ktree>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12  ">
+                <div class="ibox" style="position: absolute; width: 98%; overflow: auto">
+                    <div id="loading" class="el-icon-loading" style="font-size: 45px; position: absolute; left: 44%; top: 45%; z-index: -999"></div>
+                    <div style="width: 100%; height: 98%;">
+                        <gt:cards :id="card1" :global="cardFilters" :topicId="topicId" :onLoad="setLoad"></gt:cards>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+@section ScriptSection
+{
+    <script src="/scripts/GeoTopic/jstree/js/jstree.min.js"></script>
+    <script type="text/javascript">
+    //var datas = JSON.parse(decodeURIComponent("@ViewBag.Topics"));
+        //-----------------------------------
+        $('#loading').hide();
+        var vb = "@ViewBag.TopicParm";
+        var Filters = vb == "" ? "" : JSON.parse(decodeURIComponent(vb));
+        var topic = Filters.topic == null ? {} : Filters.topic;
+        var topicCode = topic.code == null ? [] : topic.code;
+        var topicTitle = topic.title == null ? [] : topic.title;
+        var topicIndex = Filters.topicindex == null ? {} : Filters.topicindex;
+        var cardFilters = Filters.kmd == null ? {} : Filters.kmd;
+        var topicId = null;
+        $('.ibox').height(window.screen.height - 148);
+        $('#treediv').height(window.screen.height - 185);
+        function nodeClick(tId) {
+            $('#loading').show();
+            //gtToastr('success', "测试信息", "标题", 1);
+            gtUI.setDataById("card1", "topicId", tId);
+        }
+        function setLoad() {
+            $('#loading').hide();
+        }
+    </script>
+}

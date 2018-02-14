@@ -1,0 +1,76 @@
+﻿<style>
+    .btWidth {
+        /*width: 42px;*/
+        width: auto;
+    }
+</style>
+
+<div class="mini-splitter" vertical="true" style="width:100%;height:100%;">
+    <div size="60%" showCollapseButton="true">
+        <div class="mini-toolbar" style="padding-top: 2px;">
+            <a class="mini-button frame-submit mini-button-plain btWidth"  tooltip="新增平级节点" onclick="onAdd">
+                <span  class="mini-button-text  mini-button-icon icon-new-addpeers">&nbsp;</span>
+            </a>
+            <a class="mini-button frame-submit mini-button-plain btWidth" tooltip="新增子节点" onclick="onAddChild">
+                <span class="mini-button-text  mini-button-icon icon-new-addchild">&nbsp;</span>
+            </a>
+
+            <a class="mini-button frame-submit mini-button-plain btWidth" tooltip="删除节点" onclick="onRemove">
+                <span class="mini-button-text  mini-button-icon icon-new-delete">&nbsp;</span>
+            </a>
+            <span>|</span>
+            <a class="mini-button frame-submit mini-button-plain btWidth" tooltip="数据导入" onclick="onImport">
+                <span class="mini-button-text  mini-button-icon icon-new-movedown">&nbsp;</span>
+            </a>
+            <a class="mini-button frame-submit mini-button-plain btWidth" tooltip="数据导出" onclick="onExport">
+                <span class="mini-button-text  mini-button-icon icon-new-moveup">&nbsp;</span>
+            </a>
+        </div>
+
+        <div class="mini-fit" style="width: 100%; height: 48%;">
+            <div style="padding-top: 10px; height: 50%">
+                <ul id="treeKTopic" class="mini-tree" url="@Url.Action("GetKTopicModels", "PageDetails")"
+                    showtreeicon="true"
+                    textfield="Title" valuefield="Code" idfield="Id" parentfield="PId"
+                    resultastree="false" expandonload="1"
+                    onendedit="endEdit" onnodedblclick="onEdit"></ul>
+            </div>
+        </div>
+    </div>
+    <div showCollapseButton="true">
+        <div class="mini-toolbar" style="padding: 2px;">
+            <a class="mini-button frame-submit mini-button-plain" onclick="addRow()">
+                <span class="mini-button-text  mini-button-icon icon-new-add">新增行</span>
+            </a>
+            <a class="mini-button frame-submit mini-button-plain" onclick="removeRow()">
+                <span class="mini-button-text  mini-button-icon icon-new-delete">删除所选行</span>
+            </a>
+            <a class="mini-button frame-submit mini-button-plain" onclick="saveGridData()">
+                <span class="mini-button-text  mini-button-icon icon-new-save">保存</span>
+            </a>
+        </div>
+
+        <input id="IndexDefinitionEditor" class="mini-combobox" valuefield="Id" textfield="Title"
+               url="@Url.Action("GetDictIndexs", "PageDetails")" visible="false" />
+
+        <div id="indexGrid" class="mini-datagrid" style="width: 100%; height: 85%;" allowresize="false"
+             url="@Url.Action("GetTIndexs", "PageDetails")" idfield="Id" multiselect="true" showpager="false"
+             allowcelledit="true" allowcellselect="true" multiselect="true">
+            <div property="columns" headeralign="center">
+                <div type="checkcolumn" headeralign="center" align="center"></div>
+                <div name="Topic" field="TopicId" visible="false"></div>
+                <div name="action" width="35" headeralign="center" align="center" renderer="onActionRendererIndex" cellstyle="padding:0;">操作</div>
+                <div field="IndexDefinitionId" name="IndexDefinitionId" displayfield="IndexDefinitionTitle" width="40%" headeralign="left">
+                    索引名称
+                    <input property="editor" class="mini-combobox" valuefield="Id" textfield="Title"
+                           url="@Url.Action("GetDictIndexs", "PageDetails")" />
+                </div>
+                <div field="Value" name="Value" width="50%" headeralign="left">
+                    索引值
+                    <input property="editor" class="mini-textbox" style="width: 100%;" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*操作逻辑在GeoTopicTree.js文件*@

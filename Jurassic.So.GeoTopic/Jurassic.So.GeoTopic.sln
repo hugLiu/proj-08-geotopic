@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebUI", "WebUI", "{5DC6028A-B180-4067-A07E-E165164E3B79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic.So.GeoTopic.Web", "Jurassic.So.GeoTopic.Web\Jurassic.So.GeoTopic.Web.csproj", "{98AD9EE4-6FC5-4779-8F97-F823AD64882F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic.So.GeoTopic.Database", "Jurassic.So.GeoTopic.Database\Jurassic.So.GeoTopic.Database.csproj", "{8279C525-494F-4773-BBFA-86B9C8559393}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic.So.GeoTopic.DataService", "Jurassic.So.GeoTopic.DataService\Jurassic.So.GeoTopic.DataService.csproj", "{FB469F08-7289-4F01-80AF-584420522049}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic.So.Infrastructure", "..\..\..\..\..\..\01基础库\02源代码\Jurassic.So.Infrastructure\Jurassic.So.Infrastructure\Jurassic.So.Infrastructure.csproj", "{7EEDA4A1-B947-4571-9A75-BDA7F4DC88A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{8CA4CAC6-3495-478D-9BBF-FDE8DDA39193}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLogic", "BusinessLogic", "{F8C30F4C-778F-4C09-BC85-67C8F913F720}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataTier", "DataTier", "{898CCF45-93B7-48DC-855F-8FFA5B001946}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{7FE31E6A-925A-4444-9A4D-BEC55D0DC9BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PKS.Services", "PKS.Services", "{BF960EFA-0FA4-4778-A8A3-28E99E0FC24D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic.PKS.Service", "..\..\..\..\..\..\01基础库\02源代码\Jurassic.PKS.Service\Jurassic.PKS.Service\Jurassic.PKS.Service.csproj", "{6AEA408E-86E0-4D57-AEAF-EDB23F124CF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic.PKS.WebAPI.Models", "..\..\..\..\..\..\01基础库\02源代码\Jurassic.PKS.Service\Jurassic.PKS.WebAPI\Jurassic.PKS.WebAPI.Models.csproj", "{492BFB88-12AC-4961-A929-F547893DDB7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic.So.GeoTopic.DocumentConverter", "Jurassic.So.GeoTopic.DocumentDisplay\Jurassic.So.GeoTopic.DocumentConverter.csproj", "{F5021907-265D-4BA9-A08A-C97210149AE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{374C6FA2-CBD0-4204-9377-866BD27CC041}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jurassic.So.GeoTopic.UnitTest", "..\..\单元测试\Jurassic.So.GeoTopic.UnitTest\Jurassic.So.GeoTopic.UnitTest.csproj", "{21B47033-6802-483F-88E7-E00A2603AAE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{98AD9EE4-6FC5-4779-8F97-F823AD64882F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98AD9EE4-6FC5-4779-8F97-F823AD64882F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98AD9EE4-6FC5-4779-8F97-F823AD64882F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98AD9EE4-6FC5-4779-8F97-F823AD64882F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8279C525-494F-4773-BBFA-86B9C8559393}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8279C525-494F-4773-BBFA-86B9C8559393}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8279C525-494F-4773-BBFA-86B9C8559393}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8279C525-494F-4773-BBFA-86B9C8559393}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB469F08-7289-4F01-80AF-584420522049}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB469F08-7289-4F01-80AF-584420522049}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB469F08-7289-4F01-80AF-584420522049}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB469F08-7289-4F01-80AF-584420522049}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EEDA4A1-B947-4571-9A75-BDA7F4DC88A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EEDA4A1-B947-4571-9A75-BDA7F4DC88A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EEDA4A1-B947-4571-9A75-BDA7F4DC88A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EEDA4A1-B947-4571-9A75-BDA7F4DC88A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AEA408E-86E0-4D57-AEAF-EDB23F124CF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AEA408E-86E0-4D57-AEAF-EDB23F124CF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AEA408E-86E0-4D57-AEAF-EDB23F124CF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AEA408E-86E0-4D57-AEAF-EDB23F124CF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{492BFB88-12AC-4961-A929-F547893DDB7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{492BFB88-12AC-4961-A929-F547893DDB7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{492BFB88-12AC-4961-A929-F547893DDB7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{492BFB88-12AC-4961-A929-F547893DDB7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5021907-265D-4BA9-A08A-C97210149AE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5021907-265D-4BA9-A08A-C97210149AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5021907-265D-4BA9-A08A-C97210149AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5021907-265D-4BA9-A08A-C97210149AE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21B47033-6802-483F-88E7-E00A2603AAE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21B47033-6802-483F-88E7-E00A2603AAE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21B47033-6802-483F-88E7-E00A2603AAE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21B47033-6802-483F-88E7-E00A2603AAE9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{98AD9EE4-6FC5-4779-8F97-F823AD64882F} = {5DC6028A-B180-4067-A07E-E165164E3B79}
+		{8279C525-494F-4773-BBFA-86B9C8559393} = {898CCF45-93B7-48DC-855F-8FFA5B001946}
+		{FB469F08-7289-4F01-80AF-584420522049} = {F8C30F4C-778F-4C09-BC85-67C8F913F720}
+		{7EEDA4A1-B947-4571-9A75-BDA7F4DC88A8} = {8CA4CAC6-3495-478D-9BBF-FDE8DDA39193}
+		{6AEA408E-86E0-4D57-AEAF-EDB23F124CF8} = {8CA4CAC6-3495-478D-9BBF-FDE8DDA39193}
+		{492BFB88-12AC-4961-A929-F547893DDB7E} = {BF960EFA-0FA4-4778-A8A3-28E99E0FC24D}
+		{F5021907-265D-4BA9-A08A-C97210149AE5} = {7FE31E6A-925A-4444-9A4D-BEC55D0DC9BD}
+		{21B47033-6802-483F-88E7-E00A2603AAE9} = {374C6FA2-CBD0-4204-9377-866BD27CC041}
+	EndGlobalSection
+EndGlobal

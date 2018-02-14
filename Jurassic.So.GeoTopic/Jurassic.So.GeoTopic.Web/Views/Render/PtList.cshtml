@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/shared/Layout_GT.cshtml";
+}
+<div id="el">
+    <!--<so:form :data="data" :style="styleStr"></so:form>-->
+    <gt:ptlist :pram="jsonObj"></gt:ptlist>
+</div>
+
+@section ScriptSection
+{
+    <script type="text/javascript">
+        var jsonObj = JSON.parse(decodeURIComponent("@ViewBag.Param"));
+        gtUI.bind({
+            scope: "el",
+            model: "gt:ptlist"
+        });
+    </script>
+}

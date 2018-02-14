@@ -1,0 +1,557 @@
+﻿@{
+    ViewBag.Title = "DicMaintain";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body>
+<div id="tabsDic" class="mini-tabs" activeindex="0" style="width: 100%; height: 100%;" plain="false">
+    <div title="主题索引属性">
+        <div class="mini-toolbar" style="padding: 2px; width: 40%; height: 7%;">
+            <a class="mini-button frame-submit mini-button-plain" onclick="addRow()">
+                <span class="mini-button-text  mini-button-icon icon-new-add">新增行</span>
+            </a>
+            <a class="mini-button frame-submit mini-button-plain" onclick="removeRow()">
+                <span class="mini-button-text  mini-button-icon icon-new-delete">删除所选行</span>
+            </a>
+            <a class="mini-button frame-submit mini-button-plain" onclick="saveGridData()">
+                <span class="mini-button-text  mini-button-icon icon-new-save">保存</span>
+            </a>
+        </div>
+        <div id="indexGrid" class="mini-datagrid" style="width: 40%; height: 93%;" allowresize="false"
+             url="@Url.Action("GetDictIndexs", "DicMaintain")" idfield="Id" multiselect="true" showpager="false"
+             allowcellselect="true" allowcelledit="true">
+            <div property="columns">
+                <div type="checkcolumn" headeralign="center" align="center" width="10%"></div>
+                <div name="action" width="10%" headeralign="center" align="center" renderer="onActionRendererIndexDefinition" cellstyle="padding:0;">操作</div>
+                <div name="Code" field="Code" headeralign="center" width="40%" align="left">
+                    属性编码
+                    <input property="editor" class="mini-textbox" style="width: 100%;"/>
+                </div>
+                <div name="Title" field="Title" headeralign="center" width="40%" align="left">
+                    属性名称
+                    <input property="editor" class="mini-textbox" style="width: 100%;"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div title="展示页面">
+        <div class="mini-splitter" allowresize="false" style="width: 100%; height: 100%; margin: -3px" handlersize="0px">
+            <div size="45%" showcollapsebutton="false" style="padding: 5px;">
+                <span>展示页面类型</span>
+                <div class="mini-toolbar" style="width: 100%; height: 7%;">
+                    <a class="mini-button frame-submit mini-button-plain" onclick="add()">
+                        <span class="mini-button-text  mini-button-icon icon-new-add">新增行</span>
+                    </a>
+                    <a class="mini-button frame-submit mini-button-plain" onclick="remove()">
+                        <span class="mini-button-text  mini-button-icon icon-new-delete">删除所选行</span>
+                    </a>
+                    <a class="mini-button frame-submit mini-button-plain" onclick="save()">
+                        <span class="mini-button-text  mini-button-icon icon-new-save">保存</span>
+                    </a>
+                </div>
+                <div id="typeGrid" class="mini-datagrid" style="width: 100%; height: 88%;"
+                     allowresize="false" onselectionchanged="onSelectionChanged" url="@Url.Action("GetType", "DicMaintain")" idfield="Id" multiselect="true" allowResizeColumn="true"  
+                     allowCellEdit="false" allowcellselect="true" showpager="false">
+                    <div property="columns">
+                        <div type="checkcolumn" width="25px"></div>
+                        <div name="action" width="100px" headeralign="center" align="center" renderer="onActionRendererType" cellstyle="padding:0;">操作</div>
+                        @*<div name="Id" field="Id" visable="true" width="5%"></div>*@
+                        <div name="Code" field="Code" headeralign="center" width="35%" align="left">
+                            编码值
+                            <input property="editor" class="mini-textbox" style="width: 100%;" />
+                        </div>
+                        <div name="Title" field="Title" headeralign="center" width="40%" align="left">
+                            类型名称
+                            <input property="editor" class="mini-textbox" style="width:  100%;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div showcollapsebutton="false" style="padding: 5px;">
+                <span>页面URL</span>
+                <div class="mini-toolbar" style="padding: 2px; width: 100%; height: 7%;">
+                    <a class="mini-button frame-submit mini-button-plain" onclick="addUrl()">
+                        <span class="mini-button-text  mini-button-icon icon-new-add">新增行</span>
+                    </a>
+                    <a class="mini-button frame-submit mini-button-plain" onclick="removeUrl()">
+                        <span class="mini-button-text  mini-button-icon icon-new-delete">删除所选行</span>
+                    </a>
+                    <a class="mini-button frame-submit mini-button-plain" onclick="saveUrl()">
+                        <span class="mini-button-text  mini-button-icon icon-new-save">保存</span>
+                    </a>
+                </div>
+                <div id="urlGrid" class="mini-datagrid" style="width: 100%; height: 88%;"
+                     allowresize="false" 
+                     url="@Url.Action("QueryUrl", "DicMaintain")" idfield="Id" multiselect="true" showpager="false"
+                     allowcelledit="true" allowcellselect="true" multiselect="true">
+                    <div property="columns">
+                        <div type="checkcolumn" width="12"></div>
+                        <div name="action" width="25" headeralign="center" align="center" renderer="onActionRendererUrl" cellstyle="padding:0;">操作</div>
+                        <div name="Url" field="Url" headeralign="center" align="left">
+                            Url链接
+                            <input property="editor" class="mini-textbox" style="width: 50%;"/>
+                        </div>
+                        <div name="description" field="Description" headeralign="center" align="left">
+                            描述
+                            <input property="editor" class="mini-textbox" style="width: 50%;"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div title="展示页面参数模板">
+        <table style="height: 10%">
+            <tr>
+                <td>
+                    <label for="type$text">展示类型：</label>
+                </td>
+                <td>
+                    <input name="type" id="typeCombo" shownullitem="" class="mini-combobox" value="" textfield="Title" valuefield="Code" style="width: 150px;" onvaluechanged="onTypeChanged"/>
+                </td>
+                <td style="padding-left: 10px;">
+                    <label for="url$text">页面URL：</label>
+                </td>
+                <td>
+                    <input id="url" name="url" textfield="Description" style="width: 200px;" class="mini-combobox" valuefield="Id" onvaluechanged="onUrlChanged"/>
+                </td>
+            </tr>
+        </table>
+        <a class="mini-button" iconcls="icon-new-save" onclick="SaveTempParam">保存</a>
+
+        <div id="tabParamTemplate" class="mini-tabs" activeindex="0" tabposition="top" style="width: 100%; height: 83%; margin-top: 10px;" plain="false">
+            <div id="paramViewTab" title="视图">
+                <div id="paramView" style="height: 100%; width: 100%" style="background-color: aqua">
+                    @*动态加载局部可视化页面*@
+                     @*@Html.Action("DynamicLoadParamsView", "DicMaintain", new {viewName = "PartialParamTemp1"})*@
+                </div>
+            </div>
+
+            <div title="代码">
+                <textarea id="areaTextParam" class="mini-textarea" allowinput="true" emptytext="展示页面模板参数..." style="height: 100%; width: 100%;"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+@*主题索引信息维护*@
+<script src="~/scripts/LayoutWidget/JsonFormat.js"></script>
+<script type="text/javascript">
+    
+    mini.parse();
+    var grid = mini.get("indexGrid");
+    var typeCombo = mini.get("typeCombo");
+    var DictUrl = mini.get("url");
+    var areaTextParam = mini.get("areaTextParam");
+    var paramViewDiv = $('#paramView');
+
+    grid.load();
+    areaTextParam.disable();
+
+    function onActionRendererIndexDefinition(e) {
+        var uid = e.record._uid;
+        var s = '<a class="mini-button frame-submit mini-button-plain" title="删除该行" onclick="delIndexDefinitionRow(\'' + uid + '\')">'
+            + '<span class="mini-button-text mini-button-icon icon-new-delete"  style="margin-top:9px"></span></a>';
+        return s;
+    }
+
+    function delIndexDefinitionRow(uid) {
+        var row = grid.getRowByUID(uid);
+        grid.removeRow(row, true);
+    }
+
+    function addRow() {
+        var newRow = { Title: "", Code: "" };
+        grid.addRow(newRow, 0);
+        grid.beginEditCell(newRow, "Code");
+    }
+
+    function removeRow() {
+        var rows = grid.getSelecteds();
+        if (rows.length <= 0) {
+
+            toastr["info"]("请勾选需要删除索引属性记录！");
+            return;
+        }
+        grid.removeRows(rows, true);
+    }
+
+    function saveGridData() {
+
+        grid.commitEdit();
+        var data = grid.getChanges();
+
+        function checkGrid() {
+            //测试索引值为空时 不保存数据
+            var rowsNull = grid.findRows(function (row) {
+                if (row.Code.trim() == "" || row.Title.trim() == "")
+                    return true;
+            });
+            if (rowsNull.length > 0) {
+                toastr["error"]("索引属性表记录存在空值，数据无法保存！");
+                return false;
+            }
+
+            //当存在相同属性编码值 不保存数据
+            var rowSame;
+            var rowLengthArr = [];
+            data.forEach(function (e) {
+                rowSame = grid.findRows(function (row) {
+                    if (row.Code.trim() == e.Code || row.Title.trim() == e.Title)
+                        return true;
+                });
+                rowLengthArr.push(rowSame.length);
+            });
+            var rowMaxLength = Math.max.apply(null, rowLengthArr);
+            if (rowMaxLength >= 2) {
+                toastr["error"]("索引属性表存在重复索引属性或属性名称记录，数据无法保存！");
+                return false;
+            }
+            return true;
+        }
+
+        //Walt add  --20170111
+        //增加索引属性表数据验证
+
+        //索引属性表数据验证
+        if (!checkGrid())
+            return;
+
+        //执行数据保存操作
+        var nodeParams = mini.encode(data);
+        var msgid = mini.loading("数据保存中，请稍后......", "保存数据");
+        $.ajax({
+            url: "/DicMaintain/SaveDictIndexs?=",
+            data: { nodeParams: encodeURIComponent(nodeParams) },
+            type: "post",
+            success: function (text) {
+
+                toastr["success"]("@Html.Str("保存成功!")");
+                mini.hideMessageBox(msgid);
+                grid.reload();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+</script>
+
+@*展示页面维护*@
+<script>
+    var typeGd = mini.get("typeGrid");
+    var urlGd = mini.get("urlGrid");
+
+    typeGd.load();
+
+    function onActionRendererType(e) {
+        var uid = e.record._uid;
+        var s = '<a class="mini-button frame-submit mini-button-plain" title="删除该行" onclick="delTypeRow(\'' + uid + '\')">'
+            + '<span class="mini-button-text mini-button-icon icon-new-delete"  style="margin-top:9px;margin-left:4px"></span></a>'
+            + '<a class="mini-button frame-submit mini-button-plain" title="编辑该行"  onclick="editTypeRow(\'' + uid + '\')">'
+            + '<span class="mini-button-text mini-button-icon icon-new-edit" style="padding-top:9px;margin-top:6px;margin-left:5px"></span></a>';
+        return s;
+    }
+
+    function delTypeRow(uid) {
+        var row = typeGd.getRowByUID(uid);
+        typeGd.removeRow(row, true);
+    }
+    function editTypeRow(uid) {
+        var row = typeGd.getRowByUID(uid);
+        if (row) {
+            typeGd.beginEditRow(row);
+        }
+    }
+    function add() {
+        var newRow = {};
+        typeGd.addRow(newRow, 0);
+        typeGd.beginEditRow(newRow);
+    }
+
+    function remove() {
+        var rows = typeGd.getSelecteds();
+        if (rows.length > 0) {
+            typeGd.removeRows(rows, true);
+        }
+    }
+
+    function save() {
+        typeGd.commitEdit();
+        var data = typeGd.getChanges();
+        for (var i = 0; i < data.length;i++){
+            if ((data[i].Code == null || data[i].Code.trim() == null)&&(data[i].Title == null || data[i].Title.trim() == null)) {
+                data.splice(i, 1);
+                i--;
+            } else if (((data[i].Code == null || data[i].Code.trim() == null) && (data[i].Title!= null&&data[i].Title.trim()!= null))||
+            ((data[i].Code != null && data[i].Code.trim() != null) && (data[i].Title == null || data[i].Title.trim() == null))) {
+                toastr["error"]("@Html.Str("编码值和参数值为必填项!")");
+                return;
+            }
+        }
+
+        var typeParams = mini.encode(data);
+        var msgid = mini.loading("数据保存中，请稍后......", "保存数据");
+        $.ajax({
+            url: "/DicMaintain/SaveDictType?=",
+            data: { typeParams: encodeURIComponent(typeParams) },
+            type: "post",
+            async: false,
+            success: function (info) {
+                mini.hideMessageBox(msgid);
+                if (info.Type == 0) {
+                    toastr["success"](info.Message);
+                    typeGd.reload();
+                } else if (info.Type == 3) {
+                    toastr["error"](info.Message);
+                } else {
+                    toastr["info"](info.Message);
+                    urlGd.reload();
+                }               
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+
+    function onSelectionChanged(e) {
+        var grid = e.sender;
+        var record = grid.getSelected();
+        if (record) {
+            urlGd.load({TypeId: record.Id });
+        }
+    }
+
+    function onActionRendererUrl(e) {
+        var uid = e.record._uid;
+        var s = '<a class="mini-button frame-submit mini-button-plain" title="删除该行" onclick="delUrlRow(\'' + uid + '\')">'
+            + '<span class="mini-button-text mini-button-icon icon-new-delete"  style="margin-top:9px"></span></a>';
+        return s;
+    }
+
+    function delUrlRow(uid) {
+        var row = urlGd.getRowByUID(uid);
+        urlGd.removeRow(row, true);
+    }
+
+    function addUrl() {
+        var newRow = { Url: "", Description: "" };
+        urlGd.addRow(newRow, 0);
+        urlGd.beginEditCell(newRow, "Url");
+    }
+
+    function removeUrl() {
+        var rows = urlGd.getSelecteds();
+        if (rows.length > 0) {
+            urlGd.removeRows(rows, true);
+        }
+    }
+
+    //保存展示页面Url列表记录
+    function saveUrl() {
+        var typeId = typeGd.getSelected().Id;
+        var data = urlGd.getChanges();
+
+        function checkGrid() {
+            //测试索引值为空时 不保存数据
+            var rowsNull = urlGd.findRows(function (row) {
+                if (row.Url.trim() == "" || row.Description.trim() == "")
+                    return true;
+            });
+            if (rowsNull.length > 0) {
+                toastr["error"]("页面URL表记录存在空值，数据无法保存！");
+                return false;
+            }
+
+            //当存在相同属性编码值 不保存数据
+            var rowSame;
+            var rowLengthArr = [];
+            data.forEach(function (e) {
+                rowSame = urlGd.findRows(function (row) {
+                    if (row.Url.trim() == e.Url || row.Description.trim() == e.Description)
+                        return true;
+                });
+                rowLengthArr.push(rowSame.length);
+            });
+            var rowMaxLength = Math.max.apply(null, rowLengthArr);
+            if (rowMaxLength >= 2) {
+                toastr["error"]("页面URL表存在重复Url链接或描述信息记录，数据无法保存！");
+                return false;
+            }
+            return true;
+        }
+
+        //Walt add --20170111
+        //添加Url的Grid数据验证
+        if (!checkGrid())
+            return;
+
+        var UrlParams = mini.encode(data);
+        var msgid = mini.loading("数据保存中，请稍后......", "保存数据");
+        $.ajax({
+            url: "/DicMaintain/SaveDictUrl",
+            data: { urlParams: encodeURIComponent(UrlParams), TypeId: typeId },
+            type: "post",
+            success: function(info) {
+                mini.hideMessageBox(msgid);
+                if (info.Type == 0) {
+                    toastr["success"](info.Message);
+                    urlGd.reload();
+                } else if (info.Type == 3) {
+                    toastr["error"](info.Message);
+                } else {
+                    toastr["info"](info.Message);
+                    urlGd.reload();
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+</script>
+
+@*展示页面参数模板维护*@
+<script>
+    //下拉项点击时发生
+    typeCombo.on("beforeshowpopup", function (e) {
+        var sender = e.sender;
+        sender.load("@Url.Action("QueryAllType", "DicMaintain")");
+    });
+
+    function onTypeChanged(e) {
+        var id = e.selected.Id;
+        DictUrl.setValue("");
+        var url = "@Url.Action("QueryAllUrl", "DicMaintain")?typeId=" + id;
+        DictUrl.setUrl(url);
+        areaTextParam.setValue("");
+        areaTextParam.disable();
+        //清空参数可视化页面所有元素
+        paramViewDiv.empty();
+    }
+
+    //选中Url联动PTemp参数模板页面
+    function onUrlChanged(e) {
+        var selected = e.selected;
+        areaTextParam.enable();
+
+        //先清除前一次加载数据
+        areaTextParam.setValue("");
+        paramViewDiv.empty();
+
+        var currentViewName = getPartViewName(selected.Url);
+
+        //参数加载可视化参数视图
+        loadParamView(currentViewName);
+        //加载参数模板数据
+        loadParamData(selected.Id);
+    }
+
+    //当areaText中的值改变的时候，触发onSaveParam()
+    areaTextParam.on("valuechanged", function (e) {
+        if (!JsonValiable(areaTextParam.getValue())) {
+            alert("页面参数配置不符合JSON语法规范!");
+            return;
+        } else {
+            areaTextParam.setValue(JsonFormat(areaTextParam.getValue(), false));
+            PartialParamLoadData(areaTextParam.getValue());
+        }
+    });
+
+    //点击代码页面保存代码
+    function SaveTempParam() {
+        var typeCode = typeCombo.getValue();
+        var renserUrlId = DictUrl.getValue();
+        var definition = areaTextParam.value;
+        if (!JsonValiable(definition)) {
+            alert("该页面参数配置不符合JSON语法规范!");
+            return;
+        }
+        var dataObj = { RenderUrlId: renserUrlId, Defintion: definition, Type: typeCode };
+        SaveUrlTemp(JSON.stringify(dataObj));
+    }
+
+    //保存参数模板信息
+    function SaveUrlTemp(e) {
+        $.ajax({
+            url: "/DicMaintain/SavePTemps?=",
+            data: { data: encodeURIComponent(e) },
+            type: "post",
+            async: false,
+            success: function (text) {
+                if (text == "succ") {
+                    PartialParamAccept();
+                    toastr["success"]("@Html.Str("保存成功!")");
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+
+    //根据url和配置文件信息获取参数模板视图名称
+    function getPartViewName(url) {
+        var partViewName = "";
+        $.ajax({
+            url: '@Url.Content("~/Data/partViewMap.js")',
+            dataType: "script",
+            async: false,
+            success: function () {
+                data.forEach(function (viewMap) {
+                    if (viewMap.url == url) {
+                        partViewName = viewMap.viewName;
+                    }
+                });
+            }
+        });
+        if (partViewName == "")
+            alert("不存在对应参数模板类型，请在../Data/partViewMap.js文件更新配置！");
+        return partViewName;
+    }
+
+    //加载参数模板视图
+    function loadParamView(viewName) {
+        //若Url没有对应的视图类型模板名称，则不加载视图模板
+        if (viewName == "")
+            return;
+        $.ajax({
+            url: '@Url.Content("/DicMaintain/DynamicLoadParamsView")',
+            data: { viewName: encodeURIComponent(viewName), mainName: encodeURIComponent("dic") },
+            type: "GET",
+            dataType: "html",
+            async: false,
+            success: function (html) {
+                if (html.length > 0) {
+                    //加载局部样式视图
+                    $('#paramView').html(html);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+
+    //加载参数模板视图数据
+    function loadParamData(e) {
+        $.ajax({
+            url: "/DicMaintain/GetPTempByUrlId",
+            data: { urlId: e },
+            type: "post",
+            success: function (text) {
+                if (text.length > 0) {
+                    areaTextParam.setValue(JsonFormat(text[0].Defintion, false));
+                    PartialParamLoadData(text[0].Defintion);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+</script>

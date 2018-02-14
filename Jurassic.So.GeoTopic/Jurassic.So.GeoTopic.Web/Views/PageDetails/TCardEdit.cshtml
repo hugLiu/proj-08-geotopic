@@ -1,0 +1,66 @@
+﻿@{
+    //Layout = "~/Views/Shared/_FormLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="formTCardInfo" style="padding:8px 0 12px 10px">
+    <input name="id" class="mini-hidden" />
+    <table>
+        <tr>
+            <td>
+                <label for="title$text">卡片标题：</label>
+            </td>
+            <td>
+                <input id="title" name="title" class="mini-textbox" required="true" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                排序值：
+            </td>
+            <td>
+                <input id="OrderId" name="OrderId" class="mini-spinner" value="1" minvalue="1" maxvalue="10" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="mini-toolbar" style="text-align:center;padding:5px;">
+    <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
+    <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
+</div> 
+
+
+<script type="text/javascript">
+    mini.parse();
+
+    var formTCardInfo = new mini.Form("#formTCardInfo");
+
+    //初始加载Tcard信息
+    function setData(data) {
+        formTCardInfo.setData(data);
+    }
+
+    function CloseWindow(action) {
+        if (window.CloseOwnerWindow)
+            return window.CloseOwnerWindow(action);
+        else window.close();
+    }
+
+    //点击取消按钮
+    function onCancel(e) {
+        CloseWindow("cancel");
+    }
+
+    //点击确定按钮，知识卡信息保存
+    function onOk() {
+        //获取页面数据
+        data = formTCardInfo.getData(true, false);
+        data.id = 0;
+        data.OrderId = Number(data.OrderId);
+        if (data.title.length <= 0) {
+            toastr["info"]("编辑知识卡标题不能为空！");
+            return;
+        }
+        CloseWindow("Ok");
+    }
+</script>
+

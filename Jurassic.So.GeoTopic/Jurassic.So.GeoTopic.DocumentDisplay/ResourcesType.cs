@@ -1,0 +1,44 @@
+﻿
+namespace DocumentDisplay
+{
+    public enum ResourcesType
+    {
+        dwf,
+        gdb,
+        dfd,
+        sgy,
+        segy,
+        svg,
+        svgz,
+        swf,
+        gif,
+        emf,
+        wmf,
+        bmp,
+        png,
+        jpg,
+        jepg,
+        ico,
+        tif,
+        cgm,
+        htm,
+        html,
+        rtf,
+        mht,
+        txt,
+        xls,
+        xlsx,
+        xlsb,
+        doc,
+        ppt,
+        pptx,
+        docx,
+        pdf,
+        las,
+        rar,
+        zip,
+        tar,
+        dataSet,
+        dataTable
+    }
+}

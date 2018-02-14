@@ -1,0 +1,19 @@
+﻿
+@{
+    //ViewBag.Title = "PtRender";
+    Layout = "~/Views/shared/Layout_GT.cshtml";
+}
+
+<gt:ptrender :id="ptrender1" :pram="jsonObj" :global="jsonGlo" :heights="heights"></gt:ptrender>
+
+@section ScriptSection
+{
+    <script type="text/javascript">
+        var jsonObj = JSON.parse(decodeURIComponent("@ViewBag.Param"));
+        var global = "@ViewBag.global";
+        var jsonGlo;
+        if(global)
+            jsonGlo = JSON.parse(decodeURIComponent(global));
+        var heights = @ViewBag.heights;
+    </script>
+}

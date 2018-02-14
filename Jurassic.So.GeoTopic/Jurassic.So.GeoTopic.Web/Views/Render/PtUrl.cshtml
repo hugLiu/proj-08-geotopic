@@ -1,0 +1,16 @@
+﻿@{
+    //ViewBag.Title = "PtRender";
+    Layout = "~/Views/shared/Layout_GT.cshtml";
+}
+
+<gt:ptrender :id="ptrender1" :pram="jsonObj" :global="cardFilters" :isFootTool="false" :isTool="false" :infoindex="infoIndex" :fileindex="fileIndex"></gt:ptrender>
+
+@section ScriptSection
+{
+    <script type="text/javascript">
+        var jsonObj = JSON.parse(decodeURIComponent("@ViewBag.Param"));
+        var infoIndex = @ViewBag.infoIndex;
+        var fileIndex = @ViewBag.fileIndex;
+        var cardFilters = JSON.parse(decodeURIComponent("@ViewBag.Globle"));
+    </script>
+}

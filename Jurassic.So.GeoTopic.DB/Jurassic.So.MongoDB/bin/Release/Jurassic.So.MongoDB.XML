@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Jurassic.So.MongoDB</name>
+    </assembly>
+    <members>
+        <member name="T:Jurassic.So.MongoDB.AutoMapperProfile">
+            <summary>AutoMapper映射配置</summary>
+        </member>
+        <member name="M:Jurassic.So.MongoDB.AutoMapperProfile.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="T:Jurassic.So.MongoDB.MetadataDefinitionCollectionBuilder">
+            <summary>元数据定义建表工具</summary>
+        </member>
+        <member name="M:Jurassic.So.MongoDB.MetadataDefinitionCollectionBuilder.Run">
+            <summary>建库</summary>
+        </member>
+        <member name="M:Jurassic.So.MongoDB.MetadataDefinitionCollectionBuilder.CreateCollection(Jurassic.So.MongoDB.MongoMetadataDefinitionRepository)">
+            <summary>建库</summary>
+        </member>
+        <member name="M:Jurassic.So.MongoDB.MetadataDefinitionCollectionBuilder.InsertSeeds(Jurassic.So.MongoDB.MongoMetadataDefinitionRepository)">
+            <summary>插入种子数据</summary>
+        </member>
+        <member name="T:Jurassic.So.MongoDB.MongoMetadataDefinitionRepository">
+            <summary>Mongo索引数据访问</summary>
+        </member>
+        <member name="M:Jurassic.So.MongoDB.MongoMetadataDefinitionRepository.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.MongoDB.MongoMetadataDefinitionRepository.Accessor">
+            <summary>Mongo索引数据访问器</summary>
+        </member>
+        <member name="T:Jurassic.So.MongoDB.MongoMetadata">
+            <summary>Mongo元数据定义</summary>
+        </member>
+        <member name="M:Jurassic.So.MongoDB.MongoMetadata.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:Jurassic.So.MongoDB.MongoMetadata.#ctor(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.MongoDB.MongoMetadata.Url">
+            <summary>适配器URL</summary>
+        </member>
+        <member name="P:Jurassic.So.MongoDB.MongoMetadata.IIId">
+            <summary>索引数据ID</summary>
+        </member>
+        <member name="T:Jurassic.So.MongoDB.MongoMetadataRepository">
+            <summary>Mongo元数据数据访问</summary>
+        </member>
+        <member name="M:Jurassic.So.MongoDB.MongoMetadataRepository.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.MongoDB.MongoMetadataRepository.Accessor">
+            <summary>数据访问器</summary>
+        </member>
+        <member name="M:Jurassic.So.MongoDB.MongoMetadataRepository.GetOne(System.String)">
+            <summary>获得一条元数据</summary>
+        </member>
+        <member name="M:Jurassic.So.MongoDB.MongoMetadataRepository.SaveAsync(Jurassic.PKS.Service.MetadataCollection)">
+            <summary>保存</summary>
+            <param name="metadatas">元数据集合</param>
+            <returns>返回受影响的元数据IIId集合</returns>
+        </member>
+        <member name="M:Jurassic.So.MongoDB.MongoMetadataRepository.UpdateAsync(Jurassic.PKS.Service.MetadataCollection)">
+            <summary>更新</summary>
+            <param name="metadatas">元数据集合</param>
+            <returns>返回受影响的元数据IIId集合</returns>
+        </member>
+        <member name="M:Jurassic.So.MongoDB.MongoMetadataRepository.DeleteAsync(Jurassic.PKS.Service.MetadataCollection)">
+            <summary>删除</summary>
+            <param name="metadatas">元数据集合</param>
+            <returns>返回受影响的元数据IIId集合</returns>
+        </member>
+        <member name="T:Jurassic.So.Index.MongoMetadataDefinition">
+            <summary>Mongo元数据定义</summary>
+        </member>
+        <member name="P:Jurassic.So.Index.MongoMetadataDefinition.Id">
+            <summary>文档ID</summary>
+        </member>
+        <member name="P:Jurassic.So.Index.MongoMetadataDefinition.Name">
+            <summary>名称</summary>
+            <remarks>系统内部使用的名称</remarks>
+        </member>
+    </members>
+</doc>

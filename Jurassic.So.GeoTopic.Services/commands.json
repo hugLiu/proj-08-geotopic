@@ -1,0 +1,9 @@
+{
+  "commands": {
+    "创建元数据定义集合": {
+      "fileName": "cmd.exe",
+      "workingDirectory": ".",
+      "arguments": "/c ..\\Jurassic.So.GeoTopic.DB\\Jurassic.So.MongoDB\\MetadataDefinition\\创建元数据定义集合.bat"
+    }
+  }
+}

@@ -1,0 +1,226 @@
+﻿@{
+    ViewBag.Title = "ImportParams";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*表单布局样式*@
+<style>
+    .tdleft {
+        text-align: right;
+        height: 35px;
+    }
+
+    .tdright {
+        text-align: left;
+    }
+</style>
+
+<div class="mini-fit">
+    <div id="formImport" style="padding:15px 15px 0px 15px;">
+        <input name="id" class="mini-hidden" />
+        <table>
+
+            <tr>
+                <td class="tdleft">
+                    模板文件：
+                </td>
+                <td class="tdright">
+                    <input id="fileupload" name="Fdata" class="mini-fileupload" width="200px" limitType="*.xlsx"
+                           flashUrl="~/scripts/LayoutWidget/swfupload.swf"
+                           uploadOnSelect="true"
+                           uploadUrl="@Url.Action("GetImportParamsResult", "PageDetails")"
+                           onuploadsuccess="onUploadSuccess"
+                           onuploaderror="onUploadError"
+                           onfileselect="onFileSelect"/>
+                </td>
+                <td style="padding-left: 20px"><a onclick="LoadTemp()">模板下载</a></td>
+            </tr>
+            <tr>
+                <td class="tdleft">
+                    知识卡名称：
+                </td>
+                <td class="tdright">
+                    <input id="tb" name="tCardTitle" class="mini-textbox" width="200px" emptyText="请输入知识卡名称..." required="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdleft">
+                    默认显示页面：
+                </td>
+                <td class="tdright">
+                    <input id="defaultUrl" class="mini-combobox" name="defaultUrl" width="200px" textField="Description" valueField="Url" emptyText=""
+                           url="@Url.Action("GetAllUrlByTypeCode", "DicMaintain")?typeId=7" value="" allowInput="false"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdleft">
+                    默认展示布局：
+                </td>
+                <td class="tdright">
+                    <input id="layoutType" name="layoutType" width="200px" shownullitem="layoutType" class="mini-combobox" value="2" textfield="text" valuefield="id" data="[{id:1,text:'一列'},{id:2,text:'两列'},{id:3,text:'三列'}]"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdleft">
+                    添加方式：
+                </td>
+
+                <td class="tdright">
+                    <div id="rblDataWays" name="getMode" class="mini-radiobuttonlist" repeatItems="2" repeatLayout="table" repeatDirection="horizontal"
+                         textField="text" valueField="id" value="1" data="[{id:1,text:'追加'},{id:2,text:'覆盖'}]">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdleft" valign="top">描述：</td>
+                <td class="tdright">
+                    <div id="explain" style="width: 200px"></div></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="mini-toolbar" style="text-align: center;">
+    <a class="mini-button" onclick="onOk" style="width: 60px; margin-right: 20px;">确定</a>
+    <a class="mini-button" onclick="onCancel" style="width: 60px;">取消</a>
+</div>
+
+<script src="~/scripts/LayoutWidget/swfupload.js"></script>
+<script src="~/scripts/LayoutWidget/geoConvert.js"></script>
+<script type="text/javascript">
+    mini.parse();
+    var requestText = "原知识链数据不变，新增知识链数据补充原知识链。";
+    var replaceText = "原有知识链所有数据将被清除，将增加新导入知识链数据。";
+    var rblDataWays = mini.get("rblDataWays");
+    var fileupload = mini.get("fileupload");
+    var comboxDefaultUrl
+    var formImport = new mini.Form("#formImport");
+
+    $("#explain").html(requestText);
+
+    var _excelEntities;
+    var _importData;
+
+
+    function showTip(alertStr) {
+        toastr["info"](alertStr);
+    }
+
+
+    rblDataWays.on("valuechanged", function (e) {
+        if (this.getValue() == 1) {
+            $("#explain").text(requestText);
+        } else {
+            $("#explain").text(replaceText);
+        }
+    });
+
+    function CloseWindow(action) {
+        if (window.CloseOwnerWindow) {
+            return window.CloseOwnerWindow(action);
+        }
+        else window.close();
+    }
+
+
+    function onCancel(e) {
+        CloseWindow("cancel");
+    }
+
+    function onOk() {
+        //验证导入设置表单是否完整
+        if (!checkFormImport())
+            return;
+        _importData = getImportData();
+        CloseWindow("Ok");
+    }
+
+    function checkFormImport() {
+        var ckeck = true;
+        var formData = formImport.getData();
+        function checkFail(alertStr) {
+            showTip(alertStr);
+            ckeck = false;
+        }
+        if (formData.Fdata.trim() == "") {
+            checkFail("请选择导入知识模型模板文件！");
+            return ckeck;
+        }
+        if (formData.tCardTitle.trim() == "") {
+            checkFail("请输入知识卡名称！");
+        }
+        return ckeck;
+    }
+
+
+    function LoadTemp() {
+        if (!confirm("确定下载知识模板？")) {
+            return;
+        }
+        //文件下载
+        window.location.href = "/PageDetails/DonwnLoadTempFile";
+    }
+
+    //获取文件上传信息
+    function onFileSelect(e) {
+    }
+    function onUploadSuccess(e) {
+        _excelEntities = mini.decode(e.serverData);
+        if (typeof (_excelEntities) == "undefined" || _excelEntities.length <= 0) {
+            alert("导入知识模型模板文件错误！");
+        }
+    }
+    function onUploadError(e) {
+        showTip("文件读取数据失败!");
+    }
+    function startUpload() {
+        fileupload.startUpload();
+    }
+
+    //获取导入模板数据
+    function getImportData() {
+        if (typeof (_excelEntities) == "undefined" || _excelEntities.length <= 0) {
+            return;
+        }
+        var formData = formImport.getData();
+        var excelData = { mode: formData.getMode };
+        var excelEntityArr = [];
+        for (var i = 0; i < _excelEntities.length; i++) {
+            var excelEntity = _excelEntities[i];
+
+            //如果判断没有成果标题，即不要创建知识卡
+            if (excelEntity.PtCellInfos[0].PtTitle == "")
+                excelEntity.PtCellInfos = [];
+            else {
+                //读取知识卡标题信息
+                excelEntity.tCardTitle = formData.tCardTitle;
+                //添加默认导入layout布局信息
+                if (excelEntity.Layout.length == 0) {
+                    //获取layout方法
+                    excelEntity.Layout = BuildLayout(getCellsData(excelEntity.PtCellInfos), formData.layoutType);
+                }
+                if (excelEntity.PtCellInfos.length <= 0)
+                    return;
+                for (var j = 0; j < excelEntity.PtCellInfos.length; j++) {
+                    //添加默认导入layout布局信息
+                    if (excelEntity.PtCellInfos[j].Url.length == 0) {
+                        excelEntity.PtCellInfos[j].Url = formData.defaultUrl;
+                    }
+                }
+            }
+            excelEntityArr.push(excelEntity);
+        }
+        excelData.excelEntity = excelEntityArr;
+        return excelData;
+    }
+
+    function getCellsData(PtCellInfos) {
+        if (PtCellInfos.length <= 0)
+            return;
+        var cellData = {};
+        cellData.cells = PtCellInfos;
+        for (var i=0;i<PtCellInfos.length;i++) {
+            cellData.cells[i].id = PtCellInfos[i].falgId;
+        }
+        return cellData;
+    }
+</script>

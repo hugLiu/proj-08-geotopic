@@ -1,0 +1,105 @@
+﻿@{
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+
+<div class="modal-body" style="overflow-y: auto;">
+    <div id="customLayout"></div>
+</div>
+<div id="footContent" style="text-align:right;">
+    <a class="mini-button" iconcls="icon-save" onclick="onSaveLayout">保存</a>
+</div>
+
+<!--
+    Editor:Walt
+    Time:20160913
+    -->
+
+<!-- basic styles -->
+<link href="~/content/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/content/assets/css/font-awesome.min.css" />
+@*<meta http-equiv="X-UA-Compatible" content="IE=edge">*@
+<!--[if IE 7]>
+<link rel="stylesheet" href="/content/assets/css/font-awesome-ie7.min.css" />
+<![endif]-->
+<!-- page specific plugin styles -->
+<!-- ace styles -->
+<link href="~/content/assets/css/chosen.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/content/assets/css/ace.min.css" />   @*component样式*@
+<link rel="stylesheet" href="~/content/assets/css/ace-rtl.min.css" />
+<link rel="stylesheet" href="~/content/assets/css/ace-skins.min.css" />
+<link href="~/content/assets/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/content/assets/css/jquery.gritter.css" rel="stylesheet" />
+<!--[if lte IE 8]>
+<link rel="stylesheet" href="~/assets/css/ace-ie.min.css" />
+<![endif]-->
+<!-- inline styles related to this page -->
+<!-- ace settings handler -->
+
+<script src="~/content/assets/js/ace-extra.min.js"></script>
+
+<!-- basic scripts -->
+@*<script src='~/assets/js/jquery-2.0.3.min.js'></script>*@
+<script src="~/content/assets/js/jquery-ui-1.10.3.full.min.js"></script>
+<script src="~/content/assets/js/jquery.dataTables.min.js"></script>
+<script src="~/content/assets/js/jquery.gritter.min.js"></script>
+<script src="~/content/assets/js/bootstrap.min.js"></script>
+<script src="~/content/assets/js/typeahead-bs2.min.js"></script>
+<script src="~/content/assets/js/bootbox.js"></script>
+<script src="~/content/assets/js/echarts.js"></script>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="/assets/js/html5shiv.js"></script>
+<script src="/assets/js/respond.min.js"></script>
+<![endif]-->
+
+<script src="~/content/assets/js/chosen.jquery.min.js"></script>
+<script src="~/content/assets/js/ace-elements.min.js"></script>
+<script src="~/content/assets/js/ace.min.js"></script>
+
+
+<link href="~/content/css/LayoutWidget/layoutWidget.css" rel="stylesheet" />
+<script src="~/scripts/LayoutWidget/widgetFun.js"></script>
+<script src="~/scripts/LayoutWidget/map.js"></script>
+<script src="~/scripts/LayoutWidget/toolbar.js"></script>
+<script src="~/scripts/LayoutWidget/container.js"></script>
+<script src="~/scripts/LayoutWidget/component.js"></script>
+<script src="~/scripts/LayoutWidget/components/text.js"></script>
+<script src="~/scripts/LayoutWidget/components/picture.js"></script>
+<script src="~/scripts/LayoutWidget/components/table.js"></script>
+<script src="~/scripts/LayoutWidget/components/chart.js"></script>
+
+<script type="text/javascript">
+    mini.parse();
+
+    var data = decodeURIComponent("@ViewBag.Data");
+
+    var cellInfoData = decodeURIComponent("@ViewBag.GridData");
+
+    var dataObj = JSON.parse(data);
+    var cellInfoArr = JSON.parse(cellInfoData);
+
+    var layout = new WidgetLayout.WidgetFun($("#customLayout"));
+    layout.BuildContainer();
+    layout.Initialization();
+
+    //加载页面Layout布局页面信息加载
+    //layout.Load("lycontainer", dataObj.Id);
+
+    layout.Load("lycontainer",cellInfoArr);
+
+
+    //获取组件标志最大值str
+    count = layout.GetMaxFlag();
+
+    //响应保存按钮
+    function onSaveLayout() {
+        layout.Save("layoutModal", "index", data);
+    }
+
+    $(document).ready(function () {
+        $(".layout-set-submit").on("click", function () {
+            layout.Save("layoutModal", "index");
+        });
+    });
+</script>

@@ -1,0 +1,31 @@
+﻿//安装MongoDB库
+Install-Package MongoDB.Driver -version 2.2.4
+
+//安装AutoMapper库
+Install-Package AutoMapper -version 5.1.1
+
+//安装Aspose库
+//Install-Package Aspose
+
+//安装EntityFramework库
+Install-Package EntityFramework -version 6.1.3
+
+//安装EntityFramework库
+Install-Package Newtonsoft.Json -version 9.0.1
+
+//安装EntityFramework库
+Install-Package Ninject -version 3.2.2.0
+Install-Package Ninject.MVC5 -version 3.2.1.0
+Install-Package WebActivatorEx -version 2.2.0.0
+
+//安装Microsoft.AspNet.Mvc库
+Install-Package Microsoft.AspNet.Mvc -version 5.2.3
+Install-Package Microsoft.AspNet.Razor -version 3.2.3
+Install-Package Microsoft.AspNet.WebPages -version 3.2.3
+Install-Package Microsoft.Web.Infrastructure -version 1.0.0
+Install-Package Microsoft.AspNet.Mvc.zh-Hans -version 5.2.3
+Install-Package Microsoft.AspNet.Razor.zh-Hans -version 3.2.3
+Install-Package Microsoft.AspNet.WebPages.zh-Hans -version 3.2.3
+
+//安装Microsoft.AspNet.Mvc库
+Install-Package Microsoft.AspNet.WebApi -version 5.2.3

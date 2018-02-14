@@ -1,0 +1,129 @@
+﻿<script type="text/javascript" src="/Scripts/bootcss/treemenu.js"></script>
+<div class="range">
+   <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#table1" aria-controls="table1" role="tab" data-toggle="tab">数据源</a></li>
+        <li role="presentation"><a href="#table2" aria-controls="table2" role="tab" data-toggle="tab">目标</a></li>
+        <li role="presentation"><a href="#table3" aria-controls="table3" role="tab" data-toggle="tab">专业</a></li>
+    </ul>
+    <div class="tab-content">
+        @*table1*@
+        <div role="tabpanel" class="tab-pane active clearfix" id="table1">
+            <div id="div1">
+                <table >
+                    <tbody>
+                        <tr>
+                            <td colspan="3"><h5>企业资源</h5><span><input type="checkbox" name="resources" onclick="selectCheckBoxes('div1', this.checked)">全选</span></td>
+                        </tr>
+                        <tr>
+                            <td width="20%"><input type="checkbox" name="resources" ><span>勘探开发项目知识管理平台</span></td>
+                            <td width="20%"><input type="checkbox" name="resources"><span>综合成果文档管理系统</span></td>
+                            <td width="20%"><input type="checkbox" name="resources"><span>数字文档中心</span></td>
+                            <td width="20%"><input type="checkbox" name="resources"><span>地质油藏数据库</span></td>
+                            <td width="20%"><input type="checkbox" name="resources"><span>开发生产数据库</span></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="resources"><span>数字井筒</span></td>
+                            <td><input type="checkbox" name="resources"><span>数字井史</span></td>
+                            <td><input type="checkbox" name="resources"><span>钻井试油作业数据库</span></td>
+                            <td><input type="checkbox" name="resources"><span>生产指挥系统</span></td>
+                            <td><input type="checkbox" name="resources"><span>勘探战略数据库</span></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="resources"><span>勘探成果库</span></td>
+                            <td><input type="checkbox" name="resources"><span>开发项目库</span></td>
+                            <td><input type="checkbox" name="resources"><span>勘探项目库</span></td>
+                            <td><input type="checkbox" name="resources"><span>数字井筒</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="div2">
+               <table>
+                    <tbody>
+                        <tr>
+                            <td colspan="3"><h5>外部资源</h5><span><input type="checkbox" name="resources" onclick="selectCheckBoxes('div2', this.checked)">全选<small>(能源相关)</small></span></td>
+                        </tr>
+                        <tr>
+                            <td width="20%"><input type="checkbox" name="resources"><span>互联网资源</span></td>
+                            <td width="20%"><input type="checkbox" name="resources"><span>CNKI</span></td>
+                            <td width="20%"><input type="checkbox" name="resources"><span>百度文库</span></td>
+                            <td width="20%"><input type="checkbox" name="resources"><span>百度经验</span></td>
+                            <td width="20%"><input type="checkbox" name="resources"><span>万方数据</span></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" name="resources"><span>IHS</span></td>
+                            <td><input type="checkbox" name="resources"><span>USGS</span></td>
+                            <td><input type="checkbox" name="resources"><span>国土资源部</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="selecteddata">
+                <span>已选择数据源：</span>
+            </div>
+            <div class="footerbutton">
+                <button type="button" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+        @*table2*@
+        <div role="tabpanel" class="tab-pane data " id="table2">
+            <div class="tree clearfix">
+                <div class="data-left">
+                    <h5>目标树</h5>
+                    <div class="datatree">
+                        <div class="CNLTreeMenu" id="CNLTreeMenu1">
+                            <ul>
+                                <li class="Opened">
+                                    一级菜单
+                                    <ul>
+                                        <li>
+                                            <a href="#1">二级菜单</a>
+                                            <ul>
+                                                <li class="Child"><a href="#">三级菜单</a> </li>
+                                                <li class="Child"><a href="#">三级菜单</a></li>
+                                                <li class="Child"><a href="#">三级菜单</a> </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">二级菜单</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-right">
+                    <h5>已选择目标</h5>
+                    <div class="">
+
+                    </div>
+                </div>
+            </div>
+            <div class="footerbutton">
+                <button type="button" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+
+        @*table3*@
+        <div role="tabpanel" class="tab-pane" id="table3">   .. </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    function selectCheckBoxes(domId, value) {
+
+        var inputs = document.getElementById(domId).getElementsByTagName("input");
+
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].type == 'checkbox') {
+                inputs[i].checked = value;
+            }
+        }
+    }
+
+    var MyCNLTreeMenu1 = new CNLTreeMenu("CNLTreeMenu1", "li");
+    MyCNLTreeMenu1.InitCss("Opened", "Closed", "Child", "/images/sooil/s.gif");
+</script>

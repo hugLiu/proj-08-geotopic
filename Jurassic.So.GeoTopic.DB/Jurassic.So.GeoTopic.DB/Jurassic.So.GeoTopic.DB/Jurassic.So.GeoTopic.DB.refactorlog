@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="ab73715c-7e4e-45e0-9a26-e5b095187ca4" ChangeDateTime="11/15/2016 05:54:06">
+    <Property Name="ElementName" Value="[dbo].[GT_Topic].[CreateDate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_Topic]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5b56c080-d3ca-4836-aaf7-900710a22163" ChangeDateTime="11/15/2016 05:54:34">
+    <Property Name="ElementName" Value="[dbo].[GT_Topic].[CreatedDate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_Topic]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="eded3ebb-061b-42d2-b1b2-ddcc20f3f88d" ChangeDateTime="11/15/2016 05:55:11">
+    <Property Name="ElementName" Value="[dbo].[GT_Topic].[Creator]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_Topic]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UpdateBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="06294213-aa5a-41a5-aa7c-b42cfc51b57c" ChangeDateTime="11/15/2016 05:55:19">
+    <Property Name="ElementName" Value="[dbo].[GT_Topic].[UpdateDate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_Topic]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UpdatedDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b2a928a7-2a68-4d61-9756-fa69ae295e09" ChangeDateTime="11/15/2016 05:55:20">
+    <Property Name="ElementName" Value="[dbo].[GT_Topic].[UpdateBy]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_Topic]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UpdatedBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="483a9c7d-87d0-40d4-8bab-0882a7e1ddff" ChangeDateTime="11/15/2016 05:55:39">
+    <Property Name="ElementName" Value="[dbo].[GT_Topic].[PCode]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_Topic]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Code" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0479e487-2dd4-4cf8-a615-fb1d7be4dbdb" ChangeDateTime="11/15/2016 06:17:08">
+    <Property Name="ElementName" Value="[dbo].[GT_IndexDifinition].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_IndexDifinition]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Title" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ac8a9fd3-1b3a-4170-abf1-201e5b2f6e19" ChangeDateTime="11/15/2016 06:18:31">
+    <Property Name="ElementName" Value="[dbo].[Geo_RenderType].[Type]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Geo_RenderType]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Title" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cc321884-3292-4bc6-b160-777757a450e0" ChangeDateTime="11/15/2016 06:19:20">
+    <Property Name="ElementName" Value="[dbo].[Geo_RenderUrl].[TypeId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Geo_RenderUrl]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RenderTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dd4b71f6-4c8e-4700-ac37-d65abb0fe24c" ChangeDateTime="11/15/2016 06:21:46">
+    <Property Name="ElementName" Value="[dbo].[GT_TopicIndex].[DicNameId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_TopicIndex]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DifinitionId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8568bf35-3650-4c1b-80ea-dbed2a488348" ChangeDateTime="11/15/2016 06:23:29">
+    <Property Name="ElementName" Value="[dbo].[GT_TopicIndex].[DifinitionId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_TopicIndex]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IndexDifinitionId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="43e5a7c1-fbcf-4c0e-8fc1-b658f547fa51" ChangeDateTime="11/15/2016 06:39:20">
+    <Property Name="ElementName" Value="[dbo].[GT_UrlTemplate].[Urlid]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_UrlTemplate]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RenderUrlId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="18e26aa1-d7af-4f02-bfb9-84864e482a02" ChangeDateTime="11/15/2016 06:39:23">
+    <Property Name="ElementName" Value="[dbo].[GT_UrlTemplate].[Pid]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_UrlTemplate]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ca015d7a-65e0-4ddf-a23e-dfd5b2573389" ChangeDateTime="11/15/2016 06:44:25">
+    <Property Name="ElementName" Value="[dbo].[GT_UrlTemplate].[Key]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_UrlTemplate]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ParameterKey" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fdc7cef9-f5e1-4b95-9d9c-0015cc1064cf" ChangeDateTime="11/15/2016 06:44:38">
+    <Property Name="ElementName" Value="[dbo].[GT_UrlTemplate].[Value]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_UrlTemplate]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DefValue" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f03e5eba-419c-4ad4-b924-ec16fc914ec9" ChangeDateTime="11/15/2016 07:20:33">
+    <Property Name="ElementName" Value="[dbo].[GT_UrlTemplate].[Title]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_UrlTemplate]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Difinition" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="652c4e05-9ffa-418a-866d-28fba348d1bb" ChangeDateTime="11/16/2016 03:52:18">
+    <Property Name="ElementName" Value="[dbo].[GT_Remark].[User]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_Remark]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="29d67db3-c599-4172-8026-ea67e15eff10" ChangeDateTime="11/18/2016 03:01:02">
+    <Property Name="ElementName" Value="[dbo].[GT_TopicIndex].[IndexDifinitionId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_TopicIndex]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IndexDefinitionId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d943778b-2578-482d-9fc4-05973cf6999a" ChangeDateTime="11/23/2016 07:35:12">
+    <Property Name="ElementName" Value="[dbo].[GT_RenderUrl].[RenderTypeId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_RenderUrl]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RenderTypeCode" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bea6175c-9be5-45f8-8c7e-ef4b7c676357" ChangeDateTime="11/23/2016 07:35:50">
+    <Property Name="ElementName" Value="[dbo].[GT_TopicIndex].[IndexDefinitionId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_TopicIndex]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IndexDefinitionCode" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b3b3b82a-3afe-4fd4-bff3-123e08e12e1b" ChangeDateTime="11/25/2016 02:47:34">
+    <Property Name="ElementName" Value="[dbo].[GT_TopicIndex].[IndexDefinitionCode]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_TopicIndex]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IndexDefinitionId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3a437ef7-5964-4746-98f8-e74d59be2bc1" ChangeDateTime="11/25/2016 02:49:23">
+    <Property Name="ElementName" Value="[dbo].[GT_RenderUrl].[RenderTypeCode]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_RenderUrl]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RenderTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="50003dae-15ab-40f3-9a7f-69eb7bb27b1d" ChangeDateTime="11/30/2016 01:41:51">
+    <Property Name="ElementName" Value="[dbo].[GT_UserBehavior].[Type]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_UserBehavior]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BehaviorType" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="14b9df7c-ba65-4e56-a829-5bf0db234ece" ChangeDateTime="11/30/2016 01:52:50">
+    <Property Name="ElementName" Value="[dbo].[GT_UserBehavior].[Type]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_UserBehavior]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Title" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d3da355c-b6e3-4482-9c3c-bedc8a91a6ab" ChangeDateTime="02/10/2017 05:40:35">
+    <Property Name="ElementName" Value="[dbo].[GT_Code].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GT_Code]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Title" />
+  </Operation>
+</Operations>

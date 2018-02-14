@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8279C525-494F-4773-BBFA-86B9C8559393}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jurassic.So.GeoTopic.Database</RootNamespace>
+    <AssemblyName>Jurassic.So.GeoTopic.Database</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityFramework\EntityFrameworkRepository.cs" />
+    <Compile Include="GeoDbContext.cs" />
+    <Compile Include="Models\GT_Code.cs" />
+    <Compile Include="Models\GT_CodeType.cs" />
+    <Compile Include="Models\GT_IndexDefinition.cs" />
+    <Compile Include="Models\GT_Remark.cs" />
+    <Compile Include="Models\GT_RenderType.cs" />
+    <Compile Include="Models\GT_RenderUrl.cs" />
+    <Compile Include="Models\GT_Topic.cs" />
+    <Compile Include="Models\GT_TopicCard.cs" />
+    <Compile Include="Models\GT_TopicIndex.cs" />
+    <Compile Include="Models\GT_UrlTemplate.cs" />
+    <Compile Include="Models\CardDefModel.cs" />
+    <Compile Include="Models\GT_UserBehavior.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Service\IGT_CodeEFRepository.cs" />
+    <Compile Include="Service\IGT_CodeTypeEFRepository.cs" />
+    <Compile Include="Service\IGT_IndexDefinitionEFRepository.cs" />
+    <Compile Include="Service\IGT_RemarkEFRepository.cs" />
+    <Compile Include="Service\IGT_RenderTypeEFRepository.cs" />
+    <Compile Include="Service\IGT_RenderUrlEFRepository.cs" />
+    <Compile Include="Service\IGT_TopicCardEFRepository.cs" />
+    <Compile Include="Service\IGT_TopicEFRepository.cs" />
+    <Compile Include="Service\IGT_TopicIndexEFRepository.cs" />
+    <Compile Include="Service\IGT_UrlTemplateEFRepository.cs" />
+    <Compile Include="Service\Implementation\GT_CodeEFRepository.cs" />
+    <Compile Include="Service\Implementation\GT_CodeTypeEFRepository.cs" />
+    <Compile Include="Service\Implementation\GT_IndexDifinitionEFRepository.cs" />
+    <Compile Include="Service\Implementation\GT_RemarkEFRepository.cs" />
+    <Compile Include="Service\Implementation\GT_RenderTypeEFRepository.cs" />
+    <Compile Include="Service\Implementation\GT_RenderUrlEFRepository.cs" />
+    <Compile Include="Service\Implementation\GT_TopicCardEFRepository.cs" />
+    <Compile Include="Service\Implementation\GT_TopicEFRepository.cs" />
+    <Compile Include="Service\Implementation\GT_TopicIndexEFRepository.cs" />
+    <Compile Include="Service\Implementation\GT_UrlTemplateEFRepository.cs" />
+    <Compile Include="Service\Implementation\UserBehaviorEFRepository.cs" />
+    <Compile Include="Service\Implementation\UserProfileEFRepository.cs" />
+    <Compile Include="Service\Implementation\webpages_MembershipEFRepository.cs" />
+    <Compile Include="Service\Implementation\webpages_OAuthMembershipEFRepository.cs" />
+    <Compile Include="Service\Implementation\webpages_RoleEFRepository.cs" />
+    <Compile Include="Service\IUserBehaviorEFRepository.cs" />
+    <Compile Include="Service\IUserProfileEFRepository.cs" />
+    <Compile Include="Service\Iwebpages_MembershipEFRepository.cs" />
+    <Compile Include="Service\Iwebpages_OAuthMembershipEFRepository.cs" />
+    <Compile Include="Service\Iwebpages_RoleEFRepository.cs" />
+    <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="Models\webpages_Membership.cs" />
+    <Compile Include="Models\webpages_OAuthMembership.cs" />
+    <Compile Include="Models\webpages_Roles.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\..\01基础库\02源代码\Jurassic.So.Infrastructure\Jurassic.So.Infrastructure\Jurassic.So.Infrastructure.csproj">
+      <Project>{7EEDA4A1-B947-4571-9A75-BDA7F4DC88A8}</Project>
+      <Name>Jurassic.So.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
