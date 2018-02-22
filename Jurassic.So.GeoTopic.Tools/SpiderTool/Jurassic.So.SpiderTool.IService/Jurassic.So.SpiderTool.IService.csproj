@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{427DE74A-4B27-4634-84D8-AB834DA941E7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jurassic.So.SpiderTool.IService</RootNamespace>
+    <AssemblyName>Jurassic.So.SpiderTool.IService</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IAdapterInfoService.cs" />
+    <None Include="app.config" />
+    <Compile Include="IAdapterManageService.cs" />
+    <Compile Include="IPlanService.cs" />
+    <Compile Include="ITaskService.cs" />
+    <Compile Include="IWrapedDataService.cs" />
+    <Compile Include="IWrapedIndexerService.cs" />
+    <Compile Include="Processers\ProcesserBase.cs" />
+    <Compile Include="Processers\ProcesserFactory.cs" />
+    <Compile Include="Processers\Processor.cs" />
+    <Compile Include="Processers\ProcessorAttribute.cs" />
+    <Compile Include="Processers\ProcessStatus.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ITaskLogInfoService.cs" />
+    <Compile Include="ViewModel\AdapterInfoModel.cs" />
+    <Compile Include="ViewModel\SpiderScopeModel.cs" />
+    <Compile Include="ViewModel\SchedulePlan.cs" />
+    <Compile Include="ViewModel\TaskLogIndexModel.cs" />
+    <Compile Include="ViewModel\TaskLogInfoModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\..\..\01基础库\02源代码\Jurassic.PKS.Service\Jurassic.PKS.Service\Jurassic.PKS.Service.csproj">
+      <Project>{6AEA408E-86E0-4D57-AEAF-EDB23F124CF8}</Project>
+      <Name>Jurassic.PKS.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\..\..\01基础库\02源代码\Jurassic.PKS.Service\Jurassic.PKS.WebAPI\Jurassic.PKS.WebAPI.Models.csproj">
+      <Project>{492BFB88-12AC-4961-A929-F547893DDB7E}</Project>
+      <Name>Jurassic.PKS.WebAPI.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\..\..\01基础库\02源代码\Jurassic.So.Infrastructure\Jurassic.So.Infrastructure\Jurassic.So.Infrastructure.csproj">
+      <Project>{7eeda4a1-b947-4571-9a75-bda7f4dc88a8}</Project>
+      <Name>Jurassic.So.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data.Entities\Jurassic.So.Data.Entities.csproj">
+      <Project>{92c758ee-29a9-46a1-a7cd-5a6b5f72f4bb}</Project>
+      <Name>Jurassic.So.Data.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data\Jurassic.So.Data.Center.csproj">
+      <Project>{C769FA4F-5CCD-4B8B-A102-64F427B5249C}</Project>
+      <Name>Jurassic.So.Data.Center</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

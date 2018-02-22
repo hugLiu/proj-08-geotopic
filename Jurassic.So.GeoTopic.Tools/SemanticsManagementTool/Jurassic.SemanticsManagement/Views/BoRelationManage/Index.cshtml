@@ -1,0 +1,295 @@
+﻿@{
+    ViewBag.Title = "业务对象关系维护";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="BOInfoManage" class="mini-layout" style="width: 100%; height: 100%; ">
+    <div title="业务对象1" region="west" width="320px" expanded="true" showspliticon="true" showheader="true">
+        <div style="width: 100%; height: 15%" class="mini-toolbar">
+            <table style="width: 100%; height: 100%">
+                <tr>
+                    <td style="white-space:nowrap;">
+                        <a>业务对象类型：</a>
+                        <input id="cbType1" class="mini-combobox" style="width:180px;" textfield="Term" valuefield="Term" emptytext="地质层位"
+                               url="/SemanticsRelation/GetTermTrees?cc=IC/BOT" onvaluechanged="TypeChanged1"
+                               required="true" allowinput="true" shownullitem="true" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>业务对象名称：</span>
+                        <input type="text" id="key1" style="width:180px;" />
+                        <input plain="true" class="mini-button" iconcls="icon-new-search" value="查找" onclick="search1()" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="bo1" class="mini-datagrid" style="width: 100%; height: 83%"
+             url="/BoInfoManage/GetBoByBot?bot=地质层位&value=" allowresize="true" idfield="ID"
+             sizelist="[10,20,30,50]" pagesize="10" onselect="onGrid1Select()">
+            <div property="columns">
+                <div type="indexcolumn" width=10%>序号</div>
+                <div name="taskname" field="Name" width=95%>业务对象</div>
+            </div>
+        </div>
+    </div>
+    <div title="业务对象2" region="center" expanded="true" showspliticon="true" showheader="true">
+        <div style="width: 100%; height: 15%" class="mini-toolbar">
+            <table style="width: 100%; height: 100%">
+                <tr>
+                    <td style="white-space:nowrap;">
+                        <a>业务对象类型：</a>
+                        <input id="cbType2" class="mini-combobox" style="width:180px;" textfield="Term" valuefield="Term" emptytext="地质层位"
+                               url="/SemanticsRelation/GetTermTrees?cc=IC/BOT" onvaluechanged="TypeChanged2"
+                               required="true" allowinput="true" shownullitem="true" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>业务对象名称：</span>
+                        <input type="text" id="key2" style="width:180px;" />
+                        <input plain="true" class="mini-button" iconcls="icon-new-search" value="查找" onclick="search2()" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="bo2" class="mini-datagrid" style="width: 100%; height: 83%" multiselect="true"
+             url="/BoInfoManage/GetBoByBot?bot=地质层位&value=" allowresize="true" idfield="ID"
+             sizelist="[10,20,30,50]" pagesize="10" onselect="onGrid2Select()">
+            <div property="columns">
+                <div type="checkcolumn" width=10%></div>
+                <div type="indexcolumn" width=10%>序号</div>
+                <div name="taskname" field="Name" width=75%>业务对象</div>
+            </div>
+        </div>
+    </div>
+    <div title="关系列表" region="east" width="500px" expanded="true" showspliticon="true" showheader="true">
+        <div id="relatedBOs" class="mini-datagrid" valuefield="id" multiselect="true" allowcelledit="true" allowcellselect="true"
+             style="width: 100%; height: 100%; padding-left: 10px;padding-top: 5px">
+            <div property="columns">
+                <div type="indexcolumn" width=10%>序号</div>
+                <div header="业务对象1" field="Name1" width=30%></div>
+                <div type="comboboxcolumn" autoshowpopup="true" field="RelTypeCode" name="RelTypeName" width=30% align="center" headeralign="center">
+                    关系类型
+                    <input property="editor" class="mini-combobox" onvaluechanged="typeCellClick()" required="true" url="/BoRelationManage/GetBoRelationType" />
+                </div>
+                <div header="业务对象2" field="Name2" width=30%></div>
+                <div name="action" width=10% headeralign="center" align="center" renderer="onActionRenderer" cellstyle="padding:0;">操作</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    mini.parse();
+    var boGrid1 = mini.get("bo1");
+    var boGrid2 = mini.get("bo2");
+    var boType1 = mini.get("cbType1");
+    var boType2 = mini.get("cbType2");
+    var relationlist = mini.get("relatedBOs");
+
+
+    boGrid1.load();
+    boGrid2.load();
+
+    function onActionRenderer(e) {
+        var record = e.record;
+        var uid = record.id;
+
+        var s = '<a class="Delete_Button"  href="javascript:delRow(\'' + uid + '\')">Delete</a>';
+
+        return s;
+    }
+
+    function delRow(rowUid) {
+
+        var row = relationlist.getAt(rowUid);
+        if (row) {
+            if (confirm("确定删除此记录？")) {
+                var json = mini.encode(row);
+                $.ajax({
+                    url: "/BoRelationManage/DeleteBor?bor=" + json,
+                    success: function (data) {
+                        if (data.State == "success") {
+                            relationlist.removeRow(row, true);
+                        }
+                        mini.showTips({
+                            content: data.Text,
+                            state: data.State,
+                            x: "right",
+                            y: "center",
+                            timeout: 1500
+                        });
+                    },
+                    error: function () {
+                    }
+                });
+            }
+        }
+    }
+
+    //切换grid内容
+    //////////////////////////////////////////////////////////
+    function TypeChanged1() {
+
+        TypeChanged("key1", boType1, boGrid1);
+    }
+
+    function TypeChanged2() {
+        TypeChanged("key2", boType2, boGrid2);
+    }
+
+    function TypeChanged(id, boType, grid) {
+
+        document.getElementById(id).value = "";
+        var bot = boType.getValue();
+        if (bot == "undefined" || bot == "") {
+            bot = "地质层位";
+        }
+        relationlist.clearRows();
+        grid.load({ bot: bot, value: '' });
+    }
+
+    //查询grid内容
+    //////////////////////////////////////////////////////////
+    function search1() {
+
+        search("key1", boType1, boGrid1);
+    }
+
+    function search2() {
+
+        search("key2", boType2, boGrid2);
+    }
+
+    function search(id, boType, grid) {
+
+        var key = document.getElementById(id).value;
+        var bot = boType.getValue();
+        if (typeof (bot) == "undefined" || bot == '') {
+            bot = "地质层位";
+        }
+        grid.load({ bot: bot, value: key });
+    }
+
+    //grid 行选中
+    ///////////////////////////////////////////////////////////
+    function onGrid1Select() {
+        var id1 = boGrid1.getSelected().ID;
+        var bot = boType2.getValue();
+        if (typeof (bot) == "undefined" || bot == '') {
+            bot = "地质层位";
+        }
+        $.ajax({
+            url: "/BoRelationManage/GetId2ById1AndBot2/",
+            data: { id1: id1, bot2: bot },
+            success: function (data) {
+                var list = [];
+                var i = 1;
+                $.each(data, function () {
+                    list.push({ id: i, Name2: data[i - 1].Name2, Name1: data[i - 1].Name1, RelTypeCode: data[i - 1].RelTypeCode, ID1: id1, ID2: data[i - 1].ID2, BOT1: data[i - 1].BOT1, BOT2: data[i - 1].BOT2 });
+                    i++;
+                });
+
+                relationlist.clearRows();
+                relationlist.addRows(list, 0);
+            }
+        });
+    }
+
+    function onGrid2Select() {
+
+        var rows = boGrid2.getSelecteds();
+        if (typeof (boGrid1.getSelected()) == "undefined") {
+            alert("请先选择业务对象1");
+        } else {
+            var grid1Selected = boGrid1.getSelected();
+            var name1 = grid1Selected.Name;
+            var id1 = grid1Selected.ID;
+            var bot1 = boType1.getValue();
+            var bot2 = boType2.getValue();
+            if (typeof (bot1) == "undefined" || bot1 == '') {
+                bot1 = "地质层位";
+            }
+            if (typeof (bot2) == "undefined" || bot2 == '') {
+                bot2 = "地质层位";
+            }
+            var list = [];
+            var i = 1;
+            $.each(rows, function () {
+                list.push({ id: i, Name2: rows[i - 1].Name, Name1: name1, ID1: id1, ID2: rows[i - 1].ID, BOT1: bot1, BOT2: bot2 });
+                i++;
+            });
+
+            relationlist.clearRows();
+            relationlist.addRows(list, 0);
+
+            relationlist.selectAll(false);
+            var relations = relationlist.getSelecteds();
+            var json = mini.encode(relations);
+            relationlist.deselectAll(false);
+
+            $.ajax({
+                url: "/BoRelationManage/AddBor?bor=" + json,
+                success: function (data) {
+                    if (data.State == "success") {
+                        mini.showTips({
+                            content: data.Text,
+                            state: data.State,
+                            x: "right",
+                            y: "center",
+                            timeout: 1500
+                        });
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+    }
+    function typeCellClick() {
+
+        deleteOld();
+
+        var relations = relationlist.getSelecteds();
+        var json = mini.encode(relations);
+        $.ajax({
+            url: "/BoRelationManage/AddBor?bor=" + json,
+            success: function (data) {
+                if (data.State == "success") {
+                    mini.showTips({
+                        content: data.Text,
+                        state: data.State,
+                        x: "right",
+                        y: "center",
+                        timeout: 1500
+                    });
+                }
+            },
+            error: function () {
+            }
+        });
+    }
+
+    function deleteOld() {
+
+        var editBoRelation = relationlist.getSelected();
+
+        var json = mini.encode(editBoRelation);
+        $.ajax({
+            url: "/BoRelationManage/DeleteBor?bor=" + json,
+            success: function (data) {
+                    mini.showTips({
+                        content: data.Text,
+                        state: data.State,
+                        x: "right",
+                        y: "center",
+                        timeout: 1500
+                    });
+            },
+            error: function () {
+            }
+        });
+    }
+</script>

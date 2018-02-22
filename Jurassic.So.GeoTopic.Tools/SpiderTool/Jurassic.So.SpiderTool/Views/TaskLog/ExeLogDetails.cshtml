@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "ExeLogDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="padding-top:10px;padding-bottom:10px; padding-left:8px;">
+    <span>爬取范围：</span>
+    <input id="DataType" class="mini-textbox" width="200" emptytext="输入爬取范围" onenter="gridLoad" />
+    <span>执行状态：</span>
+    <input id="exeState" class="mini-combobox" style="width:60px;" textfield="text" valuefield="id" valuefromselect="true" data="exeStates" />
+    <a class="mini-button" iconcls="icon-new-search" onclick="gridLoad">查询</a>
+</div>
+
+<div id="ExeLogDetails" class="mini-datagrid" style="width: 100%; height:375px; margin-top: 40px;position: fixed;left: 0;top:0;" url="@Url.Action("GetTaskLogDetail", "TaskLog")"
+     multiselect=" true" showpager="false" virtualscroll="true">
+    <div property="columns">
+        <div type="indexcolumn" headeralign="center" width="30"></div>
+        <div name="Success" field="Success" headeralign="center" align="center" allowsort="true" width="40">
+            状态
+        </div>
+        <div name="SpiderScope" field="SpiderScope" headeralign="left" width="190" allowsort="true">
+            爬取范围
+        </div>
+        <div name="RecordCount" field="RecordCount" headeralign="center" align="center" allowsort="true" width="50">
+            条数
+        </div>
+        <div name="StartDate" field="StartDate" headeralign="center" allowsort="true" align="center" width="130" dateformat="yyyy-MM-dd HH:mm:ss">
+            开始时间
+        </div>
+        <div name="EndDate" field="EndDate" headeralign="center" allowsort="true" align="center" width="130" dateformat="yyyy-MM-dd HH:mm:ss">
+            结束时间
+        </div>
+        <div name="Remark" field="FailturReason" headeralign="center" allowsort="true" width="140">
+            备注
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var exeStates = [{ id: 1, text: '全部' }, { id: 2, text: '成功' }, { id: 3, text: '失败' }];
+    mini.parse();
+    var grid = mini.get("ExeLogDetails");
+    var txtField = mini.get('DataType');
+    var stateField = mini.get("exeState");
+    stateField.select(0);
+    this.gridLoad({ adapterTaskLogIdentity: "@ViewBag.adapterTaskLogIdentity",state: stateField.getValue() });
+
+    grid.on("drawcell", function (e) {
+        var record = e.record,
+       column = e.column,
+       field = e.field,
+       value = e.value;
+        //行渲染
+        if (record.Success == 0) {
+            e.cellStyle = "color:red;font-weight:bold;";
+        }
+        //列渲染
+        if (field == "Success") {
+            switch (value) {
+                case true:
+                    e.cellHtml = "成功";
+                    break;
+                case false:
+                    e.cellHtml = "失败";
+                    break;
+                default:
+
+            }
+        }
+    });
+
+    //加载列表详情信息
+    function gridLoad() {
+        grid.url = "@Url.Action("GetTaskLogDetail", "TaskLog")";
+        grid.load({ adapterTaskLogIdentity: "@ViewBag.adapterTaskLogIdentity", spiderScope: txtField.getValue(), state: stateField.getValue() });
+    }
+
+    
+
+</script>

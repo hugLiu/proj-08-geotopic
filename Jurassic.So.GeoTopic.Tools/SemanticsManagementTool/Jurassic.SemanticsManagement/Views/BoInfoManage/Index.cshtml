@@ -1,0 +1,318 @@
+﻿@{
+    ViewBag.Title = "业务对象维护";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="BOInfoManage" class="mini-layout" style="width: 100%; height: 100%; ">
+
+    <div title="业务对象" region="west" width="320px" expanded="true" showspliticon="true" showheader="true">
+        <div style="width: 100%; height: 15%" class="mini-toolbar">
+            <table style="width: 100%; height: 100%">
+                <tr>
+                    <td style="white-space:nowrap;">
+                        <a>业务对象类型：</a>
+                        <input id="cbType" class="mini-combobox" style="width:180px;" textfield="Term" valuefield="Term" emptytext="地质层位"
+                               url="/SemanticsRelation/GetTermTrees?cc=IC/BOT" onvaluechanged="TypeChanged"
+                               required="true" allowinput="true" shownullitem="true" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>业务对象名称：</span><input type="text" id="key" style="width:180px;" />
+                        <input plain="true" class="mini-button" iconcls="icon-new-search" value="查找" onclick="search()" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="boRoot" class="mini-datagrid" style="width: 100%; height: 83%"
+             url="/BoInfoManage/GetBoRootByBot?bot=地质层位&key=" allowresize="true" idfield="ID"
+             sizelist="[10,20,30,50]" pagesize="10" onselectionchanged="onSelectionChanged"
+             selectonload="true">
+            <div property="columns">
+                <div type="indexcolumn" width=35%>序号</div>
+                <div name="taskname" field="Name" width=55%>业务对象</div>
+            </div>
+        </div>
+    </div>
+
+    <div title="业务对象详细信息" region="center" style="height: 100%; " expanded="true" showspliticon="false" showheader="true">
+        <div id="editForm1" style="width: 100%; height: 40%">
+            <div class="mini-toolbar">
+                <table style="width: 100%; height: 10%">
+                    <tr>
+                        <td align="right" style="padding-right: 10px">
+                            <a plain="true" class="mini-button" iconcls="icon-new-add" onclick="addRoot()">增加</a>
+                            <a plain="true" class="mini-button" iconcls="icon-new-edit" onclick="editRoot()">编辑</a>
+                            <a plain="true" class="mini-button" iconcls="icon-new-empty" onclick="removeRoot()">删除</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <input class="mini-hidden" name="ID" />
+            <table style="width: 100%; height: 30%;padding-top: 20px">
+                <tr>
+                    <td> <label>业务对象：</label></td>
+                    <td><input id="Name" style="width: 90%;" name="Name" class="mini-textbox" required="true" /></td>
+                    <td><label>对象别名：</label></td>
+                    <td><input id="Alias" style="width: 90%; " name="Alias" class="mini-textbox" required="true" /></td>
+                    <td><label>对象属性：</label></td>
+                    <td><input id="TypeName" style="width: 90%; " name="TypeName" class="mini-textbox" required="true" /></td>
+                </tr>
+                <tr>
+                    <td><label>标准编码：</label></td>
+                    <td><input id="SID" style="width: 90%; " name="SID" class="mini-textbox" required="true" /></td>
+                    <td><label>坐标类型：</label></td>
+                    <td><input id="SpaceLocationType" style="width: 90%; " name="SpaceLocationType" class="mini-textbox" required="true" /></td>
+                    <td>排序索引：</td>
+                    <td><input id="OrderIndex" name="OrderIndex" style="width: 90%; " class="mini-spinner" value="1" minvalue="1" maxvalue="500" /></td>
+                </tr>
+                <tr>
+                    <td><label>创建人：</label></td>
+                    <td><input id="CreatedBy" style="width: 90%; " name="CreatedBy" class="mini-textbox" required="true" /></td>
+                    <td><label>数据库来源：</label></td>
+                    <td><input id="SourceDB" style="width: 90%; " name="SourceDB" class="mini-textbox" required="true" /></td>
+                    <td><label>表来源：</label></td>
+                    <td><input id="SourceTable" style="width: 90%; " name="SourceTable" class="mini-textbox" required="true" /></td>
+                </tr>
+                <tr>
+                    <td><label>备注：</label></td>
+                    <td colspan="5"><input id="Remark" style="width: 97%;" name="Remark" class="mini-textbox" required="true" /></td>
+                </tr>
+            </table>
+        </div>
+        <div class="mini-toolbar">
+            <table style="width: 100%; height: 10%">
+                <tr>
+                    <td align="right" style="padding-right: 10px">
+                        <a plain="true" class="mini-button" iconcls="icon-new-add" onclick="add()">增加</a>
+                        <a plain="true" class="mini-button" iconcls="icon-new-edit" onclick="edit()">编辑</a>
+                        <a plain="true" class="mini-button" iconcls="icon-new-empty" onclick="remove()">删除</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="boBaseInfo" class="mini-treegrid" style="width: 100%;height: 50%"
+             showtreeicon="true" allowresizecolumn="true"
+             onnodeclick="treeNodeClick" treecolumn="taskname" idfield="ID" resultastree="false">
+            <div property="columns">
+                <div type="indexcolumn" width=5%>序号</div>
+                <div name="taskname" field="Name" width=25% allowresize="true">业务对象</div>
+                <div field="Alias" width=10%>对象别名</div>
+                <div field="TypeName" width=8%>对象属性</div>
+                <div field="SID" width=5%>编码</div>
+                <div field="SpaceLocationType" width=5%>坐标</div>
+                <div field="OrderIndex" width=5%>排序</div>
+                <div field="CreatedBy" width=8%>创建人</div>
+                <div field="SourceDB" width=15%>数据库来源</div>
+                <div field="SourceTable" width=15%>表来源</div>
+                <div field="Remark" width=15%>备注</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    mini.parse();
+    var boGrid = mini.get("boRoot");
+    var boTree = mini.get("boBaseInfo");
+    var boType = mini.get("cbType");
+
+    boGrid.load();
+
+    var db = new mini.DataBinding();
+    db.bindForm("editForm1", boGrid);
+
+    function TypeChanged() {
+        document.getElementById("key").value = "";
+
+        var bot = boType.getValue();
+        if (typeof (bot) == "undefined") { bot = "地质层位"; }
+        boGrid.load({ bot: bot, key: '' });
+    }
+
+    function onSelectionChanged(e) {
+        var bot = boType.getValue();
+        if (typeof (bot) == "undefined" || bot == '') { bot = "地质层位"; }
+        var grid = e.sender;
+        var record = grid.getSelected();
+
+        if (record) {
+            boTree.load("/BoInfoManage/GetBoByBotAndRootId?bot=" + bot + "&id=" + record.ID);
+        }
+    }
+    function search() {
+        var bot = boType.getValue();
+        if (typeof (bot) == "undefined" || bot == '') { bot = "地质层位"; }
+        var key = document.getElementById("key").value;
+
+        boGrid.load({ bot: bot, key: key });
+    }
+    $("#key").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            search();
+        }
+    });
+
+    //新增子节点
+    function add() {
+
+        var record = boGrid.getSelected();
+        var row = boTree.getSelectedNode();
+        var id = record.ID;
+        if (typeof (row) != "undefined") { id = row.ID; }
+
+        var bot = boType.getValue();
+        if (typeof (bot) == "undefined" || bot == '') { bot = "地质层位"; }
+
+        mini.open({
+            url: "@Url.Action("BoinfoWindow", "BoInfoManage")" + "?operation=add&bot=" + bot + "&pid=" + id,
+            title: "新增业务对象", width: 550, height: 360,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                var data = { action: "new" };
+                iframe.contentWindow.SetData(data);
+            },
+            ondestroy: function (action) {
+                boTree.reload();
+            }
+        });
+    }
+    //新增根节点
+    function addRoot() {
+
+        var bot = boType.getValue();
+        if (typeof (bot) == "undefined" || bot == '') { bot = "地质层位"; }
+        mini.open({
+            url: "@Url.Action("BoinfoWindow", "BoInfoManage")" + "?operation=add&bot=" + bot + "&pid=",
+            title: "新增业务对象", width: 550, height: 360,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                var data = { action: "new" };
+                iframe.contentWindow.SetData(data);
+            },
+            ondestroy: function (action) {
+                boTree.reload();
+            }
+        });
+    }
+    //编辑子节点
+    function edit() {
+
+        var record = boGrid.getSelected();
+        var bot = boType.getValue();
+        if (typeof (bot) == "undefined" || bot == '') { bot = "地质层位"; }
+        var row = boTree.getSelectedNode();
+        if (typeof (row) == "undefined") { alert("请选中一条记录"); }
+        else {
+            mini.open({
+                url: "@Url.Action("BoinfoWindow", "BoInfoManage")" + "?operation=edit&bot=" + bot + "&pid=" + record.ID,
+                title: "编辑业务对象", width: 550, height: 360,
+                onload: function () {
+                    var iframe = this.getIFrameEl();
+                    var data = { action: "edit", id: row.ID };
+                    iframe.contentWindow.SetData(data);
+                },
+                ondestroy: function (action) {
+                    boTree.reload();
+                }
+            });
+
+        }
+    }
+
+    //编辑根节点
+    function editRoot() {
+
+        var record = boGrid.getSelected();
+        var bot = boType.getValue();
+        if (typeof (bot) == "undefined" || bot == '') { bot = "地质层位"; }
+
+        if (record) {
+            mini.open({
+                url: "@Url.Action("BoinfoWindow", "BoInfoManage")" + "?operation=edit&bot=" + bot + "&pid=" + record.ID,
+                title: "编辑业务对象", width: 550, height: 360,
+                onload: function () {
+                    var iframe = this.getIFrameEl();
+                    var data = { action: "edit", id: record.ID };
+                    iframe.contentWindow.SetData(data);
+                },
+                ondestroy: function (action) {
+                    boTree.reload();
+                }
+            });
+        } else {
+            alert("请选中一条记录");
+        }
+    }
+
+    function remove() //删除
+    {
+        var nodes = boTree.getSelectedNode();
+        if (nodes.length == 0) {
+            mini.alert("请选择至少一条记录！");
+        }
+        else {
+            mini.confirm("确定删除记录？", "确定？",
+              function (action) {
+                  if (action == "ok") {
+                      var json = mini.encode(nodes);
+                      json = encodeURI(json);
+                      $.ajax({
+                          url: "/BoInfoManage/DeleteBo?boinfo=" + json,
+                          type: "post",
+                          success: function (data) {
+                              if (data.State == "success")
+                              { boTree.removeNodes(nodes); }
+                              mini.showTips({
+                                  content: data.Text,
+                                  state: data.State,
+                                  x: "right",
+                                  y: "center",
+                                  timeout: 1500
+                              });
+                          },
+                          error: function (err) {
+                              toastr["error"](err.status + " - " + err.statusText);
+                          }
+                      });
+                  }
+              }
+          );
+        }
+    }
+    function removeRoot() //删除根节点
+    {
+        var rows = boGrid.getSelecteds();
+        if (rows.length == 0) {
+            mini.alert("请选择至少一条记录！");
+        }
+        else {
+            mini.confirm("确定删除记录？", "确定？",
+              function (action) {
+                  if (action == "ok") {
+                      var json = mini.encode(rows);
+                      json = encodeURI(json);
+                      $.ajax({
+                          url: "/BoInfoManage/DeleteBo?boinfo=" + json,
+                          type: "post",
+                          success: function (data) {
+                              if (data.State == "success")
+                              { boGrid.removeRows(rows, true); }
+                              mini.showTips({
+                                  content: data.Text,
+                                  state: data.State,
+                                  x: "right",
+                                  y: "top",
+                                  timeout: 1500
+                              });
+                          },
+                          error: function (err) {
+                              toastr["error"](err.status + " - " + err.statusText);
+                          }
+                      });
+                  }
+              }
+          );
+        }
+    }
+
+</script>

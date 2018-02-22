@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4DE7A039-4954-4381-9F62-D894F96F1934}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jurassic.Semantics.Service</RootNamespace>
+    <AssemblyName>Jurassic.Semantics.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="PlainElastic.Net">
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\PlainElastic.Net.1.1.54\lib\Net40\PlainElastic.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BOManageService.cs" />
+    <Compile Include="BORelationManageService.cs" />
+    <Compile Include="BOTManagementService.cs" />
+    <Compile Include="GlossaryManageService.cs" />
+    <Compile Include="CcTermService.cs" />
+    <Compile Include="ConceptClassService.cs" />
+    <Compile Include="KeyWordsManageService.cs" />
+    <Compile Include="Mapper\AutoMapperInitialization.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PtContextManageService.cs" />
+    <Compile Include="SemanticsManageService.cs" />
+    <Compile Include="SemanticsTypeService.cs" />
+    <Compile Include="SyncToElasticSearch.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jurassic.Semantics.EFProvider\Jurassic.Semantics.EFProvider.csproj">
+      <Project>{9a45a485-9d43-45a6-bfbb-09fb0c0df379}</Project>
+      <Name>Jurassic.Semantics.EFProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jurassic.Semantics.EntityNew\Jurassic.Semantics.EntityNew.csproj">
+      <Project>{42c70c80-71cf-4ed9-9d1f-a836d3d8015b}</Project>
+      <Name>Jurassic.Semantics.EntityNew</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jurassic.Semantics.IService\Jurassic.Semantics.IService.csproj">
+      <Project>{b6cc1b8f-20ca-420b-8d8c-ec94f71e76be}</Project>
+      <Name>Jurassic.Semantics.IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jurassic.Sooil.IServiceBase\Jurassic.Sooil.IServiceBase.csproj">
+      <Project>{73B1A648-2E7B-4DBE-9496-1372E1E58812}</Project>
+      <Name>Jurassic.Sooil.IServiceBase</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

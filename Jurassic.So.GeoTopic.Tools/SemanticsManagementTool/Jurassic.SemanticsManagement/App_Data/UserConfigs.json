@@ -1,0 +1,27 @@
+﻿[
+  {
+    "Theme": "blue",
+    "ShowTab": false,
+    "GridLineStyle": 1,
+    "LoginToLastPage": false,
+    "UserStartPageConfig": {
+      "UserId": "2",
+      "PanelWidth": "100",
+      "PanelHeight": "100",
+      "PanelIncision": "['50%','50%']",
+      "Widgets": []
+    },
+    "Email": "156060158@qq.com",
+    "PhoneNumber": "",
+    "Id": "2",
+    "Name": "pmis",
+    "RoleNames": "admin",
+    "IsDefaultRole": true,
+    "IsOnline": true,
+    "LastOpTime": "2017-03-13 09:46:03",
+    "RoleIds": [
+      "4"
+    ],
+    "FunctionIds": []
+  }
+]

@@ -1,0 +1,60 @@
+﻿@using Jurassic.Semantics.IService.ViewModel
+@{
+var oldInfor=(SemanticsTypemodel)ViewData["model"];
+}
+
+<div id="form1" style="width: 400px;margin:0 auto;padding-top:30px;margin-left: 80px">
+    <table>
+        <tr>
+            <td><h2 style="text-align:right">@Html.Str("SR")：</h2></td>
+            <td>
+                <input id="SR" class="mini-textbox" style=" width: 200px;" allowinput="false" required="true" name="SR" value="@oldInfor.SR" />
+            </td>
+        </tr>
+        <tr>
+            <td><h2 style="text-align: right">@Html.Str("CC1name")：</h2></td>
+            <td>
+                <input id="CC1name" class="mini-textbox" style=" width:200px;" required="true" name="CC1name" value="@oldInfor.CC1name" />
+            </td>
+        </tr>
+        <tr>
+            <td><h2 style="text-align: right">@Html.Str("CC2name")：</h2></td>
+            <td>
+                <input id="CC2name" class="mini-textbox" style=" width: 200px;" name="CC2name" value="@oldInfor.CC2name" />
+            </td>
+        </tr>
+        <tr>
+            <td><h2 style="text-align: right">@Html.Str("Description")：</h2></td>
+            <td>
+                <input id="Description" class="mini-textbox" style=" width: 200px;" required="true" name="Description" value="@oldInfor.Description" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input value="@Html.Str("Save")" type="button" onclick="EditForm()" style="width: 200px;height: 30px;font-size: 20px;font-weight: bolder; text-align: center" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+    function EditForm() {
+        var form = new mini.Form("#form1");
+        var data = form.getData();
+        var json = mini.encode(data); 
+        $.ajax({
+            url: "@Url.Action("EditGetDataResult", "SemanticsType")",
+            type: "post",
+        data: {
+            submitData: json
+        },
+        success: function (b) {
+            if (b != 0) {
+                alert(b);
+            }
+                window.CloseOwnerWindow();
+            }
+        });
+    }
+</script>

@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="height: 80%; width: 100%;">
+    <table>
+        <tr>
+            <td colspan="3">
+                <span>以下数据类型存在于多个数据适配器中，为了被数据服务优先访问，请在此设置适配器优先级别</span>
+            </td>
+        </tr>
+        <tr>
+            <td width="320px"><span>数据类型</span></td>
+            <td width="300px"><span>数据适配器</span></td>
+            <td width="70px"></td>
+        </tr>
+        <tr>
+            <td>
+                <div id="ListDataType" class="mini-listbox" style="width:90%;height: 350px;"
+                     textfield="SpiderScope" valuefield="SpiderScope" onvaluechanged="onDataTypeListChanged()"
+                     url="@Url.Action("GetDuplicateDataTypeList", "AdapterPriority")">
+                </div>
+            </td>
+            <td>
+                <div id="ListAdapter" class="mini-listbox" style="width: 95%; height: 350px;"
+                     textfield="AdapterName" valuefield="AdapterId">
+                </div>
+            </td>
+            <td>
+                <a class="mini-button" iconcls="icon-new-moveup" onclick="moveup()" style=" margin-bottom:10px">上移</a>
+                <a class="mini-button" iconcls="icon-new-movedown" onclick="movedown()" >下移</a>
+            </td>
+        </tr>        
+    </table>
+</div>
+
+<script>
+    mini.parse();
+    var listAdapter = mini.get("ListAdapter");
+    var listDataType = mini.get("ListDataType");
+
+    //通过选择的数据类型获得适配器列表
+    function onDataTypeListChanged() {
+        var selDataTypeValue = listDataType.getValue();
+        $.ajax({
+            async : false,
+            url: "@Url.Action("GetAdapterListFromDataType", "AdapterPriority")",
+            data: { AdapterDataType: selDataTypeValue },
+            type: "post",
+            success: function (data) {
+                var json = mini.encode(data);
+                listAdapter.loadData(json);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+
+    //适配器列表项向上移动
+    function moveup() {
+        var item = listAdapter.getSelected();
+        var index = listAdapter.indexOf(item);
+        if (index == 0)
+        {
+            return;
+        }
+        var adapterId1 = item.AdapterId;
+        var adapterId2 = listAdapter.data[index - 1].AdapterId;
+        exchangeAdapterTypePriority(adapterId1, adapterId2, item, index - 1);
+    }
+
+    //适配器列表项向下移动
+    function movedown() {
+        var item = listAdapter.getSelected();
+        var index = listAdapter.indexOf(item);
+        if (index == listAdapter.data.length - 1)
+        {
+            return;
+        }
+        var adapterId1 = item.AdapterId;
+        var adapterId2 = listAdapter.data[index + 1].AdapterId;
+        exchangeAdapterTypePriority(adapterId1, adapterId2, item, index + 1);
+    }
+
+    //交换相同数据类型适配的优先级
+    function exchangeAdapterTypePriority(adapterId1, adapterId2, item, newindex) {
+        var dataType = listDataType.getValue();
+        $.ajax({
+            async : false,
+            url: "@Url.Action("ExchangeAdapterTypePriority", "AdapterPriority")",
+            data: { DataType: dataType, AdapterId1: adapterId1, AdapterId2: adapterId2 },
+            type: "post",
+            success: function (data) {
+                listAdapter.moveItem(item, newindex);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+
+
+</script>

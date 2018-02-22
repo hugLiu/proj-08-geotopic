@@ -1,0 +1,177 @@
+﻿@{
+    ViewBag.Title = "业务对象类型维护";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="width: 100%; position: fixed;left: 0;top: 6px; ">
+    <div class="mini-toolbar" style="border-bottom:0;padding:0; ">
+        <table style="width:100%;">
+            <tr>
+                <td style="width:100%;">
+                    <a class="mini-button" iconcls="icon-new-add" onclick="add()">增加</a>
+                    <a class="mini-button" iconcls="icon-new-save" onclick="save()">更新</a>
+                    <a class="mini-button" iconcls="icon-new-empty" onclick="remove()">删除</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<fieldset style="width: 100%; height: 20%; border: solid 1px #aaa; margin-top: 40px; position: fixed; left: 0; top: 0;">
+    <legend>业务对象类型编辑</legend>
+    <div id="editForm1" style="padding:5px;">
+        <input class="mini-hidden" name="TypeID" />
+        <table style="width:100%;">
+            <tr>
+                <td> <label>业务对象类型：</label></td>
+                <td><input id="BOT" style="width: 200px;" name="BOT" class="mini-textbox" required="true" /></td>
+                <td><label>业务对象属性：</label></td>
+                <td><input id="TypeName" style="width: 200px;" name="TypeName" class="mini-textbox" required="true" /></td>
+                <td>排序索引：</td>
+                <td><input id="OrderIndex" name="OrderIndex" class="mini-spinner" value="1" minvalue="1" maxvalue="500" /></td>
+            </tr>
+            <tr>
+                <td><label>描述：</label></td>
+                <td><input id="Description" style="width: 200px;" name="Description" class="mini-textbox" required="true" /></td>
+                <td><label>备注：</label></td>
+                <td><input id="Remark" style="width: 200px;" name="Remark" class="mini-textbox" required="true" /></td>
+            </tr>
+        </table>
+    </div>
+</fieldset>
+
+
+<div id="botTree" class="mini-datagrid" style="width: 100%; height:70%; margin-top: 8px; position: fixed; left: 0;bottom: 0;"
+     url="/BOTManager/GetBOTTreeResult?id=" idfield="TypeID" allowresize="true"
+     ondrawgroup="onDrawGroup" collapsegrouponload="true" showcolumnsmenu="true" showpager="false">
+
+    <div property="columns">
+        <div type="checkcolumn" headeralign="center" width="10%"></div>
+        <div name="TypeName" field="TypeName" headeralign="center" align="center" width="20%">
+            类型属性
+        </div>
+        <div name="Description" field="Description" headeralign="center" align="center" width="10%">
+            描述
+        </div>
+        <div name="OrderIndex" field="OrderIndex" headeralign="center" align="center" allowsort="true" width="10%">
+            排序
+        </div>
+        <div name="Remark" field="Remark" headeralign="center" align="center">
+            备注
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    mini.parse();
+    var grid = mini.get("botTree");
+    grid.load();
+
+    grid.groupBy("BOT", "asc");
+    grid.sortBy("OrderIndex", "asc");
+
+    var db = new mini.DataBinding();
+    db.bindForm("editForm1", grid);
+
+    function onDrawGroup(e) {
+        e.cellHtml = "BOT：" + e.value;
+    }
+    function add() {
+        grid.deselectAll();
+
+        var bot = mini.get("BOT").getValue();
+        var typename = mini.get("TypeName").getValue();
+        var orderindex = mini.get("OrderIndex").getValue();
+        var description = mini.get("Description").getValue();
+        var remark = mini.get("Remark").getValue();
+        var newRow = { BOT: bot, TypeName: typename, OrderIndex: orderindex, Description: description, Remark: remark };
+
+        var json = mini.encode(newRow);
+        json = encodeURI(json);
+
+        $.ajax({
+            url: "/BOTManager/InsertBot",
+            data: { bot: json },
+            type: "post",
+            success: function (data) {
+                mini.showTips({
+                    content: data.Text,
+                    state: data.State,
+                    x: "right",
+                    y: "top",
+                    timeout: 1500
+                });
+                if (data.State=="success") {
+                    grid.addRow(newRow, 0);
+                    grid.reload();
+                    grid.select(newRow);
+                }                                                                                                                                      
+            },
+            error: function (err) {
+                toastr["error"](err.status + " - " + err.statusText);
+            }
+        });
+    }
+
+    function save() {
+        var data = grid.getChanges();
+        var json = mini.encode(data);
+        json = encodeURI(json);
+
+        //grid.loading("保存中，请稍后......");
+        $.ajax({
+            url: "/BOTManager/UpdateBot",
+            data: { bot: json },
+            type: "post",
+            success: function (data) {
+                mini.showTips({
+                    content: data.Text,
+                    state: data.State,
+                    x: "right",
+                    y: "top",
+                    timeout: 1500
+                });
+                if (data.State=="error")
+                    grid.reject();//取消还原数据修改。
+            },
+            error: function (err) {
+                toastr["error"](err.status + " - " + err.statusText);
+            }
+        });
+    }
+    function remove() //删除
+    {
+        var rows = grid.getSelecteds();
+        var id = rows[0].TypeID;
+
+        if (rows.length == 0) {
+            alert("请选择一条记录！");
+        }
+        else {
+            mini.confirm("确定删除记录？", "确定？",
+              function (action) {
+                  if (action == "ok") {
+                      $.ajax({
+                          url: "/BOTManager/DeleteBOT?id=" + id,
+                          type: "post",
+                          success: function (data) {
+                              mini.showTips({
+                                  content: data.Text,
+                                  state: data.State,
+                                  x: "right",
+                                  y: "top",
+                                  timeout: 1500
+                              });
+                              if (data.State=="success")
+                              { grid.removeRows(rows, true); }
+                          },
+                          error: function (err) {
+                              toastr["error"](err.status + " - " + err.statusText);
+                          }
+                      });
+                  }
+              }
+          );
+        }
+    }
+</script>

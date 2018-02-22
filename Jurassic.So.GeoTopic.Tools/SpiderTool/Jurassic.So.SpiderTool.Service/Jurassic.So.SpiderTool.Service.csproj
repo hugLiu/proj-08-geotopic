@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3BE3FDE7-2157-4C89-8249-E0202933A51E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jurassic.So.SpiderTool.Service</RootNamespace>
+    <AssemblyName>Jurassic.So.SpiderTool.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\03项目\01深圳协同研究环境\开发库\04编码\技术预研\框架\GMS_Src_VS2013\Lib\EntityFramework.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic.AppCenter.Core">
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\项目管理部\2016.11.21\Jurassic.AppCenter.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic.Com">
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\项目管理部\2016.11.21\Jurassic.Com.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic.CommonModels">
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\项目管理部\2016.11.21\Jurassic.CommonModels.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic.Log4">
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\项目管理部\2016.11.21\Jurassic.Log4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\Microsoft.AspNet.SignalR.Core.1.1.4\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\Microsoft.AspNet.SignalR.Owin.1.1.4\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\Microsoft.AspNet.SignalR.SystemWeb.1.1.4\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\Microsoft.Owin.Host.SystemWeb.1.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.1.0.140, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\MongoDB.Bson.2.2.4\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.1.0.140, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\MongoDB.Driver.2.2.4\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.1.0.140, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\MongoDB.Driver.Core.2.2.4\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Quartz">
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\Quartz\Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdapterFactory\AdapterFactory.cs" />
+    <Compile Include="AdapterFactory\InvokeType.cs" />
+    <Compile Include="AdapterFactory\RemoteLoader.cs" />
+    <Compile Include="AdapterInfoService.cs" />
+    <Compile Include="AdapterManageService.cs" />
+    <Compile Include="Util\LogHelper.cs" />
+    <Compile Include="Job\Constants.cs" />
+    <Compile Include="Job\PlanUtil.cs" />
+    <Compile Include="Job\RunRule.cs" />
+    <Compile Include="Job\ScheduleContext.cs" />
+    <Compile Include="Job\SpiderJob.cs" />
+    <Compile Include="Job\SpiderSchedule.cs" />
+    <Compile Include="Mapper\AutoMapperProfile.cs" />
+    <Compile Include="Module\ReflectionUtil.cs" />
+    <Compile Include="PlanService.cs" />
+    <Compile Include="Module\ServiceModule.cs" />
+    <Compile Include="TaskLogInfoService.cs" />
+    <Compile Include="TaskService.cs" />
+    <Compile Include="Processer\ProcesserHub.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Processer\SpiderTaskProcesser.cs" />
+    <Compile Include="Processer\SignalRProcesserFactory.cs" />
+    <Compile Include="Processer\SpiderParam.cs" />
+    <Compile Include="Trigger\DRunTriggerCreator.cs" />
+    <Compile Include="Trigger\ITriggerCreator.cs" />
+    <Compile Include="Trigger\MRunTriggerCreator.cs" />
+    <Compile Include="Trigger\SelfRunTriggerCreator.cs" />
+    <Compile Include="Trigger\WRunTriggerCreator.cs" />
+    <Compile Include="Util\ServiceFactory.cs" />
+    <Compile Include="WrapedAdapterService.cs" />
+    <Compile Include="WrapedDataService.cs" />
+    <Compile Include="WrapedIndexerService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\..\..\01基础库\02源代码\Jurassic.PKS.Service\Jurassic.PKS.Service\Jurassic.PKS.Service.csproj">
+      <Project>{6AEA408E-86E0-4D57-AEAF-EDB23F124CF8}</Project>
+      <Name>Jurassic.PKS.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\..\..\01基础库\02源代码\Jurassic.PKS.Service\Jurassic.PKS.WebAPI\Jurassic.PKS.WebAPI.Models.csproj">
+      <Project>{492bfb88-12ac-4961-a929-f547893ddb7e}</Project>
+      <Name>Jurassic.PKS.WebAPI.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\..\..\01基础库\02源代码\Jurassic.So.Infrastructure\Jurassic.So.Infrastructure\Jurassic.So.Infrastructure.csproj">
+      <Project>{7eeda4a1-b947-4571-9a75-bda7f4dc88a8}</Project>
+      <Name>Jurassic.So.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data.Entities\Jurassic.So.Data.Entities.csproj">
+      <Project>{92c758ee-29a9-46a1-a7cd-5a6b5f72f4bb}</Project>
+      <Name>Jurassic.So.Data.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data\Jurassic.So.Data.Center.csproj">
+      <Project>{C769FA4F-5CCD-4B8B-A102-64F427B5249C}</Project>
+      <Name>Jurassic.So.Data.Center</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jurassic.So.SpiderTool.IService\Jurassic.So.SpiderTool.IService.csproj">
+      <Project>{427de74a-4b27-4634-84d8-ab834da941e7}</Project>
+      <Name>Jurassic.So.SpiderTool.IService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

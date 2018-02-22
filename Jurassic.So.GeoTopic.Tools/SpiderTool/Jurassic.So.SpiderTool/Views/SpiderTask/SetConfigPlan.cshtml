@@ -1,0 +1,285 @@
+﻿@{
+    ViewBag.Title = "SetConfigPlan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="planFormId" class="mini-panel" width="100%" height="100%" showheader="false" showtoolbar="false" style="padding: 20px;">
+    <div property="mini-toolbar" style="padding:10px;">
+        <input id="PlanInfohiddenId" name="Id" class="mini-hidden"/>
+        <input id="AdapterhiddenId" name="AdapterId" class="mini-hidden" value="@ViewBag.AdapterId"/>
+        <input id="AdapterNamehiddenId" name="PlanName" class="mini-hidden" value="@ViewBag.AdapterName" />
+        <input id="chkPlanDisableId" name="Diabled" class="mini-checkbox" iconcls="icon-add" enabled="false" oncheckedchanged="onPlanDisable" text="禁用计划" value=false truevalue=true falsevalue=false />
+        <a id="btnSavePlanId" class="mini-button" iconcls="icon-new-add" enabled="false" onclick="onSavePlan">设置计划</a>
+        <input id="lblPlanMsg" name="LblPlanMsg" class="mini-textbox" style="border:none;width:700px;" borderstyle="none" enabled="false" allowinput="false" readonly="true" value="计划还未设置" />
+    </div>
+
+    <table id="planOperationFormId" class="mini-panel" visible="false" showheader="false" border="1" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
+        <tr style="width:500px;">
+            <td style="width:100px;">执行规则：</td>
+            <td style="width:400px;">
+                <input id="runRuleComboId" name="RunRule" class="mini-combobox" style="width:100%;" value="DayRun" onvaluechanged="onRunRuleChanged" data="[{id:'DayRun',text:'按天执行'},{id:'MonthRun',text:'按月执行'},{id:'WeekRun',text:'按周执行'},{id:'SelfRun',text:'自定义执行'}]" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <table id="tbDayListId" class="mini-panel" showheader="false" border="1" visible="true" width="100%" height="100%">
+                    <tr style="vertical-align:middle;">
+                        <td colspan="2">时刻：<input id="DayRunTime" name="DayRunTime" class="mini-timespinner" required="true" format="H:mm:ss" /></td>
+                    </tr>
+                </table>
+                <table id="tbMonthListId" class="mini-panel" showheader="false" border="1" visible="false" width="100%" height="100%">
+                    <tr style="vertical-align:middle;">
+                        <td colspan="2" style="vertical-align:middle;"><input name="MonthRunMonths" class="mini-checkboxlist" repeatitems="12" repeatlayout="table" url="~/Data/MonthList.txt" /></td>
+                        <td>日期：<input name="MonthRunDay" class="mini-combobox" popupHeight="100%" required="true" url="~/Data/monthdaylist.txt" /></td>
+                        <td>时刻：<input id="MonthRunTime" name="MonthRunTime" class="mini-timespinner" required="true" format="H:mm:ss" /></td>
+                    </tr>
+                </table>
+                <table id="tbWeekListId" class="mini-panel" showheader="false" border="1" cellpadding="1" visible="false" width="100%">
+                    <tr>
+                        <td colspan="2"><input name="WeekRunDays" class="mini-checkboxlist" repeatitems="7" repeatlayout="table" url="~/Data/DayList.txt" required="true" /></td>
+                        <td>时刻：<input id="WeekRunTime" name="WeekRunTime" class="mini-timespinner" required="true" format="H:mm:ss" /></td>
+                    </tr>
+                </table>
+                <table id="tbSeftListId" class="mini-panel" showheader="false" border="1" cellpadding="1" visible="false" width="100%">
+                    <tr>
+                        <td>开始时刻：<input id="SelfRunTime" name="SelfRunTime" class="mini-timespinner" required="true" format="H:mm:ss" /></td>
+                        <td>时间间隔（分钟）：<input name="SelfInterval" class="mini-spinner" required="true" value="2" minvalue="2" increment="2" /></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <table class="mimi-panel" style="width:100%;">
+                    <tr>
+                        <td width="100px;"><input id="PlanWillInvalidId" name="PlanWillInvalid" class="mini-checkbox" oncheckedchanged="onSetPlanExpire" style="width:30%;">计划过期？</input></td>
+                        <td width="150px;"><input name="InvalidType" id="invalidTypeRadioListId" onvaluechanged="onInvalidTypeValueChanged" enabled="false" class="mini-radiobuttonlist" style="width:200px;" value=1 data="[{id: 1, text: '按次数过期'}, {id: 2, text: '按时间过期'}]" /></td>
+                        <td>
+                            <div id="invalidTimesDivId" class="mini-panel" showheader="false" style="width:360px;" visible="false"><a class="mini-button-label">过期次数: </a><input name="InvalidTimes" class="mini-spinner" value="2" style="width: 280px;" /></div>
+                            <div id="invalidDateDivId" class="mini-panel" showheader="false" style="width:360px;" visible="false"><a class="mini-button-label">过期日期: </a><input name="InvalidDate" class="mini-datepicker" style="width: 280px;" /></div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+    mini.parse();
+    var adapterId = mini.get("AdapterhiddenId").getValue();
+    $.ajax({
+        url: "@Url.Action("GetPlanInfo", "Plan")",
+        data: { adapterId: adapterId },
+    type: "get",
+    success: function (text) {
+        mini.get('PlanInfohiddenId').setValue(text);
+        onselectionchanged();
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+        alert(jqXHR.responseText);
+    }
+    });
+
+    
+
+    function onPlanDisable() {
+        var checked = mini.get('chkPlanDisableId').getChecked();
+        var planForm = mini.get('planOperationFormId');
+        var lblPlanMsg = mini.get('lblPlanMsg');
+        var btnSavePlanId = mini.get('btnSavePlanId');
+        btnSavePlanId.setText("设置计划");
+        if (checked) {
+            planForm.hide();
+            btnSavePlanId.disable();
+            planDisabled(mini.get('PlanInfohiddenId').getValue(), true);
+        } else {
+            planForm.hide();
+            btnSavePlanId.enable();
+            planDisabled(mini.get('PlanInfohiddenId').getValue(), false);
+        }
+    }
+
+    function hidePlanPlan() {
+        var checked = mini.get('chkPlanDisableId').getChecked();
+        var planForm = mini.get('planOperationFormId');
+        var lblPlanMsg = mini.get('lblPlanMsg');
+        var btnSavePlanId = mini.get('btnSavePlanId');
+        btnSavePlanId.setText("设置计划");
+        if (checked) {
+            planForm.hide();
+            btnSavePlanId.disable();
+        } else {
+            planForm.hide();
+            btnSavePlanId.enable();
+        }
+    }
+
+    function onInvalidTypeValueChanged(value) {
+        var rdo = mini.get('invalidTypeRadioListId');
+        var v = parseInt(rdo.getValue());
+        switch (v) {
+        case 1: //按次数过期
+            mini.get('invalidTimesDivId').show();
+            mini.get('invalidDateDivId').hide();
+            break;
+        case 2://按日期过期
+            mini.get('invalidDateDivId').show();
+            mini.get('invalidTimesDivId').hide();
+            break;
+        default:
+        }
+    }
+
+    function onSetPlanExpire(e) {
+        var PlanWillInvalidId = mini.get('PlanWillInvalidId');
+        var checked = PlanWillInvalidId.getChecked();
+
+        var invalidTypeRadioList = mini.get('invalidTypeRadioListId');
+
+        var invalidTimesDivId = mini.get('invalidTimesDivId');
+        var invalidDateDivId = mini.get('invalidDateDivId');
+
+        if (checked) {
+            invalidTypeRadioList.enable();
+            onInvalidTypeValueChanged();
+        } else {
+            invalidTypeRadioList.disable();
+            invalidTimesDivId.hide();
+            invalidDateDivId.hide();
+        }
+    }
+
+    function onRunRuleChanged(e) {
+        var cbo = mini.get("runRuleComboId");
+        var runRule = cbo.getValue();
+        switch (runRule) {
+        case 'DayRun':
+            mini.get("tbDayListId").show();
+            mini.get("tbMonthListId").hide();
+            mini.get("tbWeekListId").hide();
+            mini.get("tbSeftListId").hide();
+            break;
+        case 'MonthRun':
+            mini.get("tbDayListId").hide();
+            mini.get("tbMonthListId").show();
+            mini.get("tbWeekListId").hide();
+            mini.get("tbSeftListId").hide();
+            break;
+        case 'WeekRun':
+            mini.get("tbDayListId").hide();
+            mini.get("tbMonthListId").hide();
+            mini.get("tbWeekListId").show();
+            mini.get("tbSeftListId").hide();
+            break;
+        case 'SelfRun':
+            mini.get("tbDayListId").hide();
+            mini.get("tbMonthListId").hide();
+            mini.get("tbWeekListId").hide();
+            mini.get("tbSeftListId").show();
+            break;
+        default:
+        }
+    }
+
+    function onselectionchanged(e) {
+        var form = new mini.Form("#planFormId");
+        var planOperationForm = new mini.Form("#planOperationFormId");
+        var runRuleCbo = mini.get("runRuleComboId");
+        var chkPlanDisableId = mini.get("chkPlanDisableId");
+
+        //未选定适配器，所有设置计划项不可用--刘雄
+        var lblPlanMsg = mini.get("lblPlanMsg");
+        var btnSavePlanId = mini.get('btnSavePlanId');
+        btnSavePlanId.enable();
+        lblPlanMsg.enable();
+
+        var planInfoId = mini.get("PlanInfohiddenId").getValue();
+        PlanPanelHide = true;
+        if (planInfoId) {
+            chkPlanDisableId.enable();
+            $.ajax({
+                url: "@Url.Action("Details", "Plan")",
+                data: { planInfoId: planInfoId },
+                type: "post",
+                success: function (text) {
+                    var data = mini.decode(text);
+                    form.setData(data);
+                    onRunRuleChanged(runRuleCbo);
+                    onSetPlanExpire();
+                    hidePlanPlan();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                }
+            });
+        } else {
+            form.reset();
+            chkPlanDisableId.disable();
+            onRunRuleChanged();
+            onSetPlanExpire();
+            hidePlanPlan();
+        }
+        //mini.get('AdapterhiddenId').setValue();
+        //mini.get('AdapterNamehiddenId').setValue(row.AdapterName);
+    }
+    var PlanPanelHide = true;
+    function onSavePlan(e) {
+        var form = new mini.Form("#planFormId");
+        var planForm = mini.get('planOperationFormId');
+        var DayRunTime = mini.get('DayRunTime');
+        var MonthRunTime = mini.get('MonthRunTime');
+        var WeekRunTime = mini.get('WeekRunTime');
+        var SelfRunTime = mini.get('SelfRunTime');
+        var lblPlanMsg = mini.get('lblPlanMsg');
+        var btnSavePlan = e.sender;
+        var data = form.getData();
+        data.DayRunTime = DayRunTime.getFormattedValue();
+        data.MonthRunTime = MonthRunTime.getFormattedValue();
+        data.WeekRunTime = WeekRunTime.getFormattedValue();
+        data.SelfRunTime = SelfRunTime.getFormattedValue();
+        if (PlanPanelHide) {
+            //展开操作
+            planForm.show();
+            btnSavePlan.setText('保存计划');
+            PlanPanelHide = false;
+        } else {
+            if (data) {
+                $.ajax({
+                    url: "@Url.Action("Change", "Plan")",
+                    data: { planStr: mini.encode(data) },
+                    type: "post",
+                    success: function (text) {
+                        var data = mini.decode(text);
+                        mini.get('PlanInfohiddenId').setValue(data.PlanInfoId);
+                        //添加一个成功消息提示！
+                        mini.showTips({
+                            content: "<b>提示：</b><br/>计划设置成功",
+                            state: "success",
+                            x: "right",
+                            y: "bottom",
+                            timeout: 3000
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        mini.alert("计划设置失败！");
+                    }
+                });
+            }
+        }
+    }
+    function planDisabled(planId, state) {
+        if (!planId) return;
+        $.ajax({
+            url: "@Url.Action("ChangePlanState", "Plan")",
+            data: { planId: planId, disabled: state },
+            type: "post",
+            success: function (text) {
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+</script>

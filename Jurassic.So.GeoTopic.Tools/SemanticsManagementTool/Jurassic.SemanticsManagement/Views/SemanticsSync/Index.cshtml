@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = Html.Str("SyncSemantics");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="SemanticsSync" class="mini-layout" style="width: 100%; height: 100%; ">
+
+    <div title="@Html.Str("SyncGlossary")" region="west" width="500px" expanded="true" showspliticon="true" showheader="true">
+        <table style="width: 100%; height: 100%; padding-left: 10px">
+            <tr style=" height: 10%">
+                <td style="width: 50%">
+                    <a style="width: 50%" class=" mini-button" onclick="reindexGlossary"> @Html.Str("Execute")</a>
+                </td>
+                <td style="width: 50%"><div style="width: 80%" id="p1" class="mini-progressbar" value="0"></div></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtForSyncGlossary" style="width: 95%; height: 90%" class="mini-textarea"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div title="@Html.Str("SyncPtContext")" region="center" expanded="true" showheader="true">
+        <table style="width: 100%; height: 100%; padding-left: 10px">
+            <tr style=" height: 10%">
+                <td style="width: 50%">
+                    <a style="width: 50%" class="mini-button" onclick="reindexPTContext">@Html.Str("Execute")</a>
+                </td>
+                <td style="width: 50%"><div style="width: 80%" id="p2" class="mini-progressbar" value="0"></div></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="txtForSyncPtContext" style=" width: 95%; height: 90%" class="mini-textarea"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    /******************公共变量**********/
+    mini.parse();
+    var progressForGlossary = mini.get("p1");
+    var resultForGlossary = mini.get("txtForSyncGlossary");
+    var progressForPtContext = mini.get("p2");
+    var resultForPtContext = mini.get("txtForSyncPtContext");
+    var syncsuccess="@Html.Str("Success_Sync")";
+    /*********************************/
+    function reindexGlossary() {
+        progressForGlossary.setValue(0);
+        resultForGlossary.setValue("");
+        $.ajax({
+            url: "/SemanticsSync/ReIndexGlossary/",
+            success: function (result) {
+                progressForGlossary.setValue(100);
+                resultForGlossary.setValue(result);
+                mini.showTips({
+                    content: syncsuccess,
+                    state: "success",
+                    x: "left",
+                    y: "center",
+                    timeout: 1500
+                });
+            }
+        });
+    }
+    function reindexPTContext() {
+        progressForPtContext.setValue(0);
+        resultForPtContext.setValue("");
+        $.ajax({
+            url: "/SemanticsSync/ReIndexPtContext/",
+            success: function (result) {
+                progressForPtContext.setValue(100);
+                resultForPtContext.setValue(result);
+                mini.showTips({
+                    content: syncsuccess,
+                    state: "success",
+                    x: "right",
+                    y: "center",
+                    timeout: 1500
+                });
+            }
+        });
+    }
+</script>

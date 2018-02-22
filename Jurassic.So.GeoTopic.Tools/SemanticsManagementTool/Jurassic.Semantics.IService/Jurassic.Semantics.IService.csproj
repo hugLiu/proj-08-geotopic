@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B6CC1B8F-20CA-420B-8D8C-EC94F71E76BE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jurassic.Semantics.IService</RootNamespace>
+    <AssemblyName>Jurassic.Semantics.IService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="PlainElastic.Net">
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\PlainElastic.Net.1.1.54\lib\Net40\PlainElastic.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IBOManageService.cs" />
+    <Compile Include="IBORelationManageService.cs" />
+    <Compile Include="IBOTManageService.cs" />
+    <Compile Include="IBusinessFeatureManegementService.cs" />
+    <Compile Include="IGlossaryManageService.cs" />
+    <Compile Include="ICcTermService.cs" />
+    <Compile Include="IConceptClassService.cs" />
+    <Compile Include="IKeyWordsManageService.cs" />
+    <Compile Include="IPTContextManageService.cs" />
+    <Compile Include="ISemanticsManageService.cs" />
+    <Compile Include="ISemanticsTypeService.cs" />
+    <Compile Include="ISyncToElasticSearch.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\AppConfigHelper.cs" />
+    <Compile Include="ViewModel\BOAliasModel.cs" />
+    <Compile Include="ViewModel\BOBaseInfoModel.cs" />
+    <Compile Include="ViewModel\BORelationModel.cs" />
+    <Compile Include="ViewModel\BoRelationTypeModel.cs" />
+    <Compile Include="ViewModel\BOTModel.cs" />
+    <Compile Include="ViewModel\BPAndPTTreeModel.cs" />
+    <Compile Include="ViewModel\BPmodel.cs" />
+    <Compile Include="ViewModel\CcTermModel.cs" />
+    <Compile Include="ViewModel\ConceptClassmodel.cs" />
+    <Compile Include="ViewModel\ESClient.cs" />
+    <Compile Include="ViewModel\GetBfTreeDataModel.cs" />
+    <Compile Include="ViewModel\GetBpTreeDataModel.cs" />
+    <Compile Include="ViewModel\PageInfo.cs" />
+    <Compile Include="ViewModel\PtRelations.cs" />
+    <Compile Include="ViewModel\ReportBPmodel.cs" />
+    <Compile Include="ViewModel\SemanticsModel.cs" />
+    <Compile Include="ViewModel\SemanticsTypemodel.cs" />
+    <Compile Include="ViewModel\SMT_BfTreeViewModel.cs" />
+    <Compile Include="ViewModel\SMT_BOTTreeViewModel.cs" />
+    <Compile Include="ViewModel\SMT_GNTreeViewModel.cs" />
+    <Compile Include="ViewModel\TermKeyWords.cs" />
+    <Compile Include="ViewModel\TermSourceModel.cs" />
+    <Compile Include="ViewModel\TermTranslationModel.cs" />
+    <Compile Include="ViewModel\TreeModel.cs" />
+    <Compile Include="ViewModel\UserModel.cs" />
+    <Compile Include="ViewModel\USP_GetTermTreeModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jurassic.Semantics.EntityNew\Jurassic.Semantics.EntityNew.csproj">
+      <Project>{42c70c80-71cf-4ed9-9d1f-a836d3d8015b}</Project>
+      <Name>Jurassic.Semantics.EntityNew</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

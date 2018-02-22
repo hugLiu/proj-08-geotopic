@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div width="100%" style="height:4%;padding:3px;">
+    <table>
+        <tr><td>适配器名称：</td><td><input class="mini-textbox" id="txtTaskName" emptytext="请输入任务名称" style="width:200px" onenter="onKeyEnter" /></td><td><a class="mini-button" iconcls="icon-new-search" onclick="query">查询</a></td></tr>
+    </table>
+</div>
+<div width="100%" style="height:94.5%;">
+    <div>
+        <table style="width:100%;">
+            <tr>
+                <td style="width:100%;">
+                    <a class="mini-button" iconcls="icon-new-empty" onclick="remove()">清空</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="mini-datagrid" width="100%" id="taskLogGridID" class="mini-datagrid" style="height:inherit;"
+         url="@Url.Action("GetTaskLogInfo", "TaskLog")" sizelist="[25,50,100,500]" pagesize="25" totalfield="totalCount" datafield="data">
+        <div property="columns">
+            <div type="indexcolumn" headeralign="center" width="15">NO.</div>
+            @*<div type="checkcolumn" headeralign="center" width="20"></div>*@
+            <div name="AdapterId" field="AdapterId" headeralign="center" align="center" width="70" allowsort="true" visible="false">
+                适配器编码
+            </div>
+            <div name="AdapterName" field="AdapterName" headeralign="left" align="left" width="120" allowsort="true">
+                适配器名称
+            </div>
+            <div name="DataSourceName" field="DataSourceName" headeralign="left" align="left" width="140" allowsort="true">
+                数据源名称
+            </div>
+            <div name="TaskCount" field="TaskCount" headeralign="center" align="center" align="center" width="30" allowsort="true">
+                爬取范围
+            </div>
+            <div name="TaskSuccessCount" field="TaskSuccessCount" headeralign="center" align="center" width="30" allowsort="true">
+                成功数量
+            </div>
+            <div name="StartDate" field="StartDate" headeralign="center" align="center" width="80" allowsort="true" dateformat="yyyy-MM-dd HH:mm:ss">
+                开始时间
+            </div>
+            <div name="EndDate" field="EndDate" headeralign="center" visible="false" align="center" width="80" allowsort="true" dateformat="yyyy-MM-dd HH:mm:ss">
+                结束时间
+            </div>
+            <div name="ElapsedTime" field="ElapsedTime" headeralign="center" align="center" width="60" allowsort="true">
+                耗时
+            </div>
+            <div name="Performer" field="Performer" headeralign="center" align="center" width="60" allowsort="true">
+                执行者
+            </div>
+            <div name="LogDetails" field="LogDetails" headeralign="center" align="center" renderer="onLogDetails" width="60" allowsort="true">
+                查看详情
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    mini.parse();
+    var grid = mini.get("taskLogGridID");
+    grid.load();
+
+    //渲染列表详情按钮
+    function onLogDetails(e) {
+        var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        var rowIndex = e.rowIndex;
+        var s = ' <a class="mini-button" iconCls="icon-search" onClick="onExeLogDetails(\'' + uid + '\')" style="width:50px">详情</a>';
+        return s;
+    }
+
+    //写入target列
+    grid.on("drawcell", function(e) {
+        var record = e.record,
+            column = e.column,
+            field = e.field,
+            value = e.value;
+        if (field == "TaskSuccessCount" && (value < record.TaskCount)) {
+            e.rowStyle = "color:blue;";
+        }
+        if (field == "TaskSuccessCount" && value == 0) {
+            e.rowStyle = "color:red;";
+        }
+    });
+</script>
+
+<script type="text/javascript">
+
+    mini.parse();
+
+    //根据任务名称过滤
+    function query() {
+        var txt = mini.get("txtTaskName").getValue();
+        grid.load({
+            adapterName: txt
+        });
+    }
+    function onKeyEnter() {
+        query();
+    }
+
+    //清除日志
+    function remove() {
+        if (confirm("确定清空日志？")) {
+            $.ajax({
+                url: "@Url.Action("Clear", "TaskLog")",
+                type: "post",
+            success: function (text) {
+                    grid.reload();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+            });
+        }
+    }
+
+    //弹出进详细执行日志模块窗体
+    function onExeLogDetails(uid) {
+        var row = grid.getRowByUID(uid);
+        var id = row.AdapterId;
+        var adapterTaskLogIdentity = row.AdapterTaskLogIdentity;
+        var startDate = row.StartDate;
+        mini.open({
+            url: "@Url.Action("ExeLogDetails", "TaskLog")?adapterTaskLogIdentity=" + adapterTaskLogIdentity,
+            title: "日志详情",
+            width: 870,
+            height: 450,
+            allowResize: false,
+            onload: function() {
+            },
+        });
+    }
+</script>

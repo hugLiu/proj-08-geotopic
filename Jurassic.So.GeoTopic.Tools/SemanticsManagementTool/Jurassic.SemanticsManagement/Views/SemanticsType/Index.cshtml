@@ -1,0 +1,154 @@
+﻿@{
+    ViewBag.Title = "语义关系类型维护";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="width: 100%; position: fixed;left: 0;top: 6px; ">
+    <div class="mini-toolbar" style="border-bottom:0;padding:0; ">
+        <table style="width:100%;">
+            <tr>
+                <td style="width:100%;">
+                    <a class="mini-button" iconcls="icon-new-add" onclick="add">@Html.Str("Add")</a>
+                    <a class="mini-button" iconcls="icon-new-edit" onclick="edit">@Html.Str("Modify")</a>
+                    <a class="mini-button" iconcls="icon-new-empty" onclick="remove">@Html.Str("Delete")</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="gridSemanticsType" class="mini-datagrid" style="width: 100%; height:95%; margin-top: 40px;position: fixed;left: 0;top:0; "
+     url="@Url.Action("GetData", "SemanticsType")" multiselect="false" showpager="false">
+    <div property="columns">
+        <div type="indexcolumn" headeralign="center" width="30"></div>
+        <div type="checkcolumn" headeralign="center" width="30"></div>
+        <div name="SR" field="SR" headeralign="center" allowsort="true" width="120">
+           @Html.Str("SR")
+        </div>
+        <div name="CC1name" field="CC1name" headeralign="center" allowsort="true" width="100">
+            @Html.Str("CC1name")
+        </div>
+        <div name="CC2name" field="CC2name" headeralign="center" allowsort="true" width="100">
+            @Html.Str("CC2name")
+        </div>
+        <div name="Description" field="Description" headeralign="center" allowsort="true" width="175">
+            @Html.Str("Description")
+        </div>
+        <div name="CreatedDate" field="CreatedDate" headeralign="center" allowsort="true" dateformat="yyyy-MM-dd">
+            @Html.Str("CreatedDate")
+        </div>
+        <div name="CreatedBy" field="CreatedBy" headeralign="center" allowsort="true">
+            @Html.Str("CreatedBy")
+        </div>
+        <div name="LastUpdatedDate" field="LastUpdatedDate" headeralign="center" allowsort="true" dateformat="yyyy-MM-dd">
+            @Html.Str("LastUpdatedDate")
+        </div>
+        <div name="LastUpdatedBy" field="LastUpdatedBy" headeralign="center" allowsort="true">
+            @Html.Str("LastUpdatedBy")
+        </div>
+        <div name="Remark" field="Remark" headeralign="center" allowsort="true">
+            @Html.Str("Remark")
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    mini.parse();
+    var grid = mini.get("gridSemanticsType");
+    grid.load();
+    grid.sortBy("createtime", "desc");
+
+    var deleted = "@Html.Str("Success_Delete")";
+    var added = "@Html.Str("Success_Add")";
+    var updated = "@Html.Str("Success_Update")";
+    var add = "@Html.Str("Add")";
+    var modify = "@Html.Str("Modify")";
+    var confirmDelete = "@Html.Str("Confirm_Delete")";
+    var Delete = "@Html.Str("Delete")";
+    var minOneRecord = "@Html.Str("Min_One_Record")";
+
+    function add() {
+        mini.open({
+            url: "@Url.Action("OperateData","SemanticsType")",
+            title: add, width: 480, height: 400,
+            allowResize: false,
+            ondestroy: function (action) {
+                grid.reload();
+                mini.showTips({
+                    content: added,
+                    state: "success",
+                    x: "center",
+                    y: "center",
+                    timeout: 1500
+                });
+            }
+        });
+    }
+
+
+    function edit() {
+        var row = grid.getSelected();
+        var json = encodeURI(mini.encode(row));
+        if (row) {
+            mini.open({
+                url: "/SemanticsType/EdictResult?model=" + json,
+                title: modify,
+                width: 480,
+                height: 400,
+                allowResize: false,
+                ondestroy: function (action) {
+                    grid.reload();
+                    mini.showTips({
+                        content: updated,
+                        state: "success",
+                        x: "center",
+                        y: "center",
+                        timeout: 1500
+                    });
+                }
+            });
+        } else {
+            mini.showTips({
+                content: minOneRecord,
+                state: "warning",
+                x: "center",
+                y: "center",
+                timeout: 1500
+            });
+        }
+    }
+
+
+    function remove() {
+        var row = grid.getSelected();
+        if (row) {
+            if (confirm(confirmDelete, Delete)) {
+                $.ajax({
+                    url: "@Url.Action("Delete", "SemanticsType")",
+                    type: "post",
+                    data: { sr: row.SR },
+                    success: function (text) {
+                        grid.reload();
+                        mini.showTips({
+                            content: deleted,
+                            state: "success",
+                            x: "center",
+                            y: "center",
+                            timeout: 1500
+                        });
+                    },
+                    error: function () {
+                    }
+                });
+            }
+
+        } else
+            mini.showTips({
+                content: minOneRecord,
+                state: "warning",
+                x: "center",
+                y: "center",
+                timeout: 1500
+            });
+    }
+</script>
+

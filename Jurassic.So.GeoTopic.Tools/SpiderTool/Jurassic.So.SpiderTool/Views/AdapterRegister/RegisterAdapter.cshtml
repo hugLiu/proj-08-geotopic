@@ -1,0 +1,337 @@
+﻿@{
+    ViewBag.Title = "RegisterAdapter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .titletd {
+        text-align:right;
+        height:30px;
+    }
+    .datatd {
+        text-align: left;
+    }
+     
+</style>
+<script src="~/scripts/thirdlibs/swfobject/swfupload.js"></script>
+<div style="left: 0; position: fixed; top: 6px; width: 100%; ">
+    <div id="registerAdapterBar"><img src="~/Images1/registerAdapterBar.png" /></div>
+    <table style="padding-left:12px">
+        @*<tr>
+            <td colspan="2" style=" padding-left:100px">
+                <div id="ServiceTypeRbl" class="mini-radiobuttonlist" repeatitems="1" repeatlayout="table" repeatdirection="vertical"
+                     textfield="text" valuefield="id" value="0" data="[{id:'1',text:'远程服务'}]">
+                </div>
+            </td>
+        </tr>*@
+        @*<tr id="trLocalAdapter">
+            <td class="titletd">适配器安装包：</td>
+            <td class="datatd">
+                <input id="fileupload1" class="mini-fileupload" name="Fdata" limittype="*.zip"
+                       width="300"
+                       flashurl="~/images/swfupload.swf"
+                       uploadurl="/AdapterRegister/UploadAdapter"
+                       limitsize="100MB"
+                       emptytext="请选择并上传适配器安装包"
+                       onuploadsuccess="onUploadSuccess"
+                       onfileselect="onFileSelect"
+                       onuploaderror="onUploadError" />
+                <a class="mini-button" iconcls="icon-new-initialize" onclick="onRegisterLocalAdapter(true)">测试</a>
+            </td>
+        </tr>*@
+        <tr id="trRemoteAdapter" style="display:none">
+            <td class="titletd">适配服务地址：</td>
+            <td class="datatd">
+                <input type="text" id="adapterURL" class="mini-textbox" emptytext="请输入适配器服务地址" selectonfocus="true" width="300" />
+                <a class="mini-button" iconcls="icon-new-initialize" onclick="onRegisterRemoteAdapter(true)">测试</a>
+            </td>
+        </tr>
+    </table>
+    <table style="padding-left:50px; padding-top:5px; padding-bottom:10px">
+        <tr>
+            <td class="titletd">适配器名称：</td>
+            <td class="datatd">
+                <input type="text" id="adapterName" class="mini-textbox" emptytext="" selectonfocus="true" width="274" allowInput="false" />
+            </td>
+        </tr>
+        @*<tr>
+            <td class="titletd">应用域：</td>
+            <td class="datatd"><span id="SDomain">未加载</span></td>
+        </tr>*@
+        <tr>
+            <td class="titletd">数据源名称：</td>
+            <td class="datatd"><span id="DataSourceName">未加载</span></td>
+        </tr>
+        <tr>
+            <td class="titletd">数据源类型：</td>
+            <td class="datatd"><span id="DataSourceType">未加载</span></td>
+        </tr>
+    </table>
+    <div style="width:800px;height:1px;margin:0px auto;padding:0px;background-color:#D5D5D5;overflow:hidden;"></div>
+    <div style=" padding-top:15px">
+        <center>
+            <a class="mini-button" width="80" onclick="onRegisterAdapter()">确定</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="mini-button" width="80" onclick="window.CloseOwnerWindow('close');">关闭</a>
+        </center>
+    </div>           
+</div>
+
+<script>
+    mini.parse();
+    var serviceType = mini.get("ServiceTypeRbl");
+    var isFileUpLoad = false;
+    var isFileSelected = false;
+
+    $("#trRemoteAdapter").show();
+    mini.get("adapterName").setValue("");
+    //$("#SDomain").html("未加载");
+    $("#DataSourceName").html("未加载");
+    $("#DataSourceType").html("未加载");
+
+    ////适配器类型切换
+    //serviceType.on("valuechanged", function (e) {
+    //    var value = this.getValue();
+    //    if (value == 1) {   //远程适配器
+    //        $("#trLocalAdapter").hide();
+    //        $("#trRemoteAdapter").show();
+    //    }
+    //    else {     //本地适配器
+    //        $("#trLocalAdapter").show();
+    //        $("#trRemoteAdapter").hide();
+    //    }
+    //    mini.get("adapterName").setValue("");
+    //    $("#SDomain").html("未加载");
+    //    $("#DataSourceName").html("未加载");
+    //    $("#DataSourceType").html("未加载");
+    //});
+
+    //function onFileSelect(e) {
+    //    isFileUpLoad = false;
+    //    isFileSelected = true;
+    //}
+
+    //var unZipPath = "";
+    var messageid = "";
+    //function onUploadSuccess(result) {
+    //    mini.hideMessageBox(messageid);        
+    //    isFileUpLoad = true;
+    //    var json = mini.decode(result.serverData);
+    //    var forTest = json.forTest;
+    //    var adapterZipPath = json.filePath;
+    //    AfterUploadUnZipFile(forTest, adapterZipPath);
+    //}
+
+    //function onUploadError(e) {
+    //    mini.hideMessageBox(messageid);
+    //    mini.showTips({
+    //        content: "<b>提示：</b><br/>文件上传失败", state: "danger", x: "right", y: "top", timeout: 3000
+    //    });
+    //    isFileSelected = false;
+    //}
+
+    ////上传文件结束后,解压文件包
+    //function AfterUploadUnZipFile(forTest, filePath)
+    //{
+    //    messageid = mini.loading("上传成功, 解压中 ...", "Loading");
+    //    $.ajax({
+    //        url: "/AdapterRegister/UnZipAdapterFile",
+    //        data: { filePath: filePath, ForTest: forTest },
+    //        type: "post",
+    //        success:
+    //            function (result) {
+    //                mini.hideMessageBox(messageid);
+    //                var json = mini.decode(result);
+    //                var forTest = json.forTest;
+    //                unZipPath = json.unZipPath;   //记录文件解压路径
+    //                AfterUploadRegisterLocalAdapter(unZipPath, forTest);
+    //            },
+    //        error: function (jqXHR, textStatus, errorThrown) {
+    //            alert(jqXHR.responseText);
+    //        }
+    //    });
+    //}
+
+    //解压文件包结束后、注册本地适配器
+    //function AfterUploadRegisterLocalAdapter(unZipPath, forTest)
+    //{        
+    //    var adapterName = mini.get("adapterName").value;
+    //    if (adapterName == "" && forTest == false) {
+    //        mini.showTips({
+    //            content: "<b>提示：</b><br/>请输入适配器名称", state: "danger", x: "right", y: "top", timeout: 3000
+    //        });
+    //        mini.get("adapterName").setIsValid(false);
+    //        return;
+    //    }        
+    //    var tipContent = "";
+    //    if (forTest) {
+    //        tipContent = "<b>提示：</b><br/>本地适配器调用成功";
+    //        messageid = mini.loading("测试调用中 ...", "Loading");
+    //    } else {
+    //        tipContent = "<b>提示：</b><br/>本地适配器注册成功";
+    //        messageid = mini.loading("注册中 ...", "Loading");
+    //    }
+    //    $.ajax({
+    //        url: "/AdapterRegister/RegisterLocalAdapter",
+    //        data: { unZipPath: unZipPath, adapterName: adapterName, forTest: forTest },
+    //        type: "post",
+    //        success:
+    //            function (result) {
+    //                mini.hideMessageBox(messageid);
+    //                var json = mini.decode(result);
+    //                if (!showMsgByResult(json)) {
+    //                    return;
+    //                }
+    //                mini.showTips({
+    //                    content: tipContent,state: "success",x: "right",y: "top",timeout: 3000
+    //                });
+    //                mini.get("adapterName").setIsValid(true);
+    //                mini.get("adapterName").setValue(json.AdapterName);
+    //                $("#SDomain").html(json.SDomain);
+    //                $("#DataSourceName").html(json.DataSourceName);
+    //                $("#DataSourceType").html(json.DataSourceType);
+    //                if (!forTest) {
+    //                    window.CloseOwnerWindow('close');
+    //                }                    
+    //            },
+    //        error: function (jqXHR, textStatus, errorThrown) {
+    //            alert(jqXHR.responseText);
+    //        }
+    //    });        
+    //}
+     
+    
+
+    //测试或注册本地适配器
+    //*该按钮只完成上传动作，真正注册逻辑在（AfterUploadRegisterLocalAdapter）方法中实现*
+    //function onRegisterLocalAdapter(forTest) {        
+    //    var fileupload = mini.get("fileupload1");
+    //    if (!isFileSelected) {
+    //        mini.showTips({
+    //            content: "<b>提示：</b><br/>请选择并上传适配器安装包", state: "danger", x: "right", y: "top", timeout: 3000
+    //        });
+    //        return;
+    //    }
+    //    var adapterName = mini.get("adapterName").value;
+    //    if (adapterName == "" && forTest == false) {
+    //        mini.showTips({
+    //            content: "<b>提示：</b><br/>请输入适配器名称", state: "danger", x: "right", y: "top", timeout: 3000
+    //        });
+    //        mini.get("adapterName").setIsValid(false);
+    //        return;
+    //    }
+    //    fileupload.setPostParam({ ForTest: forTest });
+    //    fileupload.startUpload();
+    //    messageid = mini.loading("上传中, 请等待 ...", "Loading");
+    //}
+
+    //测试或注册远程适配器
+    function onRegisterRemoteAdapter(forTest)
+    {        
+        var adapterURL = mini.get("adapterURL").value;
+        if (adapterURL == "") {
+            mini.showTips({
+                content: "<b>提示：</b><br/>请输入适配器服务地址", state: "danger", x: "right", y: "top", timeout: 3000
+            });
+            return;
+        }
+        var adapterName = mini.get("adapterName").value;
+        if (adapterName == "" && forTest == false) {
+            mini.showTips({
+                content: "<b>提示：</b><br/>请输入适配器名称", state: "danger", x: "right", y: "top", timeout: 3000
+            });
+            mini.get("adapterName").setIsValid(false);
+            return;
+        }
+        if (forTest) {
+            tipContent = "<b>提示：</b><br/>适配器服务调用成功";
+        } else {
+            tipContent = "<b>提示：</b><br/>适配器服务注册成功";
+        }
+        $.ajax({
+            url: "/AdapterRegister/RegisterRemoteAdapter",
+            data: { AdapterURL: adapterURL, ForTest: forTest, AdapterName: adapterName },
+            type: "post",
+            success:
+                function (result) {
+                    var json = mini.decode(result);
+                    if (!showMsgByResult(json))
+                    {
+                        return;
+                    }
+                    mini.showTips({
+                        content: tipContent, state: "success", x: "right", y: "top", timeout: 3000
+                    });
+                    mini.get("adapterName").setIsValid(true);
+                    mini.get("adapterName").setValue(json.Id);
+                    //$("#SDomain").html(json.SDomain);
+                    $("#DataSourceName").html(json.DataSourceName);
+                    $("#DataSourceType").html(json.DataSourceType);
+                    if (!forTest) {
+                        window.CloseOwnerWindow('close');
+                    }
+                },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseText);
+            }
+        });
+    }
+
+    //根据返回的result，显示对应消息信息
+    function showMsgByResult(json) {               
+        if (json.duplicatAdapterName) {
+            mini.showTips({
+                content: "<b>提示：</b><br/>存在同名适配器，请重命名后再注册", state: "danger", x: "right", y: "top", timeout: 3000
+            });
+            mini.get("adapterName").setIsValid(false);
+            isFileSelected = false;
+            return false;
+        }
+        if (json.duplicatAdapterId) {
+            mini.showTips({
+                content: "<b>提示：</b><br/>存在同Id适配器，请检查", state: "danger", x: "right", y: "top", timeout: 3000
+            });
+            isFileSelected = false;
+            return false;
+        }
+        if (json.duplicatAdapterDataType) {
+            mini.showTips({
+                content: "<b>提示：</b><br/>存在重复的适配器爬取范围,请查看事件日志", state: "danger", x: "right", y: "top", timeout: 3000
+            });
+            isFileSelected = false;
+            return false;
+        }
+        if (json.nullAdapterZip) {
+            mini.showTips({
+                content: "<b>提示：</b><br/>无效适配器服务", state: "danger", x: "right", y: "top", timeout: 3000
+            });
+            isFileSelected = false;
+            return false;
+        }
+        if (json.sucess != undefined && !json.sucess) {
+            mini.showTips({
+                content: "<b>提示：</b><br/>适配器服务注册出错,请查看事件日志", state: "danger", x: "right", y: "top", timeout: 3000
+            });
+            isFileSelected = false;
+            return false;
+        }
+        return true;
+    }
+
+    //响应注册适配器按钮
+    function onRegisterAdapter()
+    {
+        //var serviceTypeValue = mini.get("ServiceTypeRbl").getValue();
+        //if (serviceTypeValue == 1) {     //远程适配器
+        //    var adapterURL = mini.get("adapterURL").value;            
+            //调用远程适配器注册主方法
+        onRegisterRemoteAdapter(false);
+        //}
+        //else {    //本地适配器
+        //    if (isFileUpLoad) {
+        //        AfterUploadRegisterLocalAdapter(unZipPath, false);
+        //    }
+        //    else {
+        //        onRegisterLocalAdapter(false);
+        //    }
+        //}        
+    }
+</script>

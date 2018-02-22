@@ -1,0 +1,14 @@
+{
+  "commands": {
+    "发布批量提交工具": {
+      "fileName": "cmd.exe",
+      "workingDirectory": ".",
+      "arguments": "/c Jurassic.So.GeoTopic.Tools\\SubmissionTool\\发布批量提交工具.bat"
+    },
+    "复制到模板库": {
+      "fileName": "cmd.exe",
+      "workingDirectory": ".",
+      "arguments": "/c Jurassic.So.GeoTopic\\Jurassic.So.GeoTopic.Web\\App_Start\\复制到模板库.bat"
+    }
+  }
+}

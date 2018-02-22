@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{93945F11-96D2-442C-B1E6-2091B86952A4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jurassic.Semantics.Entity</RootNamespace>
+    <AssemblyName>Jurassic.Semantics.Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\..\Lib_Jrsc\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityModel\BO_BaseInfo.cs" />
+    <Compile Include="EntityModel\BO_BOAlias.cs" />
+    <Compile Include="EntityModel\BO_Relation.cs" />
+    <Compile Include="EntityModel\USP_BPAndPTTree.cs" />
+    <Compile Include="EntityModel\CD_RelType.cs" />
+    <Compile Include="EntityModel\CD_TypeCode.cs" />
+    <Compile Include="EntityModel\Dict_BOView.cs" />
+    <Compile Include="EntityModel\Dict_ProfessionalView.cs" />
+    <Compile Include="EntityModel\ES_BORelationView.cs" />
+    <Compile Include="EntityModel\ES_BOTermView.cs" />
+    <Compile Include="EntityModel\ES_EPsOfPTView.cs" />
+    <Compile Include="EntityModel\ES_SemanticsTermView.cs" />
+    <Compile Include="EntityModel\Log.cs" />
+    <Compile Include="EntityModel\SD_CCTerm.cs" />
+    <Compile Include="EntityModel\SD_ConceptClass.cs" />
+    <Compile Include="EntityModel\SD_ProfessionalTerm.cs" />
+    <Compile Include="EntityModel\SD_Semantics.cs" />
+    <Compile Include="EntityModel\SD_SemanticsType.cs" />
+    <Compile Include="EntityModel\SD_TermKeyword.cs" />
+    <Compile Include="EntityModel\SD_TermSource.cs" />
+    <Compile Include="EntityModel\SD_TermTranslation.cs" />
+    <Compile Include="EntityModel\SemanticsDbContext.cs" />
+    <Compile Include="EntityModel\SMT_BFTreeView.cs" />
+    <Compile Include="EntityModel\SMT_BOTTreeView.cs" />
+    <Compile Include="EntityModel\SMT_GNTreeView.cs" />
+    <Compile Include="EntityModel\tmp_Location.cs" />
+    <Compile Include="EntityModel\USP_GetTermTree.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

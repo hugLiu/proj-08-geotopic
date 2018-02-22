@@ -1,0 +1,264 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mini-splitter" vertical="true" allowresize="true" style="width: 100%; height:100%;">
+    <div showcollapsebutton="false" size="50%">
+        <div style="height:40px; ">
+            <div style=" padding-top: 8px; padding-left: 8px;">
+                <a class="mini-button" iconcls="icon-new-add" onclick="register()">注册</a>
+                <span style="padding-left: 10px;">适配器名称：</span>
+                <input type="text" id="adapterNameText" class="mini-textbox" emptytext="请输入适配器名称" selectonfocus="true" onenter="onKeyEnter" width="200" />
+                <span class="span_left">工作状态：</span>
+                <input id="statusCom" class="mini-combobox" style="width:120px;" textfield="text" valuefield="id" emptytext="请选择工作状态..."
+                       url="" allowinput="true"
+                       data="[{id:'',text:'全部'},{id:'1',text:'正常'},{id:'0',text:'异常'}]" />
+                <span class="span_left">挂起状态：</span>
+                <input id="hangupCom" class="mini-combobox" style="width:120px;" textfield="text" valuefield="id" emptytext="请选择挂起状态..."
+                       url="" allowinput="true"
+                       data="[{id:'',text:'全部'},{id:'0',text:'运行中'},{id:'1',text:'挂起中'}]" />
+                <span class="span_left"></span>
+                <a class="mini-button" iconcls="icon-new-search" onclick="query()" style=" margin-left:10px">查询</a>
+            </div>
+        </div>
+        <div style="height:85%;">
+            <div id="AdapterInfoGrid" class="mini-datagrid" style=" width: 100%; height: 100%;"
+                 url="@Url.Action("GetAdapterList", "AdapterRegister")" pagesize="10" showpager="true" onselectionchanged="onselectionchanged" showpager="false" allowresize="false" allowresizecolumn="false">
+                <div property="columns">
+                    <div type="indexcolumn" width="20" headeralign="center" align="center">NO.</div>
+                    <div field="AdapterId" name="AdapterId" headeralign="left" allowsort="true" width="50" align="left" visible="false">AdapterId</div>
+                    <div field="IsNew" name="IsNew" headeralign="left" allowsort="true" width="50" align="left" visible="false"></div>
+                    <div name="AdapterName" field="AdapterName" headeralign="left" allowsort="true" width="110" align="left">适配器名称</div>
+                    <div field="DataSourceName" headeralign="left" allowsort="true" width="70" align="left">数据源名称</div>
+                    <div field="DataSourceType" headeralign="left" allowsort="true" width="50" align="left">数据源类型</div>
+                    <div field="AdapterURL" headeralign="left" allowsort="true" width="150" align="left">数据源地址</div>
+                    @*<div field="SDomain" headeralign="left" allowsort="true" width="40" align="left">应用域</div>*@
+                    <div name="InvokeType" field="InvokeType" headeralign="center" align="center" width="50px" renderer="onInvokeTypeRenderer">调用方式</div>
+                    <div name="Status" field="Status" headeralign="center" allowsort="true" width="60" align="center" renderer="onStatusRenderer">工作状态</div>
+                    <div name="Hangup" field="Hangup" headeralign="center" align="center" width="40px" renderer="onHangupRenderer">挂起状态</div>
+                    @*<div name="Desc" field="Desc" headeralign="left" align="left" width="150px">描述</div>*@
+                    <div name="CommandHangupAdapater" field="HangupCommand" headeralign="center" align="center" renderer="onActionHangup" width="60px">挂起</div>
+                    <div name="CommandUnRegisterAdapater" field="UnRegisterCommand" headeralign="center" align="center" renderer="onActionUnRegister" width="60px">反注册</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div showcollapsebutton="false">
+        <div style="width:100%;height:100%">
+            <div style="width:100%;height:40px;">
+                <div style="padding-top:10px;padding-bottom:10px; padding-left:8px; ">
+                    <span>爬取范围：</span><input type="text" id="key" class="mini-textbox" emptytext="请输入爬取范围" selectonfocus="true" onenter="onKeyEnter" width="200" />
+                    <a class="mini-button" iconcls="icon-new-search" onclick="search()">查询</a>
+                </div>
+            </div>
+            <div style="width:50%;height:85%;">
+                <div id="DataTypeGrid" class="mini-datagrid" style="width: 100%;height:100%" url="@Url.Action("Details", "AdapterRegister")" idfield="AdapterId" allowcelledit="false" pagesize="10" showpager="false" allowresize="false" allowcellselect="false" multiselect="true" oncellendedit="Oncellendedit">
+                    <div property="columns">
+                        <div type="indexcolumn" width="20" headeralign="center" align="center">NO.</div>
+                        <div field="AdapterId" name="AdapterId" headeralign="left" allowsort="true" width="80" visible="false">AdapterId</div>
+                        <div field="SpiderScope" name="SpiderScope" headeralign="left" align="left" allowsort="true" width="150">爬取范围</div>                        
+                        <div field="IncrementType" name="IncrementType" headeralign="center" align="center" allowsort="true" width="75">增量类型</div>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    mini.parse();
+    var grid = mini.get("AdapterInfoGrid");
+    var gridTag = mini.get("DataTypeGrid");
+    grid.load();
+
+    var adapterNameText = mini.get("adapterNameText");
+    var statusCom = mini.get("statusCom");
+    var hangupCom = mini.get("hangupCom");
+
+    function query() {
+        grid.load({
+            AdapterName: adapterNameText.getValue(), Status: statusCom.getValue(), Hangup: hangupCom.getValue()
+        });
+    }
+
+    //列表状态列
+    function onStatusRenderer(e) {
+        if (e.value == 1) return "正常";
+        else return "异常";
+    }
+
+    //列表挂起状态列
+    function onHangupRenderer(e) {
+        if (e.value == 1) return "挂起中";
+        else return "正在运行";
+    }
+
+    grid.on("drawcell", function (e) {
+        var record = e.record,
+        column = e.column,
+        field = e.field,
+        value = e.value;
+        if (field == "Hangup" && value == 1)
+            e.cellStyle = "background: #A9A9A9";
+    });
+
+    //列表调用方式列
+    function onInvokeTypeRenderer(e) {
+        console.log(e.value);
+        if (e.value == 1) return "远程调用";
+        else return "本地调用";
+    }
+
+    //渲染列表挂起按钮
+    function onActionHangup(e) {
+        var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        var rowIndex = e.rowIndex;
+        var enable = '<a class="mini-button"   href = "javascript:onHangup(\'' + uid + '\')"  style="width:80px">挂起</a>';
+        var disable = '<a class="mini-button"   href = "javascript:onHangup(\'' + uid + '\')"  style="width:80px">启动</a>';
+        if (record.Hangup == 0) {
+            return enable;
+        } else {
+            return disable;
+        }
+    }
+
+    //响应挂起按钮方法
+    function onHangup(row_uid) {       
+        var row = grid.getRowByUID(row_uid);
+        var hangup = row.Hangup;
+        $.ajax({
+            async : false,
+            url: "@Url.Action("Hangup", "AdapterRegister")",
+            data: { adapterId: row.AdapterId },
+        type: "post",
+        success: function (text) {
+            if (hangup == 1)
+                row.Hangup = 0;
+            else
+                row.Hangup = 1;
+            grid.updateRow(row);
+            grid.acceptRecord(row);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+        }
+    });
+    }
+
+    //列表反注册按钮列
+    function onActionUnRegister(e) {
+        var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        var rowIndex = e.rowIndex;
+        var enable = '<a class="mini-button"   href = "javascript:unRegister(\'' + uid + '\')"  style="width:60px">反注册</a>';
+        return enable;        
+    }
+
+    //响应反注册适配器按钮
+    function unRegister(uid)
+    {
+        mini.confirm("&nbsp;&nbsp;&nbsp;确定反注册该适配器？该操作不可逆转", "确定？",
+            function (action) {
+                if (action != "ok") {
+                    return;
+                }
+                var row = grid.getRowByUID(uid);
+                var adapterId = row.AdapterId;
+                //反注册适配器
+                $.ajax({
+                    async : false,
+                    url: "@Url.Action("UnRegisterAdapter", "AdapterRegister")",
+                    data: { AdapterId: adapterId },
+                    type: "post",
+                    success: function (text) {
+                        mini.showTips({
+                            content: "<b>提示：</b><br/>适配器反注册成功",
+                            state: "success",
+                            x: "right",
+                            y: "top",
+                            timeout: 3000
+                        });
+                        grid.removeRow(row, true);
+                        grid.updateRow(row);
+                        grid.acceptRecord(row);
+                        gridTag.reload();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(jqXHR.responseText);
+                    }
+                });
+            }
+        );
+    }
+
+    //渲染gridTag表视图的SpiderScope列。
+    gridTag.on("drawcell", function (e) {
+        var field = e.field,
+            value = e.value;
+        if (field == "SpiderScope" && value == "*") {
+            e.cellHtml = "[未知范围]";
+        }
+
+    });
+    
+
+    //点击适配器数据列表加载相对应的数据类型数据
+    var globleId = null;
+    function onselectionchanged(e) {
+        var txtAdapater = mini.get("key");
+        var txt = txtAdapater.getValue();//能够取到数据
+        var grid = e.sender;
+        var row = grid.getSelected();
+        if (row == null) {
+            return;
+        }
+        globleId = row.AdapterId;
+        if (row) {
+            adapterId = row.AdapterId;
+            gridTag.loading("操作中，请稍后......");
+            gridTag.load({
+                AdapterId: adapterId,
+                dataType: txt
+            });
+        }
+    }
+
+    //注册适配器弹出窗体
+    function register() {
+        mini.open({
+            url: "@Url.Action("RegisterAdapterAction", "AdapterRegister")",
+            title: "注册适配器", width: 520, height: 280, allowResize: false, allowDrag: true,
+            onload: function () {
+            },
+            ondestroy:function(action) {
+                if (action == 'close') grid.reload();
+            }
+        });
+    }
+
+    function reLoadAdapterInfoGrid() {
+        grid.reload();
+    }
+
+    //根据数据类型进行条件过滤
+    function search() {
+        var txtAdapater = mini.get("key");
+        var txt = txtAdapater.getValue();
+        gridTag.load({
+            dataType: txt,
+            adapterId: globleId
+        });
+    }
+
+    function onKeyEnter(e) {
+        search();
+    }
+
+
+</script>
+   

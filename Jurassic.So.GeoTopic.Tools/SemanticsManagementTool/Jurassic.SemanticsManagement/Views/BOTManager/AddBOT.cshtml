@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "AddBOT";
+}
+
+<div id="form1">
+    <input name="id" class="mini-hidden" />
+    <table>
+
+        <tr>
+            <td>
+                <label>业务对象类型：</label>
+            </td>
+            <td>
+                <input id="textbox1" name="botname" class="mini-textbox" required="true" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>业务对象属性：</label>
+            </td>
+            <td>
+                <input id="textbox1" name="bocname" class="mini-textbox" required="true" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                排序索引：
+            </td>
+            <td>
+                <input name="order" class="mini-spinner" value="1" minvalue="1" maxvalue="500" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>描述：</label>
+            </td>
+            <td>
+                <input id="textbox1" name="description" class="mini-textbox" required="true" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>备注：</label>
+            </td>
+            <td>
+                <input id="textbox1" name="remark" class="mini-textbox" required="true" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input value="添加" type="button" onclick="submitForm()" />
+                <input value="清除" type="button" onclick="clearForm()" />
+            </td>
+        </tr>
+    </table>
+</div>

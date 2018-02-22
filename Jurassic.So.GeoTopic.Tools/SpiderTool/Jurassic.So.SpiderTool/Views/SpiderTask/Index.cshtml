@@ -1,0 +1,545 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .progressbar {
+        position: relative;
+        background: #bbb;
+        width: 100%;
+        height: 16px;
+        overflow: hidden;
+    }
+
+    .progressbar-percent {
+        position: absolute;
+        height: 18px;
+        background: blue;
+        left: 0;
+        top: 0px;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .progressbar-label {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        font-size: 13px;
+        color: White;
+        z-index: 10;
+        text-align: center;
+        height: 16px;
+        line-height: 16px;
+    }
+
+    .mini-grid-row {
+        height: 28px;
+    }
+</style>
+
+<div class="mini-splitter" vertical="true" allowresize="false"  style="width: 100%; height: 100%;">
+    <div showcollapsebutton="false" size="30%">
+        <div id="AdapterInfoGrid" class="mini-datagrid" style="width: 100%; height: 100%;" allowCellSelect="true" allowCellEdit="true"
+             oncellendedit="endCellEdit" onload="RenderPlan"
+             url="@Url.Action("GetAdapterList", "SpiderTask")" pagesize="10" totalfield="total" datafield="data" onselectionchanged="onselectionchanged" showpager="true" allowresize="false" allowresizecolumn="false">
+            <div property="columns">
+                <div type="indexcolumn" width="30" headeralign="center" align="center">NO.</div>
+                <div name="AdapterId" field="AdapterId" headeralign="left" allowsort="true" width="50" align="left" visible="false">AdapterId</div>
+                <div name="PlanInfoId" field="PlanInfoId" headeralign="center" align="center" width="70" allowsort="true" visible="false">计划信息ID</div>
+                <div name="IsNew" field="IsNew" headeralign="left" allowsort="true" width="50" align="left" visible="false"></div>
+                <div field="AdapterName" headeralign="left" allowsort="true" width="180" align="left">适配器名称</div>
+                <div field="DataSourceName" headeralign="left" allowsort="true" width="180" align="left">数据源名称</div>
+                <div field="DataSourceType" headeralign="left" allowsort="true" width="100" align="left">数据源类型</div>
+                <div field="SpiderSize" headeralign="left" allowsort="true" width="120" align="center">
+                    分批爬取大小(点击设置)
+                    <input property="editor" class="mini-spinner" minValue="1" maxValue="2000000" value="25" style="width: 100%;" />
+                </div>
+                <div name="LblPlanMsg" field="LblPlanMsg" headeralign="left" allowsort="true" width="260" align="left">
+                    任务计划
+                </div>
+                <div field="SpiderPlan" headeralign="left" allowsort="true" width="80" align="left" renderer="onPlanDetails"></div>
+            </div>
+        </div>
+    </div>
+
+    <div showcollapsebutton="false" size="70%">
+        <div style="width: 100%;">
+            <div style="width: 100%;">
+                <div style="padding-top: 5px; padding-bottom: 5px; padding-left: 8px;">
+                    <span>爬取范围：</span><input type="text" id="key" class="mini-textbox" emptytext="请输入爬取范围" selectonfocus="true" onenter="onKeyEnter" width="200" />
+                    <a class="mini-button" iconcls="icon-new-search" onclick="search()">查询</a>
+                    <a id="SpiderSelectedId" class="mini-button" onclick="SpiderSelected()">爬取选中范围</a>
+                    <a id="SpiderAllId" class="mini-button" onclick="SpiderAll()">爬取全部范围</a>
+                    <a id="SpiderFailId" class="mini-button" onclick="SpiderFail()">爬取失败范围</a>
+                </div>
+            </div>
+
+            <div class="mini-toolbar">
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="width: 100%; padding-left: 45px;">
+                            <div id="SelectAll" name="product" class="mini-checkbox" readOnly="false" text="全选" onvaluechanged="onValueChanged"></div>
+                            <span class="separator"></span>
+                            <span>开始时间：</span><input id="MasterStartTimeId" class="mini-textbox asLabel" readOnly="true" width="150" />
+                            <span class="separator"></span>
+                            <span>总耗时：</span><input id="MasterTimeCostId" class="mini-textbox asLabel" readOnly="true" width="70" />
+                            <span class="separator"></span>
+                            <span>总进度：</span><input id="MasterProcessId" class="mini-textbox asLabel" readOnly="true" width="45" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+            <div id="DataTypeGrid" class="mini-datagrid" style="width: 100%;" url="@Url.Action("Details", "SpiderTask")" idfield="AdapterId" allowcelledit="true" pagesize="10" showpager="false" allowresize="false" allowcellselect="true" multiselect="true" oncellendedit="Oncellendedit">
+                <div property="columns">
+                    <div type="indexcolumn" width="8"></div>
+                    <div name="AsTask" field="AsTask" type="checkboxcolumn" trueValue="1" falseValue="0" width="8"></div>
+                    <div name="AdapterId" field="AdapterId" headeralign="left" allowsort="true" width="80" visible="false">AdapterId</div>
+                    <div name="CommandAdapater" field="SpiderCommand" headeralign="center" align="center" renderer="onActionSpider" width="32">数据爬取执行</div>
+                    <div name="SpiderScope" field="SpiderScope" headeralign="left" align="left" allowsort="true" width="60">爬取范围</div>
+                    <div name="IncrementType" field="IncrementType" headeralign="left" align="left" allowsort="true" width="25">增量类型</div>
+                    <div name="LastSpiderStatus" field="LastSpiderStatus" headeralign="center" align="center" width="20">状态</div>
+                    <div name="ExecuteTimes" field="ExecuteTimes" headeralign="center" align="center" width="27">已执行次数</div>
+                    <div name="ExecuteStartTime" field="ExecuteStartTime" headeralign="center" align="center" width="50">开始时间</div>
+                    <div name="ExecuteDuration" field="ExecuteDuration" headeralign="center" align="center" width="30">时长</div>
+                    <div name="Progress" field="ProcessedPercent" headeralign="center" align="center" width="50">执行进度</div>
+                    <div name="TaskLog" field="TaskLog" headeralign="center" align="center" renderer="onTaskLogRender" width="30">执行日志</div>
+                </div>
+            </div>
+        </div>   
+</div>
+
+<!--Reference the SignalR library. -->
+<script src="~/Scripts/jquery.signalR-1.1.4.min.js"></script>
+<!--Reference the autogenerated SignalR hub script. -->
+<script src="/signalr/hubs"></script>
+<!--Add script to update the page and send messages.-->
+<script type="text/javascript">
+    $(function () {
+        // Declare a proxy to reference the hub.
+        var procHub = $.connection.processerHub;
+
+        function init() {
+            procHub.server.getAllProcessers().done(function (procs) {
+                for (var i = 0; i < procs.length; i++) {
+                    var proc = procs[i];                    
+                    for (var scope in proc.SpiderPercent) {
+                        var row = gridDT.findRow(function (row) {
+                            if ((row.AdapterId == proc.Name && row.SpiderScope == scope) || (row.AdapterId + row.SpiderScope == proc.Name)) return true;
+                        });
+                        if (globleId == proc.Name) {
+                            mini.get("MasterProcessId").setValue(proc.ProcessedPercent + "%");
+                            mini.get("MasterStartTimeId").setValue(proc.ProcessStartTime);
+                            mini.get("MasterTimeCostId").setValue(proc.ProcessTimeCost);
+                            DisableSp();
+                        }
+                        
+                        gridDT.updateRow(row,
+                        {
+                            SpiderCommand: 0,
+                            ProcessedPercent: proc.SpiderPercent[scope],
+                            LastSpiderStatus: proc.ExecuteStatus[scope],
+                            ExecuteStartTime: proc.ExecuteStartTime[scope],
+                            ExecuteDuration: proc.ExecuteDuration[scope]
+                        });
+                        gridDT.acceptRecord(row);
+                    }
+                }
+            });
+        }
+
+        // Add a client-side hub method that the server will call
+        procHub.client.reportProgress = function (proc) {
+            if (globleId == proc.Name) {
+                if (proc.ProcessedPercent == 100) {
+                    EnableSp();
+                } else {
+                    DisableSp();
+                }
+                mini.get("MasterProcessId").setValue(proc.ProcessedPercent + "%");
+                mini.get("MasterStartTimeId").setValue(proc.ProcessStartTime);
+                mini.get("MasterTimeCostId").setValue(proc.ProcessTimeCost);
+            }
+                        
+            for (var scope in proc.SpiderPercent) {
+                var row = gridDT.findRow(function (row) {
+                    if ((row.AdapterId == proc.Name && row.SpiderScope == scope) || (row.AdapterId + row.SpiderScope == proc.Name)) return true;
+                });
+                var spiderCommand = proc.SpiderPercent[scope] == 100 ? 1 : 0;
+                if (proc.ExecuteStatus[scope] == 4) spiderCommand = 1;
+                                               
+                gridDT.updateRow(row,
+                {
+                    SpiderCommand: spiderCommand,
+                    ProcessedPercent: proc.SpiderPercent[scope],
+                    LastSpiderStatus: proc.ExecuteStatus[scope],
+                    ExecuteTimes: proc.ExecuteTimes[scope],
+                    ExecuteStartTime: proc.ExecuteStartTime[scope],
+                    ExecuteDuration: proc.ExecuteDuration[scope]
+                });
+                gridDT.acceptRecord(row);
+            }
+        }
+
+        // Start the connection
+        $.connection.hub.start().done(init);
+    });
+
+    
+</script>
+
+<script type="text/javascript">
+    mini.parse();
+    var grid = mini.get("AdapterInfoGrid");
+    grid.load();
+    var gridDT = mini.get("DataTypeGrid");
+    var globleId = "";
+
+
+
+    var masterProc = mini.get("MasterProcessId");
+    var spSel = mini.get("SpiderSelectedId");
+    var spAll = mini.get("SpiderAllId");
+    var spFai = mini.get("SpiderFailId");
+    var selectAll = mini.get('SelectAll');
+
+    function DisableSp() {
+        spSel.disable();
+        spAll.disable();
+        spFai.disable();
+    }
+
+    function EnableSp() {
+        spSel.enable();
+        spAll.enable();
+        spFai.enable();
+    }
+
+    //点击适配器数据列表加载相对应的数据类型数据
+    function onselectionchanged(e) {
+        var txtAdapater = mini.get("key");
+        var txt = txtAdapater.getValue(); //能够取到数据
+        var grid = e.sender;
+        var row = grid.getSelected();
+        if (row == null) {
+            return;
+        }
+        globleId = row.AdapterId;
+        EnableSp();
+        if (row) {
+            mini.get("MasterProcessId").setValue("0%");
+            mini.get("MasterStartTimeId").setValue("");
+            mini.get("MasterTimeCostId").setValue("00:00:00");
+            adapterId = row.AdapterId;
+            gridDT.loading("操作中，请稍后......");
+            gridDT.load({
+                AdapterId: adapterId,
+                dataType: txt
+            });
+        }
+    }
+
+    //根据爬取范围进行条件过滤
+    function search() {
+        var txtAdapater = mini.get("key");
+        var txt = txtAdapater.getValue();
+        gridDT.load({
+            spiderScope: txt,
+            adapterId: globleId
+        });
+    }
+
+    function onKeyEnter(e) {
+        search();
+    }
+
+    //设置任务计划
+    function onPlanDetails(e) {
+        var record = e.record;
+        var uid = record._uid;
+        var s =
+            '<a class="mini-button" iconCls="icon-search" onClick="onSetPlanDetails('
+            + uid +
+            ')"" style="width: 100px">设置任务计划</a>';
+        return s;
+    }
+
+    function RenderPlan() {
+        var rows = grid.getData();
+        for (var i = 0, l = rows.length; i < l; i++) {
+            var row = rows[i];
+            var adapterId = row.AdapterId;
+            var planInfoId = row.PlanInfoId;
+            $.ajax({
+                url: "@Url.Action("GetLblPlanMsg", "Plan")",
+                data: { planInfoId: planInfoId, adapterId: adapterId },
+            type: "post",
+            success: function (text) {
+                var data = mini.decode(text);
+                setLblPlanMsg(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                //alert(jqXHR.responseText);
+            }
+        });
+        }
+    }
+
+    function setLblPlanMsg(data) {
+        var row = grid.findRow(function (row) {
+            if (row.AdapterId == data.adapterId) return true;
+        });
+        grid.updateRow(row, { LblPlanMsg: data.lblPlanMsg });
+        grid.acceptRecord(row);
+    }
+
+    function onSetPlanDetails(uid) {
+        var row = grid.getRowByUID(uid);
+        var id = row.AdapterId;
+        var name = row.AdapterName;
+        mini.open({
+            url: "@Url.Action("SetConfigPlan", "SpiderTask")?adapterId=" + id + "&adapterName=" + name,
+            title: "设置任务计划: " + name,
+        width: 870,
+        height: 280,
+        allowResize: false,
+        onload: function() {
+        },
+        ondestroy: function () {
+            grid.reload();
+        }
+        });
+    }
+
+    //渲染列表进度条
+    gridDT.on("drawcell",
+        function(e) {
+            var record = e.record,
+                column = e.column,
+                field = e.field,
+                value = e.value;
+            if (column.field == "ProcessedPercent") {
+                if (!value) value = 0;
+                e.cellHtml = '<div class="progressbar">' +
+                    '<div class="progressbar-percent" style="width:' +
+                    value +
+                    '%;"></div>' +
+                    '<div class="progressbar-label">' +
+                    value +
+                    '%</div>' +
+                    '</div>';
+            }
+            if (column.field == "LastSpiderStatus") {
+                switch (value) {
+                    case 0:
+                        e.rowStyle = "color:black;";
+                        e.cellHtml = "就绪";
+                        break;
+                    case 1:
+                        e.rowStyle = "color:black;";
+                        e.cellHtml = "准备中";
+                        break;
+                    case 2:
+                        e.rowStyle = "color:blue;";
+                        e.cellHtml = "执行中";
+                        break;
+                    case 3:
+                        e.rowStyle = "color:black;";
+                        e.cellHtml = "成功";
+                        break;
+                    case 4:
+                        e.rowStyle = "color:red;";
+                        e.cellHtml = "失败";
+                        break;
+                    default:
+                        e.rowStyle = "color:black;";
+                        e.cellHtml = "就绪";
+                }
+            }
+        });
+
+    //渲染列表中的爬取按钮
+    function onActionSpider(e) {
+        var record = e.record;
+        var s = isOnSpidering(record);
+        return s;
+    }
+
+    function isOnSpidering(record) {
+        var uid = record._uid;
+        var disable = '<a class="mini-button mini-button-disabled"  iconCls="icon-search"  style="width:60px">执行中…</a>';
+        var enable = '<a class="mini-button"  iconCls="icon-search" href = "javascript:onSpider(\'' +
+            uid +
+            '\')"  style="width:60px">爬取</a>';
+        if (record.SpiderCommand) {
+            return enable;
+        } else if (!record.SpiderCommand || (record.ProcessedPercent > 0 && record.ProcessedPercent < 100)) {
+            return disable;
+        }
+    }
+
+    //响应爬取按钮方法
+    function onSpider(row_uid) {
+        var r = gridDT.getRowByUID(row_uid);
+        var row = gridDT.findRow(function(row) {
+            if (row.AdapterId == r.AdapterId && row.SpiderScope == r.SpiderScope) return true;
+        });
+        gridDT.updateRow(row, { SpiderCommand: 0 });
+        gridDT.acceptRecord(row);
+
+        var id = r.AdapterId;
+        var scope = r.SpiderScope;
+        $.ajax({
+            url: "@Url.Action("SpiderByScope", "SpiderTask")",
+            data: { adapterId: id, scope: scope },
+            type: "post",
+            success: function (text) {
+                var data = mini.decode(text);
+                if (data == -1) {
+                    alert("登录超时，请刷新页面以重新登录");
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                //alert(jqXHR.responseText);
+            }
+        });
+        @*var result = $.newGET('@Url.Action("SpiderByScope", "SpiderTask")', { adapterId: id, scope: scope });*@
+    }
+
+    //渲染列表中的历史记录按钮
+    function onTaskLogRender(e) {
+        var record = e.record;
+        var uid = record._uid;
+        return '<a class="mini-button"  iconCls="" href = "javascript:onTaskLog(\'' +
+            uid +
+            '\')"  style="width:60px">历史记录</a>';
+    }
+
+    function onTaskLog(row_uid) {
+        var r = gridDT.getRowByUID(row_uid);
+        var id = r.AdapterId;
+        var scope = r.SpiderScope;
+        mini.open({
+            url: "@Url.Action("ExeLogDetails", "SpiderTask")?adapterId=" + id + "&spiderScope=" + scope,
+            title: "日志详情",
+            width: 870,
+            height: 450,
+            allowResize: false,
+            onload: function() {
+            },
+        });
+
+    }
+
+    function onValueChanged(e) {
+        var checkbox = e.sender;
+        if (checkbox.checked) {
+            gridDT.getData()
+                .forEach(function(row) {
+                    gridDT.updateRow(row, { AsTask: 1 });
+                });
+        } else {
+            gridDT.getData()
+                .forEach(function(row) {
+                    gridDT.updateRow(row, { AsTask: 0 });
+                });
+        }
+    }
+
+    //爬取选中
+    function SpiderSelected() {
+        if (globleId == "") {
+            alert("请先选择适配器");
+            return;
+        }
+        var scopes = [];
+        var rows = gridDT.getData();
+        for (var i = 0, l = rows.length; i < l; i++) {
+            var row = rows[i];
+            if(row.AsTask == 1)scopes.push(row.SpiderScope);
+        }
+
+        $.ajax({
+            url: "@Url.Action("SpiderSelected", "SpiderTask")",
+            data: { adapterId: globleId, scopes: mini.encode(scopes) },
+        type: "post",
+        success: function (text) {
+            var data = mini.decode(text);
+            if (data == -1) {
+                alert("登录超时，请刷新页面以重新登录");
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            //alert(jqXHR.responseText);
+        }
+    });
+
+        //$.newGET('@Url.Action("SpiderSelected", "SpiderTask")', { adapterId: globleId, scopes: mini.encode(scopes) });
+
+    }
+
+    //爬取全部
+    function SpiderAll() {
+        if (globleId == "") {
+            alert("请先选择适配器");
+            return;
+        }
+        selectAll.setChecked(true);
+        gridDT.getData()
+                .forEach(function (row) {
+                    gridDT.updateRow(row, { AsTask: 1 });
+                });
+
+        $.ajax({
+            url: "@Url.Action("SpiderAll", "SpiderTask")",
+            data: { adapterId: globleId },
+        type: "post",
+        success: function (text) {
+            var data = mini.decode(text);
+            if (data == -1) {
+                alert("登录超时，请刷新页面以重新登录");
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            //alert(jqXHR.responseText);
+        }
+    });
+        //$.newGET('@Url.Action("SpiderAll", "SpiderTask")', { adapterId: globleId });
+    }
+
+    function SpiderFail() {
+        if (globleId == "") {
+            alert("请先选择适配器");
+            return;
+        }
+        $.ajax({
+            url: "@Url.Action("SpiderFailed", "SpiderTask")",
+            data: { adapterId: globleId },
+            type: "post",
+            success: function(text) {
+                var data = mini.decode(text);
+                if (data == -1) {
+                    alert("登录超时，请刷新页面以重新登录");
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                //alert(jqXHR.responseText);
+            }
+        });
+        //$.newGET('@Url.Action("SpiderFailed", "SpiderTask")', { adapterId: globleId });
+    }
+
+    function endCellEdit(e) {
+        var record = e.record;
+        var uid = record._uid;
+        var row = grid.getRowByUID(uid);
+        var id = row.AdapterId;
+        var size = row.SpiderSize;
+        $.newGET('@Url.Action("UpdateSpiderSize", "SpiderTask")', { adapterId: id, spiderSize: size });
+    }
+</script>
+

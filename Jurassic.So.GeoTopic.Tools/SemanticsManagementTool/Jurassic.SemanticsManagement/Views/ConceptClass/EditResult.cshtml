@@ -1,0 +1,80 @@
+﻿@using Jurassic.Semantics.IService.ViewModel
+@{
+    var oldInfor = (ConceptClassmodel)ViewData["model"];
+}
+<div style="width: 300px;margin:0 auto;padding-top:20px;margin-left: 50px" id="form1">
+    <div style="width: 100%">
+        <input name="id" class="mini-hidden" />
+        <table style="font-size:20px;font-weight: bolder">
+            <tr>
+                <td>
+                    <label for="CCCode$text">@Html.Str("CCCode")：</label>
+                </td>
+                <td>
+                    <input id="CCCode" name="CCCode" class="mini-textbox" style="width: 200px" value="@oldInfor.CCCode" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="CC$text">@Html.Str("Name")：</label>
+                </td>
+                <td style="text-align: center;line-height: 40px">
+                    <input id="CC" name="CC" class="mini-textbox" style="width: 200px;" value="@oldInfor.CC" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="Tag$text">@Html.Str("Tag")：</label>
+                </td>
+                <td>
+                    <input id="Tag" name="Tag" class="mini-textbox" style="width: 200px" value="@oldInfor.Tag" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="Type$text">@Html.Str("Type")：</label>
+                </td>
+                <td>
+                    <input id="Type" name="Type" class="mini-textbox" style="width: 200px" value="@oldInfor.Type" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="Source$text">@Html.Str("Source")：</label>
+                </td>
+                <td>
+                    <input id="Source" name="Source" class="mini-textbox" style="width: 200px" value="@oldInfor.Source" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align: right">
+                    <input value="@Html.Str("Save")" type="button" onclick="EditForm()" style="font-weight: bolder;" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+
+    function EditForm() {
+        var form = new mini.Form("#form1");
+        var data = form.getData();
+        var json = mini.encode(data);
+
+        $.ajax({
+            url: "@Url.Action("EditGetDataResult", "ConceptClass")",
+            type: "post",
+            data: {
+                submitData: json
+            },
+            success: function (b) {
+                if (b != 0) {
+                    alert(b);
+                    window.CloseOwnerWindow();
+                }
+            }
+        });
+    }
+</script>
+
