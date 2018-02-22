@@ -1,0 +1,922 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Jurassic.So.SQLAdapter</name>
+    </assembly>
+    <members>
+        <member name="T:Jurassic.So.Adapter.DataFormatValueColumnConverter">
+            <summary>数据格式值列转换器</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.DataFormatValueColumnConverter.Execute(Jurassic.So.ETL.ETLExecuteContext,Jurassic.So.ETL.IETLRow,Jurassic.So.ETL.IETLRow,System.Object)">
+            <summary>执行转换</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.DataFormatColumnConverter">
+            <summary>数据格式列转换器</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.DataFormatColumnConverter.Execute(Jurassic.So.ETL.ETLExecuteContext,Jurassic.So.ETL.IETLRow,Jurassic.So.ETL.IETLRow,System.Object)">
+            <summary>执行转换</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.AutoMapperProfile">
+            <summary>AutoMapper映射配置</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AutoMapperProfile.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.DataResultRow">
+            <summary>内容行</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.DataResultRow.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.DataResultRow.Columns">
+            <summary>列字典</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.DataResultRow.Format2">
+            <summary>格式</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.DataResultRow.Item(System.String)">
+            <summary>获得或设置列值</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.DataResultRow.Item(Jurassic.So.ETL.IETLColumn)">
+            <summary>根据列获得或设置列值</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.DataSchemaRow">
+            <summary>内容项行</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.DataSchemaRow.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.DataSchemaRow.Columns">
+            <summary>列字典</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.DataSchemaRow.Format2">
+            <summary>格式</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.DataSchemaRow.Item(System.String)">
+            <summary>获得或设置列值</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.DataSchemaRow.Item(Jurassic.So.ETL.IETLColumn)">
+            <summary>根据列获得或设置列值</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.DataResultRowCollection">
+            <summary>内容项行行集</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.DataResultRowCollection.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.DataResultRowCollection.InnerRows">
+            <summary>行集合</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.DataResultRowCollection.Rows">
+            <summary>行集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.DataResultRowCollection.NewRow">
+            <summary>生成新行</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.DataResultRowCollection.AddRow(Jurassic.So.Adapter.DataResultRow)">
+            <summary>加入行</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.DataSchemaRowCollection">
+            <summary>内容项行行集</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.DataSchemaRowCollection.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.DataSchemaRowCollection.InnerRows">
+            <summary>行集合</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.DataSchemaRowCollection.Rows">
+            <summary>行集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.DataSchemaRowCollection.NewRow">
+            <summary>生成新行</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.DataSchemaRowCollection.AddRow(Jurassic.So.Adapter.DataSchemaRow)">
+            <summary>加入行</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.JsonDataSetConverter">
+            <summary>转换器_转换数据集</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.JsonDataSetConverter.Execute(Jurassic.So.ETL.ETLExecuteContext,Jurassic.So.ETL.IETLRow,Jurassic.So.ETL.IETLRow,System.Object)">
+            <summary>执行转换</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.MetadataRowConverter">
+            <summary>转换器_转换为元数据</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.MetadataRowConverter.Execute(Jurassic.So.ETL.ETLExecuteContext,Jurassic.So.ETL.IETLRow,Jurassic.So.ETL.IETLRow,System.Object)">
+            <summary>执行转换</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.AdapterExtension">
+            <summary>扩展方法</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterExtension.ToRuntimeType(Jurassic.PKS.Service.Adapter.IncrementType)">
+            <summary>转换为运行时类型</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterExtension.ToRuntimeTypeValue(Jurassic.PKS.Service.Adapter.IncrementType,System.Object)">
+            <summary>转换为运行时值类型</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterExtension.GetMaxIncrementColumnValue(Jurassic.PKS.Service.Adapter.IncrementType,Jurassic.PKS.Service.MetadataCollection)">
+            <summary>获得最大增量列值</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterExtension.ToRuntimeType(Jurassic.PKS.Service.TagType,System.Boolean)">
+            <summary>转换为运行时类型</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterExtension.ToMetadataTagColumn(Jurassic.So.Adapter.MetadataTag,System.Boolean)">
+            <summary>转换为元数据标签列</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.IAdapterScope">
+            <summary>适配器域接口</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IAdapterScope.Configuration">
+            <summary>配置</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IAdapterScope.ScopeInfo">
+            <summary>适配器域信息</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IAdapterScope.SpiderSize">
+            <summary>爬取分页大小</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IAdapterScope.CommonTasks">
+            <summary>公共任务</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IAdapterScope.Variables">
+            <summary>变量字典</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IAdapterScope.SpiderCountPackage">
+            <summary>获取元数据总数包</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IAdapterScope.SpiderPackage">
+            <summary>获取元数据包</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IAdapterScope.RetrievePackage">
+            <summary>获取数据内容项包</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IAdapterScope.GetDataPackage">
+            <summary>获取数据内容包</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.IAdapterScope.GetMetadataTotal(Jurassic.So.ETL.ETLExecuteContext,System.String)">
+            <summary>获得元数据总数</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.IAdapterScope.GetMetadatas(Jurassic.So.ETL.ETLExecuteContext,System.String,Jurassic.PKS.Service.Pager)">
+            <summary>获得元数据集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.IAdapterScope.Retrieve(Jurassic.So.ETL.ETLExecuteContext,System.String)">
+            <summary>根据域和成果键获取成果的内容项集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.IAdapterScope.GetData(Jurassic.So.ETL.ETLExecuteContext,System.String,System.String,Jurassic.PKS.Service.Pager)">
+            <summary>根据数据项票据获取成果的数据项</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.IXmlConfigAdapter">
+            <summary>支持XML配置的适配器接口</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IXmlConfigAdapter.Configuration">
+            <summary>配置</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IXmlConfigAdapter.AdapterInfo">
+            <summary>适配器信息</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IXmlConfigAdapter.Connections">
+            <summary>连接字典</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IXmlConfigAdapter.Variables">
+            <summary>变量字典</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IXmlConfigAdapter.Scopes">
+            <summary>域集合</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IXmlConfigAdapter.MetadataTags">
+            <summary>元数据标签字典</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.AdapterConfigurationSectionHandler">
+            <summary>适配器配置节处理器</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.ConfigFile">
+            <summary>默认配置文件</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.Config">
+            <summary>ETL的XML配置</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.Create(System.Object,System.Object,System.Xml.XmlNode)">
+            <summary>加载</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.Load(System.String,System.String)">
+            <summary>加载</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.Build">
+            <summary>创建适配器</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.Save(System.String)">
+            <summary>保存</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.DefalutSectionName">
+            <summary>默认节名</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.AdapterInstance">
+            <summary>适配器实例</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.LoadAdapter(System.Xml.Linq.XElement)">
+            <summary>加载适配器节</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.BuildAdapter">
+            <summary>生成适配器节</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.LoadAdapterInfo(System.Xml.Linq.XElement)">
+            <summary>加载适配器信息</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.BuildAdapterInfo(System.Xml.Linq.XElement,Jurassic.PKS.Service.Adapter.AdapterInfo)">
+            <summary>生成适配器信息</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.Variable_AdapterName">
+            <summary>变量_适配器名称</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.Variable_AdapterDataSourceName">
+            <summary>变量_适配器名称</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.Variable_AdapterDataSourceType">
+            <summary>变量_数据源类型</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.Variable_MetadataTags">
+            <summary>变量_元数据标签集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.SetAdapterVariables(Jurassic.So.Adapter.IXmlConfigAdapter,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>设置适配器变量</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.XElement_MetadataTags">
+            <summary>元数据标签</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.XElement_MetadataTag">
+            <summary>元数据标签</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.LoadMetadataTags(System.Xml.Linq.XElement,Jurassic.So.Adapter.IXmlConfigAdapter)">
+            <summary>载入元数据标签集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.LoadMetadataTag(System.Xml.Linq.XElement)">
+            <summary>适配器信息</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.BuildMetadataTag_IncrementColumnValue">
+            <summary>生成标签_增量字段值</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.BuildMetadataTags(Jurassic.PKS.Service.KMDConfiguration,Jurassic.So.Adapter.IXmlConfigAdapter)">
+            <summary>生成元数据标签集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.BuildMetadataTags(Jurassic.PKS.Service.KMDConfiguration,System.String)">
+            <summary>生成元数据标签集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.BuildMetadataTag(System.Xml.Linq.XElement,Jurassic.PKS.Service.MetadataDefinition)">
+            <summary>生成元数据标签</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.LoadAdapterScopes(System.Xml.Linq.XElement,System.String)">
+            <summary>加载适配器域</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.DefaultSpiderSize">
+            <summary>默认爬取分页大小</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.LoadAdapterScope(System.Xml.Linq.XElement)">
+            <summary>加载适配器域</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.BuildAdapterScopes(System.Collections.Generic.List{Jurassic.So.Adapter.IAdapterScope},System.String)">
+            <summary>生成适配器域</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.BuildAdapterScope(System.Xml.Linq.XElement,Jurassic.So.Adapter.IAdapterScope)">
+            <summary>加载适配器域</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.LoadAdapterScopeInfo(System.Xml.Linq.XElement)">
+            <summary>加载适配器域信息</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.BuildAdapterScopeInfo(System.Xml.Linq.XElement,Jurassic.PKS.Service.Adapter.Scope)">
+            <summary>生成适配器域信息</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.LoadCommonTasks(System.Xml.Linq.XElement,Jurassic.So.Adapter.IAdapterScope)">
+            <summary>加载任务集合_公共任务集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.OnCommonTaskLoaded(System.Object)">
+            <summary>处理公共任务加载</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.BuildCommonTasks(Jurassic.So.Adapter.IAdapterScope)">
+            <summary>生成任务集合_公共任务集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.LoadPackage(System.Xml.Linq.XElement,System.String)">
+            <summary>加载包</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.BuildPackage(Jurassic.So.ETL.ETLPackage,System.String)">
+            <summary>生成包</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.Variable_ScopeName">
+            <summary>变量_域名称</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.Variable_IncrementType">
+            <summary>变量_增量类型</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.Variable_IncrementValue">
+            <summary>变量_增量值</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.Variable_Pager">
+            <summary>变量_分页值</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.Variable_NatureKey">
+            <summary>变量_NatureKey</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.Variable_Ticket">
+            <summary>变量_Ticket</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.SetAdapterScopeVariables(System.Collections.Generic.Dictionary{System.String,System.Object},Jurassic.So.Adapter.IAdapterScope)">
+            <summary>设置适配器域变量</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.SetAdapterScopeVariable_IncrementValue(System.Collections.Generic.Dictionary{System.String,System.Object},System.Object)">
+            <summary>设置适配器域变量</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.SetAdapterScopeVariable_Pager(System.Collections.Generic.Dictionary{System.String,System.Object},Jurassic.PKS.Service.Pager)">
+            <summary>设置适配器域变量</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.SetAdapterScopeVariable_NatureKey(System.Collections.Generic.Dictionary{System.String,System.Object},System.String)">
+            <summary>设置适配器域变量</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.AdapterConfigurationSectionHandler.SetAdapterScopeVariable_Ticket(System.Collections.Generic.Dictionary{System.String,System.Object},System.String)">
+            <summary>设置适配器域变量</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.SQLAdapterScope">
+            <summary>适配器域</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapterScope.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLAdapterScope.Configuration">
+            <summary>配置</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLAdapterScope.ScopeInfo">
+            <summary>适配器域信息</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLAdapterScope.SpiderSize">
+            <summary>爬取分页大小</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLAdapterScope.CommonTasks">
+            <summary>公共任务</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLAdapterScope.Variables">
+            <summary>变量字典</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLAdapterScope.SpiderCountPackage">
+            <summary>获取元数据总数包</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLAdapterScope.SpiderPackage">
+            <summary>获取元数据包</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLAdapterScope.RetrievePackage">
+            <summary>获取数据内容项包</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLAdapterScope.GetDataPackage">
+            <summary>获取数据内容包</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapterScope.BuildExecuteContext(Jurassic.So.ETL.ETLExecuteContext)">
+            <summary>生成ETL执行上下文</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapterScope.ValidateIncrementValue(System.String)">
+            <summary>验证增量值</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapterScope.ValidateSpiderPaper(Jurassic.PKS.Service.Pager)">
+            <summary>验证爬取分页参数</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapterScope.ValidateGetDataPaper(Jurassic.PKS.Service.Pager)">
+            <summary>验证获取数据分页参数</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapterScope.GetMetadataTotal(Jurassic.So.ETL.ETLExecuteContext,System.String)">
+            <summary>获得元数据总数</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapterScope.GetMetadatas(Jurassic.So.ETL.ETLExecuteContext,System.String,Jurassic.PKS.Service.Pager)">
+            <summary>获得元数据集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapterScope.Retrieve(Jurassic.So.ETL.ETLExecuteContext,System.String)">
+            <summary>根据域和成果键获取成果的内容项集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapterScope.GetData(Jurassic.So.ETL.ETLExecuteContext,System.String,System.String,Jurassic.PKS.Service.Pager)">
+            <summary>根据数据项票据获取成果的数据项</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.SQLAdapter">
+            <summary>通用适配器</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapter.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapter.LoadFromConfig(System.String,System.String)">
+            <summary>从配置文件加载</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLAdapter.Configuration">
+            <summary>配置</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLAdapter.AdapterInfo">
+            <summary>适配器信息</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLAdapter.Connections">
+            <summary>连接字典</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLAdapter.Variables">
+            <summary>变量字典</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLAdapter.Scopes">
+            <summary>域集合</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLAdapter.MetadataTags">
+            <summary>元数据标签字典</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapter.GetAdapterInfo">
+            <summary>适配器信息</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapter.ValidateScope(System.String)">
+            <summary>验证适配器域</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapter.BuildExecuteContext">
+            <summary>生成ETL执行上下文</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapter.SpiderAsync(System.String,System.String,Jurassic.PKS.Service.Pager)">
+            <summary>分批或增量爬取某个适配器域的成果的元数据集合</summary>
+            <param name="scope">某个适配器域</param>
+            <param name="incrementValue">增量值，允许为空，如果有值必须是符合该域的增量类型的值</param>
+            <param name="pager">分页参数，允许为null，为null表示爬取全部，否则只爬取某页数据</param>
+            <returns>爬取结果</returns>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapter.GetMetadataTotal(Jurassic.So.Adapter.IAdapterScope,System.String)">
+            <summary>获得元数据总数</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapter.GetMetadatas(Jurassic.So.Adapter.IAdapterScope,System.String,Jurassic.PKS.Service.Pager)">
+            <summary>获得元数据集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapter.RetrieveAsync(System.String,System.String)">
+            <summary>根据域和成果键获取成果的内容项集合</summary>
+            <param name="scope">某个适配器域</param>
+            <param name="natureKey">成果键</param>
+            <returns>成果的内容项集合</returns>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapter.GetDataAsync(System.String,Jurassic.PKS.Service.Pager)">
+            <summary>根据数据项票据获取成果的数据项</summary>
+            <param name="ticket">成果的数据项票据</param>
+            <param name="pager">分页参数</param>
+            <returns>成果的数据项结果</returns>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapter.BuildScopeTicket(System.String,System.String,System.String)">
+            <summary>生成数据项票据</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLAdapter.ValidateScopeTicket(System.String)">
+            <summary>解析数据项票据</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.FlatMetadata">
+            <summary>扁平元数据，保存元数据实际值，尽量避免转换</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadata.IIId">
+            <summary>索引数据ID</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadata.IndexedDate">
+            <summary>索引数据日期</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadata.Thumbnail">
+            <summary>缩略图</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadata.Fulltext">
+            <summary>全文</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadata.Url">
+            <summary>适配器URL</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadata.Title">
+            <summary>标题</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadata.Description">
+            <summary>描述</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadata.Creator">
+            <summary>创建者</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadata.CreatedDate">
+            <summary>创建日期</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadata.MetadataDefinitions">
+            <summary>元数据定义</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.GetDefinition(System.String)">
+            <summary>获得某个元数据定义</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.GetValue(System.String)">
+            <summary>获得某个元数据值</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.GetValueInternal(System.String)">
+            <summary>获得某个元数据值</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.GetValue_String(System.String)">
+            <summary>获得某个元数据值</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.GetValue_Date(System.String)">
+            <summary>获得某个元数据值</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.GetValue_ArrayFirst(System.String)">
+            <summary>获得某个元数据值，数组第一个值</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.GetValue_Image(System.String)">
+            <summary>获得某个元数据值</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.SetValue(System.String,System.Object)">
+            <summary>设置某个元数据值</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.SetValue_Date(System.String,System.Nullable{System.DateTime})">
+            <summary>设置某个元数据值</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.SetValue_Date(System.String,System.Object)">
+            <summary>设置某个元数据值</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.SetValue_Array(System.String,System.Object)">
+            <summary>设置某个元数据值</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.ToIndex">
+            <summary>转换为索引信息</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.ToMetadata">
+            <summary>转换为层次化元数据</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.ToMetadata(Jurassic.So.Business.JsonMetadata)">
+            <summary>转换为层次化元数据</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadata.ToString">
+            <summary>生成JSON串</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.FlatMetadataRow">
+            <summary>扁平元数据行</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadataRow.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadataRow.Columns">
+            <summary>列字典</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadataRow.Item(System.String)">
+            <summary>获得或设置列值</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadataRow.Item(Jurassic.So.ETL.IETLColumn)">
+            <summary>根据列获得或设置列值</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.FlatMetadataRowCollection">
+            <summary>扁平元数据行行集</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadataRowCollection.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadataRowCollection.InnerRows">
+            <summary>行集合</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadataRowCollection.Rows">
+            <summary>行集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadataRowCollection.NewRow">
+            <summary>生成新行</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadataRowCollection.AddRow(Jurassic.So.Adapter.FlatMetadataRow)">
+            <summary>加入行</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.MetadataTag">
+            <summary>元数据标签</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.MetadataTag.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.MetadataTag.Enabled">
+            <summary>是否可用，默认可用</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.FlatMetadataTransformTask">
+            <summary>扁平元数据转换任务</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadataTransformTask.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadataTransformTask.MetadataTags">
+            <summary>元数据标签集合</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.FlatMetadataTransformTask.MetadataTagsColumnInfo">
+            <summary>元数据标签集合列信息</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadataTransformTask.PrepareOutput(Jurassic.So.ETL.ETLExecuteContext,Jurassic.So.ETL.IETLRow,Jurassic.So.ETL.IETLColumn,System.Object)">
+            <summary>准备输出行集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadataTransformTask.LoadXml(Jurassic.So.ETL.ETLXmlConfiguration,System.Xml.Linq.XElement)">
+            <summary>加载</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.FlatMetadataTransformTask.BuildXml(Jurassic.So.ETL.ETLXmlConfiguration,System.Xml.Linq.XElement)">
+            <summary>生成</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.IIncMetadataRow">
+            <summary>支持增量爬取的元数据行接口</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.IIncMetadataRow.IncrementColumnValue">
+            <summary>获得当前增量列值</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.IIncMetadataRow.TakeIncrementColumnValue">
+            <summary>取出当前增量列值</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.MetadataRow">
+            <summary>元数据行</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.MetadataRow.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.MetadataRow.Columns">
+            <summary>列字典</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.MetadataRow.Jurassic#So#ETL#IETLRow#Item(System.String)">
+            <summary>获得或设置列值</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.MetadataRow.Jurassic#So#ETL#IETLRow#Item(Jurassic.So.ETL.IETLColumn)">
+            <summary>根据列获得或设置列值</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.MetadataRow.IncrementColumnValue">
+            <summary>当前增量列值</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.MetadataRow.TakeIncrementColumnValue">
+            <summary>取出当前增量列值</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.MetadataRowCollection">
+            <summary>元数据行行集</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.MetadataRowCollection.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.MetadataRowCollection.InnerRows">
+            <summary>行集合</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.MetadataRowCollection.Rows">
+            <summary>行集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.MetadataRowCollection.NewRow">
+            <summary>生成新行</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.MetadataRowCollection.AddRow(Jurassic.So.Adapter.MetadataRow)">
+            <summary>加入行</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.NatureKeyTransformTask">
+            <summary>NatureKey转换任务</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.NatureKeyTransformTask.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.SQLMetadataExtracterTask">
+            <summary>元数据提取任务</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLMetadataExtracterTask.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLMetadataExtracterTask.Parameters">
+            <summary>参数信息集合</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLMetadataExtracterTask.SqlTask">
+            <summary>数据库任务</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLMetadataExtracterTask.Initialize">
+            <summary>初始化</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLMetadataExtracterTask.InjectCommand(System.Data.Common.DbCommand,Jurassic.So.ETL.ETLExecuteContext,Jurassic.So.ETL.IETLRow,Jurassic.So.ETL.IETLColumn,System.Object)">
+            <summary>注入命令</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLMetadataExtracterTask.LoadXml(Jurassic.So.ETL.ETLXmlConfiguration,System.Xml.Linq.XElement)">
+            <summary>加载</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLMetadataExtracterTask.BuildXml(Jurassic.So.ETL.ETLXmlConfiguration,System.Xml.Linq.XElement)">
+            <summary>生成</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.SQLGetDataTransformTask">
+            <summary>实体内容转换任务</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLGetDataTransformTask.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLGetDataTransformTask.PrepareOutput(Jurassic.So.ETL.ETLExecuteContext,Jurassic.So.ETL.IETLRow,Jurassic.So.ETL.IETLColumn,System.Object)">
+            <summary>准备输出行集合</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.SQLRetrieveTransformTask">
+            <summary>实体内容项转换任务</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLRetrieveTransformTask.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLRetrieveTransformTask.PrepareOutput(Jurassic.So.ETL.ETLExecuteContext,Jurassic.So.ETL.IETLRow,Jurassic.So.ETL.IETLColumn,System.Object)">
+            <summary>准备输出行集合</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.SQLSpiderTask">
+            <summary>元数据提取任务</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLSpiderTask.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderTask.IncrementType">
+            <summary>增量类型</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderTask.IncrementTypeColumnInfo">
+            <summary>增量列列信息</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderTask.IncrementColumn">
+            <summary>增量列</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderTask.IncrementColumnColumnInfo">
+            <summary>增量列列信息</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderTask.IncrementValue">
+            <summary>增量值</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderTask.IncrementValueColumnInfo">
+            <summary>增量值列信息</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderTask.RowNumberColumn">
+            <summary>行号列</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderTask.RowNumberColumnColumnInfo">
+            <summary>行号列列信息</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderTask.Pager">
+            <summary>分页值</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderTask.PagerColumnInfo">
+            <summary>分页值列信息</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderTask.PrimaryKey">
+            <summary>主键列，增量列不存在时必须定义主键列，可以是多个，用逗号分隔</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderTask.SqlTask">
+            <summary>数据库任务</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLSpiderTask.Initialize">
+            <summary>初始化</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLSpiderTask.InjectCommand(System.Data.Common.DbCommand,Jurassic.So.ETL.ETLExecuteContext,Jurassic.So.ETL.IETLRow,Jurassic.So.ETL.IETLColumn,System.Object)">
+            <summary>注入命令</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLSpiderTask.UseIncrement(Jurassic.PKS.Service.Adapter.IncrementType,System.String,System.Object)">
+            <summary>是否能使用增量方式</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLSpiderTask.UsePager(Jurassic.PKS.Service.Pager)">
+            <summary>是否能使用分页</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLSpiderTask.LoadXml(Jurassic.So.ETL.ETLXmlConfiguration,System.Xml.Linq.XElement)">
+            <summary>加载</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLSpiderTask.BuildXml(Jurassic.So.ETL.ETLXmlConfiguration,System.Xml.Linq.XElement)">
+            <summary>生成</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.SQLSpiderCountTask">
+            <summary>元数据数量提取任务</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLSpiderCountTask.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderCountTask.IncrementType">
+            <summary>增量类型</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderCountTask.IncrementTypeColumnInfo">
+            <summary>增量列列信息</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderCountTask.IncrementColumn">
+            <summary>增量列</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderCountTask.IncrementColumnColumnInfo">
+            <summary>增量列列信息</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderCountTask.IncrementValue">
+            <summary>增量值</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderCountTask.IncrementValueColumnInfo">
+            <summary>增量值列信息</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderCountTask.Columns">
+            <summary>列字典</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.SQLSpiderCountTask.SqlTask">
+            <summary>数据库任务</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLSpiderCountTask.Initialize">
+            <summary>初始化</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLSpiderCountTask.PrepareOutput">
+            <summary>准备输出</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLSpiderCountTask.Execute(Jurassic.So.ETL.ETLExecuteContext,Jurassic.So.ETL.IETLRow,Jurassic.So.ETL.IETLColumn,System.Object)">
+            <summary>执行</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLSpiderCountTask.InjectCommand(System.Data.Common.DbCommand,Jurassic.So.ETL.ETLExecuteContext,Jurassic.So.ETL.IETLRow,Jurassic.So.ETL.IETLColumn,System.Object)">
+            <summary>注入命令</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLSpiderCountTask.UseIncrement(Jurassic.PKS.Service.Adapter.IncrementType,System.String,System.Object)">
+            <summary>是否能使用增量方式</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLSpiderCountTask.LoadXml(Jurassic.So.ETL.ETLXmlConfiguration,System.Xml.Linq.XElement)">
+            <summary>加载</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.SQLSpiderCountTask.BuildXml(Jurassic.So.ETL.ETLXmlConfiguration,System.Xml.Linq.XElement)">
+            <summary>生成</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.MetadataTransformTask">
+            <summary>元数据转换任务</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.MetadataTransformTask.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.MetadataTransformTask.MetadataTags">
+            <summary>元数据标签集合</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.MetadataTransformTask.MetadataTagsColumnInfo">
+            <summary>元数据标签集合列信息</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.MetadataTransformTask.PrepareOutput(Jurassic.So.ETL.ETLExecuteContext,Jurassic.So.ETL.IETLRow,Jurassic.So.ETL.IETLColumn,System.Object)">
+            <summary>准备输出行集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.MetadataTransformTask.LoadXml(Jurassic.So.ETL.ETLXmlConfiguration,System.Xml.Linq.XElement)">
+            <summary>加载</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.MetadataTransformTask.BuildXml(Jurassic.So.ETL.ETLXmlConfiguration,System.Xml.Linq.XElement)">
+            <summary>生成</summary>
+        </member>
+        <member name="F:Jurassic.So.Adapter.frmGDBToBmp.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.frmGDBToBmp.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Jurassic.So.Adapter.frmGDBToBmp.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.WordThumbnailBuilder">
+            <summary>
+            针对WORD文档，生成缩略图
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.WordThumbnailBuilder.Build(System.IO.Stream,System.Drawing.Size)">
+            <summary>
+            生成图片缩略图的二进制数据
+            </summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.ImageThumbnailBuilder">
+            <summary>
+            针对常见的位图格式(如"bmp", "png", "jpg", "jpeg", "gif", "tif")，生成缩略图
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.ImageThumbnailBuilder.Build(System.IO.Stream,System.Drawing.Size)">
+            <summary>
+            生成图片缩略图的二进制数据
+            </summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.GDBThumbnailBuilder">
+            <summary>
+            针对GDB文件生成缩略图
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.GDBThumbnailBuilder.Build(System.IO.Stream,System.Drawing.Size)">
+            <summary>
+            生成图片缩略图的二进制数据
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.GDBThumbnailBuilder.ConvertGDBToBmp(System.Object)">
+            <summary>GDB转换为图片</summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.IThumbnailBuilder">
+            <summary>缩略图生成器</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.IThumbnailBuilder.Build(System.IO.Stream,System.Drawing.Size)">
+            <summary>
+            根据原始文件的二进制数据获取缩略图
+            </summary>
+        </member>
+        <member name="T:Jurassic.So.Adapter.ThumbnailConverter">
+            <summary>缩略图转换器</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.ThumbnailConverter.ThumbnailSize">
+            <summary>尺寸</summary>
+        </member>
+        <member name="P:Jurassic.So.Adapter.ThumbnailConverter.GDBThumbnailBuilder">
+            <summary>GDB缩略图生成器</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.ThumbnailConverter.Execute(Jurassic.So.ETL.ETLExecuteContext,Jurassic.So.ETL.IETLRow,Jurassic.So.ETL.IETLRow,System.Object)">
+            <summary>执行转换</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.ThumbnailConverter.GetFormat(Jurassic.So.ETL.ETLExecuteContext,Jurassic.So.ETL.IETLRow,Jurassic.So.ETL.IETLRow,System.Object)">
+            <summary>获得格式</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.ThumbnailConverter.GetContent(Jurassic.So.ETL.ETLExecuteContext,Jurassic.So.ETL.IETLRow,Jurassic.So.ETL.IETLRow,System.Object)">
+            <summary>获得内容</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.ThumbnailConverter.CreateThumbnail(Jurassic.PKS.Service.DataFormat,System.IO.Stream)">
+            <summary>生成缩略图</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.ThumbnailConverter.Finish(Jurassic.So.ETL.ETLExecuteContext)">
+            <summary>完成执行</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.ThumbnailConverter.LoadXml(Jurassic.So.ETL.ETLXmlConfiguration,System.Xml.Linq.XElement)">
+            <summary>加载</summary>
+        </member>
+    </members>
+</doc>

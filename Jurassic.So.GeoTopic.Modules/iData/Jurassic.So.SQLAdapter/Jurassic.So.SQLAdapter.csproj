@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{685F3F91-19B8-4708-A0DD-7E52220BBDCE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jurassic.So.Adapter</RootNamespace>
+    <AssemblyName>Jurassic.So.SQLAdapter</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Jurassic.So.SQLAdapter.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Jurassic.So.SQLAdapter.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells">
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\Aspose11.7\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Pdf">
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\Aspose11.7\Aspose.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Words">
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\Aspose11.7\Aspose.Words.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\01基础库\03第三方包\NuGet\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Jurassic.So.GeoTopic.Services\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Converter\DataFormatValueColumnConverter.cs" />
+    <Compile Include="Converter\DataFormatColumnConverter.cs" />
+    <Compile Include="Data\AutoMapperProfile.cs" />
+    <Compile Include="Data\DataResultRow.cs" />
+    <Compile Include="Data\DataSchemaRow.cs" />
+    <Compile Include="Data\DataResultRowCollection.cs" />
+    <Compile Include="Data\DataSchemaRowCollection.cs" />
+    <Compile Include="Converter\JsonDataSetConverter.cs" />
+    <Compile Include="Converter\MetadataRowConverter.cs" />
+    <Compile Include="Core\AdapterExtension.cs" />
+    <Compile Include="Core\IAdapterScope.cs" />
+    <Compile Include="Core\IXmlConfigAdapter.cs" />
+    <Compile Include="Config\AdapterConfigurationSectionHandler.cs" />
+    <Compile Include="Core\SQLAdapterScope.cs" />
+    <Compile Include="Core\SQLAdapter.cs" />
+    <Compile Include="Data\FlatMetadata.cs" />
+    <Compile Include="Data\FlatMetadataRow.cs" />
+    <Compile Include="Data\FlatMetadataRowCollection.cs" />
+    <Compile Include="Data\MetadataTag.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Task\FlatMetadataTransformTask.cs" />
+    <Compile Include="Data\MetadataRow.cs" />
+    <Compile Include="Data\MetadataRowCollection.cs" />
+    <Compile Include="Task\NatureKeyTransformTask.cs" />
+    <Compile Include="Task\SQLMetadataExtracterTask.cs" />
+    <Compile Include="Task\SQLGetDataTransformTask.cs" />
+    <Compile Include="Task\SQLRetrieveTransformTask.cs" />
+    <Compile Include="Task\SQLSpiderTask.cs" />
+    <Compile Include="Task\SQLSpiderCountTask.cs" />
+    <Compile Include="Task\MetadataTransformTask.cs" />
+    <Compile Include="Thumbnail\frmGDBToBmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Thumbnail\frmGDBToBmp.Designer.cs">
+      <DependentUpon>frmGDBToBmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Thumbnail\WordThumbnailBuilder.cs" />
+    <Compile Include="Thumbnail\ImageThumbnailBuilder.cs" />
+    <Compile Include="Thumbnail\GDBThumbnailBuilder.cs" />
+    <Compile Include="Thumbnail\IThumbnailBuilder.cs" />
+    <Compile Include="Thumbnail\ThumbnailConverter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\..\..\01基础库\02源代码\Jurassic.PKS.Service\Jurassic.PKS.Service\Jurassic.PKS.Service.csproj">
+      <Project>{6AEA408E-86E0-4D57-AEAF-EDB23F124CF8}</Project>
+      <Name>Jurassic.PKS.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\..\..\01基础库\02源代码\Jurassic.PKS.Service\Jurassic.PKS.WebAPI\Jurassic.PKS.WebAPI.Models.csproj">
+      <Project>{492bfb88-12ac-4961-a929-f547893ddb7e}</Project>
+      <Name>Jurassic.PKS.WebAPI.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\..\..\01基础库\02源代码\Jurassic.So.Infrastructure\Jurassic.So.ETL\Jurassic.So.ETL.csproj">
+      <Project>{3E7319B1-06B5-47F9-9397-7F84A719C987}</Project>
+      <Name>Jurassic.So.ETL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\..\..\01基础库\02源代码\Jurassic.So.Infrastructure\Jurassic.So.Infrastructure\Jurassic.So.Infrastructure.csproj">
+      <Project>{7eeda4a1-b947-4571-9a75-bda7f4dc88a8}</Project>
+      <Name>Jurassic.So.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Config\MetadataTag_Custom.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\MetadataTags.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Config\Adapter.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxJoGIS4Lib">
+      <Guid>{7320CAA7-9247-41C6-B099-B978F1522A90}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="JoGIS4Lib">
+      <Guid>{7320CAA7-9247-41C6-B099-B978F1522A90}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Thumbnail\frmGDBToBmp.resx">
+      <DependentUpon>frmGDBToBmp.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

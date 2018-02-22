@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Jurassic.So.SQLAdapter.MockGB</name>
+    </assembly>
+    <members>
+        <member name="T:Jurassic.So.Adapter.MockGB.MockGBAdapter">
+            <summary>MockGB适配器</summary>
+        </member>
+        <member name="M:Jurassic.So.Adapter.MockGB.MockGBAdapter.#ctor">
+            <summary>构造函数</summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Jurassic.So.Data.Mock</name>
+    </assembly>
+    <members>
+        <member name="T:Jurassic.So.Data.MockAdapter">
+            <summary>适配器模拟</summary>
+        </member>
+        <member name="M:Jurassic.So.Data.MockAdapter.#ctor(Jurassic.So.Index.IServiceMockConfig)">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Data.MockAdapter.Config">
+            <summary>配置</summary>
+        </member>
+        <member name="M:Jurassic.So.Data.MockAdapter.Load(Jurassic.So.Data.Entities.GT_AdapterInfo)">
+            <summary>载入适配器</summary>
+        </member>
+        <member name="M:Jurassic.So.Data.MockAdapter.CreateRemoteAdapterInstance(System.String)">
+            <summary>创建远程适配器</summary>
+        </member>
+        <member name="M:Jurassic.So.Data.MockAdapter.Retrieve(System.String,System.String)">
+            <summary>根据域和成果键获取成果的内容项集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Data.MockAdapter.RetrieveAsync(System.String,System.String)">
+            <summary>根据域和成果键获取成果的内容项集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Data.MockAdapter.GetData(System.String,Jurassic.PKS.Service.Pager)">
+            <summary>根据数据项票据获取成果的数据项</summary>
+        </member>
+        <member name="M:Jurassic.So.Data.MockAdapter.GetDataAsync(System.String,Jurassic.PKS.Service.Pager)">
+            <summary>根据数据项票据获取成果的数据项</summary>
+        </member>
+        <member name="T:Jurassic.So.Data.MockDataService">
+            <summary>模拟数据服务</summary>
+        </member>
+        <member name="M:Jurassic.So.Data.MockDataService.#ctor(Jurassic.So.Index.IServiceMockConfig,Jurassic.PKS.Service.Index.IIndexer)">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Data.MockDataService.Config">
+            <summary>配置</summary>
+        </member>
+        <member name="P:Jurassic.So.Data.MockDataService.Indexer">
+            <summary>索引服务</summary>
+        </member>
+        <member name="P:Jurassic.So.Data.MockDataService.DataFile">
+            <summary>数据文件</summary>
+        </member>
+        <member name="M:Jurassic.So.Data.MockDataService.Spider(System.String,System.String,Jurassic.PKS.Service.Pager,System.String)">
+            <summary>分批爬取元数据</summary>
+        </member>
+        <member name="M:Jurassic.So.Data.MockDataService.Retrieve(System.String)">
+            <summary>获取实体数据的结构(schema)</summary>
+        </member>
+        <member name="M:Jurassic.So.Data.MockDataService.GetData(System.String,System.String,Jurassic.PKS.Service.Pager)">
+            <summary>根据凭证获取实体数据项</summary>
+        </member>
+    </members>
+</doc>
