@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../Js/lib/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <script src="../Js/lib/jquery-2.0.0.min.js"></script>
+    <script src="../Js/lib/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script src="../Js/gtUI.js"></script>
+    <script src="../Js/lib/vue.js"></script>
+    <script src="../Js/lib/vue-resource.min.js"></script>
+</head>
+<body>
+<div id="list">
+    <searchlist host="http://192.168.1.152:8077/API/Search/Match"></searchlist>
+</div>
+<script>
+    // var dt = {
+    //     "Param": {
+    //         "sentence": "盆地 储层"
+    //     }
+    // };
+    // Vue.http.post("http://localhost:1668/API/Search/Match", dt)
+    //         .then((result) => {
+    //             console.log(result)
+    //             var b = result;
+    //             alert(1);
+
+    //         }).catch(function (result) {
+    //     console.log(result)
+    // })
+
+    var vm = new gtUI.vm({
+        el: "#list",
+        components: {
+            searchlist: gtUI.gtlist
+        },
+        methods: {}
+    });
+</script>
+</body>
+</html>

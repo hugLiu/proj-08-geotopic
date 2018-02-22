@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <script src="../Js/gtUI.js"></script>
+</head>
+
+<body>
+<div id="gtui">
+        <gt:layoutview :data="layoutdata" :size="300"></gt:layoutview>
+</div>
+<script>
+    var layoutdata = {
+        "style": null,
+        "Rows": [
+            {
+            "style": null,
+            "Cols": [{"style": null, "Rows": [], "CellId": "G3"}, {"style": null, "Rows": [], "CellId": "G3"}]
+            },
+            {
+                "style": null,
+                "Cols": [{"style": null, "Rows": [], "CellId": "G2"}]}
+        ]
+    };
+
+
+    gtUI.bind({
+        scope: "gtui",
+        model: "gt:layoutview"
+    });
+</script>
+</body>
+</html>

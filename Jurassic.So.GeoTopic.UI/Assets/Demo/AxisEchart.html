@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bar</title>
+    <script src="../Js/lib/jquery-2.0.0.min.js"></script>
+    <script src="../Js/gtUI.js"></script>
+
+</head>
+<body>
+    <div id="bar">
+        <so:axisechart
+                    :data="data"
+                    :style="style"
+                    :type="type">
+        </so:axisechart>
+    </div>
+    <script>
+        var style="width:100%;height:500px";
+        var type="bar";
+        var data={};
+        $.ajax({
+            url:"../../Mock/echartbar.json",
+            dataType:'json',
+            type:'get',
+            async : false,
+            success:function (parm) {
+                debugger;
+                data=parm;
+            }
+        })
+        gtUI.bind({
+            scope:"bar",
+            model:"so:axisechart"
+        })
+    </script>
+</body>
+</html>

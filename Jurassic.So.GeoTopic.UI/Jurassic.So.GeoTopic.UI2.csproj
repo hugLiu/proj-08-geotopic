@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{84B6E4C1-A27D-4B9C-977A-28D925723A1D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="Assets\Css\comment.css" />
+    <Content Include="Assets\Demo\AxisEchart.html" />
+    <Content Include="Assets\Demo\cardrender.html" />
+    <Content Include="Assets\Demo\dataset.html" />
+    <Content Include="Assets\Demo\display.html" />
+    <Content Include="Assets\Demo\downloadHistory.html" />
+    <Content Include="Assets\Demo\favorite.html" />
+    <Content Include="Assets\Demo\GdbShow.html" />
+    <Content Include="Assets\Demo\Histogram.html" />
+    <Content Include="Assets\Demo\layoutview.html" />
+    <Content Include="Assets\Demo\LineChart.html" />
+    <Content Include="Assets\Demo\newestpt.html" />
+    <Content Include="Assets\Demo\Piechart.html" />
+    <Content Include="Assets\Demo\ptdetail.html" />
+    <Content Include="Assets\Demo\ptlist.html" />
+    <Content Include="Assets\Demo\ptrender.html" />
+    <Content Include="Assets\Demo\RemarkList.html" />
+    <Content Include="Assets\Demo\searchlist.html" />
+    <Content Include="Assets\Demo\test.html" />
+    <Content Include="Assets\Demo\Tree.html" />
+    <Content Include="Assets\Img\Userphoto\0.jpg" />
+    <Content Include="Assets\Img\Userphoto\1.jpg" />
+    <Content Include="Assets\Img\Userphoto\10.jpg" />
+    <Content Include="Assets\Img\Userphoto\11.jpg" />
+    <Content Include="Assets\Img\Userphoto\12.jpg" />
+    <Content Include="Assets\Img\Userphoto\13.jpg" />
+    <Content Include="Assets\Img\Userphoto\14.jpg" />
+    <Content Include="Assets\Img\Userphoto\15.jpg" />
+    <Content Include="Assets\Img\Userphoto\16.jpg" />
+    <Content Include="Assets\Img\Userphoto\2.jpg" />
+    <Content Include="Assets\Img\Userphoto\3.jpg" />
+    <Content Include="Assets\Img\Userphoto\4.jpg" />
+    <Content Include="Assets\Img\Userphoto\5.jpg" />
+    <Content Include="Assets\Img\Userphoto\6.jpg" />
+    <Content Include="Assets\Img\Userphoto\7.jpg" />
+    <Content Include="Assets\Img\Userphoto\8.jpg" />
+    <Content Include="Assets\Img\Userphoto\9.jpg" />
+    <Content Include="Assets\Js\lib\bootstrap-3.3.5-dist\css\bootstrap-theme.css" />
+    <Content Include="Assets\Js\lib\bootstrap-3.3.5-dist\css\bootstrap-theme.min.css" />
+    <Content Include="Assets\Js\lib\bootstrap-3.3.5-dist\css\bootstrap.css" />
+    <Content Include="Assets\Js\lib\bootstrap-3.3.5-dist\css\bootstrap.min.css" />
+    <Content Include="Assets\Js\lib\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\Js\lib\bootstrap-3.3.5-dist\js\bootstrap.js" />
+    <Content Include="Assets\Js\lib\bootstrap-3.3.5-dist\js\bootstrap.min.js" />
+    <Content Include="Assets\Js\lib\bootstrap-3.3.5-dist\js\npm.js" />
+    <Content Include="Assets\Js\lib\jquery-2.0.0.js" />
+    <Content Include="Assets\Js\lib\jquery-2.0.0.min.js" />
+    <Content Include="Assets\Js\lib\jstree\css\32px.png" />
+    <Content Include="Assets\Js\lib\jstree\css\40px.png" />
+    <Content Include="Assets\Js\lib\jstree\css\jstree.min.css" />
+    <Content Include="Assets\Js\lib\jstree\css\throbber.gif" />
+    <Content Include="Assets\Js\lib\jstree\js\jstree.min.js" />
+    <Content Include="Assets\Js\lib\require.js" />
+    <Content Include="Assets\Js\lib\vue-resource.min.js" />
+    <Content Include="Assets\Js\lib\vue.js" />
+    <Content Include="Assets\Js\lib\vue.min.js" />
+    <Content Include="build\config.js" />
+    <Content Include="build\index.html" />
+    <Content Include="build\log-plugin.js" />
+    <Content Include="build\server.js" />
+    <Content Include="build\utils.js" />
+    <Content Include="build\webpack.base.js" />
+    <Content Include="build\webpack.dev.js" />
+    <Content Include="build\webpack.dll.js" />
+    <Content Include="build\webpack.prod.js" />
+    <Content Include="client\app.js" />
+    <Content Include="client\bp_app.js" />
+    <Content Include="client\gtUI2.js" />
+    <Content Include="client\index.js" />
+    <Content Include="client\promise-polyfill.js" />
+    <Content Include="client\pwa.js" />
+    <Content Include="client\router\index.js" />
+    <Content Include="client\SoUI\soUI.js" />
+    <Content Include="client\SoUI\Src\Img\Detail\slt.png" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\asm.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\asp.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\avi.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\bat.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\bmp.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\cab.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\cdaudio.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\certificate.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\cfm.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\class.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\cmd.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\collect.png" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\com.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\cpp.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\cs.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\csharp.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\css.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\DataSet.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\DateTime.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\db.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\del.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\dll.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\doc.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\docx.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\down.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\eml.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\exe.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\file.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\folder.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\fon.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\gif.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\graph.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\hlp.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\htm.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\html.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\ico.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\idf.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\image.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\images.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\img.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\irc.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\iso.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\java.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\jpg.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\js.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\jsp.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\mdb.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\modem.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\mp3.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\mpg.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\mschann.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\msg.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\net.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\netmetting.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\news.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\note.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\pda.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\pdf.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\php.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\picture.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\png.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\ppt.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\pptx.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\py.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\rar.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\reg.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\report.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\rm.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\rmv.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\save.png" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\searchen.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\swf.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\tif.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\txt.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\vb.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\vbs.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\vfp.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\wab.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\wav.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\wmv.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\wri.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\xls.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\xlsx.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\xml.gif" />
+    <Content Include="client\SoUI\Src\Img\FileIcon\zip.gif" />
+    <Content Include="client\SoUI\Src\Img\RemarkDefault\Default.png" />
+    <Content Include="client\SoUI\Src\Img\Top\refresh.png" />
+    <Content Include="client\SoUI\Src\Img\ZoomImage\header.png" />
+    <Content Include="client\SoUI\Src\Img\ZoomImage\logo.png" />
+    <Content Include="client\SoUI\Src\Img\ZoomImage\position.png" />
+    <Content Include="client\SoUI\Src\Img\ZoomImage\top.jpg" />
+    <Content Include="client\SoUI\Src\Img\ZoomImage\transparent.png" />
+    <Content Include="client\SoUI\Src\Img\ZoomImage\zoomIn.png" />
+    <Content Include="client\SoUI\Src\Img\ZoomImage\ZoomOut.png" />
+    <Content Include="client\SoUI\Src\Js\ComonJs\formatAnalysis.js" />
+    <Content Include="client\SoUI\Src\Js\ComonJs\formatIcon.js" />
+    <Content Include="client\SoUI\Src\Js\ComonJs\highLight.js" />
+    <Content Include="client\SoUI\Src\Js\ComonJs\require.js" />
+    <Content Include="client\SoUI\Src\Js\Components\SoImage\lib\jqzoom.js" />
+    <Content Include="client\SoUI\Src\Js\Components\SoTagEditor\lib\delete.png" />
+    <Content Include="client\SoUI\Src\Js\Components\SoTagEditor\lib\editor.css" />
+    <Content Include="client\SoUI\Src\Js\Components\SoTagEditor\lib\editor.js" />
+    <Content Include="client\store\index.js" />
+    <Content Include="client\Utils\arrayAndObjectOperation.js" />
+    <Content Include="client\Utils\baseOperation.js" />
+    <Content Include="client\Utils\bootstrap.js" />
+    <Content Include="client\Utils\getCom.js" />
+    <Content Include="client\Utils\loadModel.js" />
+    <Content Include="client\Utils\matchfilter.js" />
+    <Content Include="client\Utils\pollAjax.js" />
+    <Content Include="debug\elementui.838a3d71.js" />
+    <Content Include="debug\elementui.styles.9416efb5.css" />
+    <Content Include="debug\gtui.js" />
+    <Content Include="debug\index.html" />
+    <Content Include="debug\manifest.js" />
+    <Content Include="debug\media\bmp.2debb93d.gif" />
+    <Content Include="debug\media\cab.3b742fd9.gif" />
+    <Content Include="debug\media\collect.c9b8f765.png" />
+    <Content Include="debug\media\DataSet.2cd3145c.gif" />
+    <Content Include="debug\media\Default.5c11198e.png" />
+    <Content Include="debug\media\delete.705dce6e.png" />
+    <Content Include="debug\media\doc.5742be71.gif" />
+    <Content Include="debug\media\docx.5742be71.gif" />
+    <Content Include="debug\media\file.5c50bf9a.gif" />
+    <Content Include="debug\media\gif.f7921b0d.gif" />
+    <Content Include="debug\media\htm.92f7256e.gif" />
+    <Content Include="debug\media\html.77c1b394.gif" />
+    <Content Include="debug\media\ico.f04e8729.gif" />
+    <Content Include="debug\media\jpg.6df6c189.gif" />
+    <Content Include="debug\media\pdf.16a0923f.gif" />
+    <Content Include="debug\media\png.eb1797fc.gif" />
+    <Content Include="debug\media\position.44762829.png" />
+    <Content Include="debug\media\ppt.68b5f843.gif" />
+    <Content Include="debug\media\pptx.68b5f843.gif" />
+    <Content Include="debug\media\rar.e92ad929.gif" />
+    <Content Include="debug\media\refresh.6047dc82.png" />
+    <Content Include="debug\media\save.4c28523c.png" />
+    <Content Include="debug\media\slt.aaaa0d71.png" />
+    <Content Include="debug\media\swf.382ebf51.gif" />
+    <Content Include="debug\media\tif.9983478b.gif" />
+    <Content Include="debug\media\txt.71f5757a.gif" />
+    <Content Include="debug\media\xls.8f479aeb.gif" />
+    <Content Include="debug\media\xlsx.8f479aeb.gif" />
+    <Content Include="debug\media\zoomIn.096598cb.png" />
+    <Content Include="debug\media\zoomOut.5f15134d.png" />
+    <Content Include="debug\vuedll.a3158ae6.js" />
+    <Content Include="dist\elementui.js" />
+    <Content Include="dist\elementui.styles.css" />
+    <Content Include="dist\vuedll.js" />
+    <Content Include="static\favicon.ico" />
+    <Content Include="tests\index.js" />
+    <Content Include="tests\page-model.js" />
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".editorconfig" />
+    <Content Include=".eslintrc" />
+    <Content Include="Assets\docs\GeoTopic组件调用.docx" />
+    <Content Include="Assets\docs\项目前端未解决问题一览.docx" />
+    <Content Include="Assets\Js\lib\bootstrap-3.3.5-dist\css\bootstrap-theme.css.map" />
+    <Content Include="Assets\Js\lib\bootstrap-3.3.5-dist\css\bootstrap.css.map" />
+    <Content Include="Assets\Js\lib\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\Js\lib\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\Js\lib\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\Js\lib\bootstrap-3.3.5-dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="build\dll.manifest.json" />
+    <Content Include="client\components\App.vue" />
+    <Content Include="client\components\CardRender\gtCardRender.vue" />
+    <Content Include="client\components\CardRender\gtRenderMod.vue" />
+    <Content Include="client\components\CardRender\gtRenderUrl.vue" />
+    <Content Include="client\components\CardRender\gtRowRender.vue" />
+    <Content Include="client\components\CardRender\gtTableRender.vue" />
+    <Content Include="client\components\CellRender\gTPTListRender.vue" />
+    <Content Include="client\components\CellRender\gtPTRender.vue" />
+    <Content Include="client\components\CellRender\gtPTRender_old.vue" />
+    <Content Include="client\components\CellRender\gtUrlRender.vue" />
+    <Content Include="client\components\DownloadHistory\downloadHistory.vue" />
+    <Content Include="client\components\Favorite\favorite.vue" />
+    <Content Include="client\components\FormatCom\gtDataset.vue" />
+    <Content Include="client\components\FormatCom\gtEChart.vue" />
+    <Content Include="client\components\FormatCom\gtGdb.vue" />
+    <Content Include="client\components\FormatCom\gtHistogram.vue" />
+    <Content Include="client\components\FormatCom\gtImg.vue" />
+    <Content Include="client\components\FormatCom\gtLineChart.vue" />
+    <Content Include="client\components\FormatCom\gtNoResults.vue" />
+    <Content Include="client\components\FormatCom\gtPieChart.vue" />
+    <Content Include="client\components\FormatCom\gtRemark.vue" />
+    <Content Include="client\components\FormatCom\gtRich.vue" />
+    <Content Include="client\components\GtPTCompare\gtPTCompare.vue" />
+    <Content Include="client\components\GtTree\gtTree.vue" />
+    <Content Include="client\components\layoutView\rows.vue" />
+    <Content Include="client\components\layoutView\table.vue" />
+    <Content Include="client\components\NewEstPt\newestpt.vue" />
+    <Content Include="client\components\PTDetail\ptdetail.vue" />
+    <Content Include="client\components\PTList\ptlist.vue" />
+    <Content Include="client\components\PTSubmit\ptSubmit.vue" />
+    <Content Include="client\components\RencentLook\rencentLook.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\DataSet\dataSet.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\GdbShow\GdbShow.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoCheckboxTemplate\SoCheckboxTemplate.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoDataGrid\SoDataGrid.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoDataList\SoDataList.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoDataSet\SoDataSet.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoDetail\SoDetail.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoDropDownTemplate\SoDropDownTemplate.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoDropdown\SoDropDown.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoFilter\SoFilter.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoForm\FormInput.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoForm\SoForm.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoHistogram\SoHistogram.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoImage\SoDialogImg.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoImage\SoImage.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoLineChart\SoLineChart.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoPageTemplate\SoPageTemplate.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoPage\SoPage.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoPieChart\SoPieChart.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoRemark\SoRemark.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoRemark\SoReplyBox.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoRemark\SoReview.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoRichText\SoRichText.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoSearchList\SoSearchList.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoStrParseTemplate\SoStrParseTemplate.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoTagEditor\SoTagEditor.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoTop\SoTop.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\SoTree\SoTree.vue" />
+    <Content Include="client\SoUI\Src\Js\Components\TemplateFormat\TemplateFormat.vue" />
+    <Content Include="debug\elementui.838a3d71.js.map" />
+    <Content Include="debug\elementui.styles.9416efb5.css.map" />
+    <Content Include="debug\gtui.js.map" />
+    <Content Include="debug\manifest.js.map" />
+    <Content Include="debug\vuedll.a3158ae6.js.map" />
+    <Content Include="dist\elementui.dll-manifest.json" />
+    <Content Include="dist\vuedll.dll-manifest.json" />
+    <Content Include="Mock\dataset.json" />
+    <Content Include="Mock\echartbar.Json" />
+    <Content Include="Mock\gtdetail.json" />
+    <Content Include="Mock\remark.json" />
+    <Content Include="Mock\test.gdb" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="client\SoUI\Src\Css\" />
+    <Folder Include="client\SoUI\Src\Tmpl\" />
+    <Folder Include="client\views\" />
+    <Folder Include="dist\vender\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dist\media\element-icons.ttf" />
+    <Content Include="dist\media\element-icons.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dist\elementui.js.map" />
+    <Content Include="dist\elementui.styles.css.map" />
+    <Content Include="dist\vuedll.js.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Jurassic.So.GeoTopic.UI2</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>15867</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:11359/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+</Project>

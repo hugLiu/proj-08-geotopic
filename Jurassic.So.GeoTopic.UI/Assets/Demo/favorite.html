@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>成果收藏组件</title>
+    <link rel="stylesheet" href="../Js/lib/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <script src="../Js/lib/jquery-2.0.0.min.js"></script>
+    <script src="../Js/lib/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script src="../Js/lib/vue.js"></script>
+    <script src="../Js/lib/vue-resource.min.js"></script>
+    <script src="../Js/gtUI.js"></script>
+</head>
+<body>
+    <gt:ptcompare id="compare" :publicfilter="_param"></gt:ptcompare>
+<script>
+  let _param={
+                    id:"G1",
+                    type:"Present",
+                    url:"/render/pt",
+                    title:"",
+                    param:{
+                        filter:{
+                            $and:[{"Auditor":"袁权"}]
+                        }
+                    }
+                };
+
+       gtUI.bind({
+       scope:"compare",
+       model:"gt:ptcompare"
+   });
+</script>
+</body>
+</html>

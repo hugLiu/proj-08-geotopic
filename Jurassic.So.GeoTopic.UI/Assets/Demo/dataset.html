@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DataSet组件</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="../js/lib/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../js/lib/bootstrap-3.3.5-dist/css/font-awesome.min.css">
+    <script src="../js/lib/vue.js"></script>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="../js/lib/jquery-2.0.0.min.js"></script>
+    <script src="../js/lib/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script src="../js/soUIDev.js"></script>
+
+    <style>
+    a {
+       color: #55555a; 
+    }         
+    </style>
+</head>
+
+<body>
+    <h2>DataSet Component</h2>
+    <div id="dataset">
+        <so:dataset :datasource="datasource" :ongetdata="onGetData"></so:dataset>
+    </div>
+
+    <script>
+        var url = "../../Mock/dataset.json";
+        var dataSource;
+        $.ajaxSettings.async = false;
+        $.getJSON(url, function (json) {
+            dataSource = json.datalist;
+        }); 
+         
+        var datasource = dataSource;
+        soUIDev.bind({
+            scope: "dataset",
+            model: "so:dataset"
+        });
+
+        function onGetData() {
+            return dataSource;
+        } 
+    </script>
+</body>
+</html>

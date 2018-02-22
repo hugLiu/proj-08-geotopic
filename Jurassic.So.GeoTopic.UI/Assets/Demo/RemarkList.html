@@ -1,0 +1,276 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../Js/lib/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/comment.css">
+    <script src="../js/lib/vue.js"></script>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="../js/lib/jquery-2.0.0.min.js"></script>
+    <script src="../js/lib/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script src="../Js/gtUI.js"></script>
+    <style>
+        #el {
+            margin-top: 100px;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="el">
+    <gt:remarklist :filters="filters"
+                    :topicid="'1001'"
+                    :size="pagesize"
+                    :initsize="initsize"
+                    :onreply="onaddreply"
+                    :ondelete="ondeleteremarks"
+                    :ongetdata="ongetdata">
+    </gt:remarklist>
+</div>
+<script type="text/javascript">
+
+ var pagesize= 3;
+ var initsize=4;
+ var initorder= "time";
+ var filters= [{
+     name: "最新评论",
+     text: "time"
+ }, {
+     name: "我的评论",
+     text: "myremark"
+ },{
+     name:"所有评论",
+     text:"all"
+ }];
+ var datasouce={
+     "userinfo": {
+         "userid": 1001,
+         "username": "Tom",
+         "userphoto": "http://sucimg.itc.cn/avatarimg/507968285_1474183921578_c55",
+         "usertitle": "智慧园"
+     },
+     "totalremarks": 13,
+     "topicid":1001,
+     "data": [
+         {
+             "id": 1001,
+             "ptext":"[{'name':'@Mack：','text':'这个命题很新颖！'},{'name':'Jack@Mack：','text':'确实！'}]",
+             "userid": 1001,
+             "username": "Tom",
+             "text": "北国风光",
+             "time": "2016-9-20 8:30",
+             "photo": "http://sucimg.itc.cn/avatarimg/507968285_1474183921578_c55"
+         },
+         {
+             "id": 1002,
+             "ptext":"[{'name':'@Mack：','text':'很新颖！'},{'name':'Jack@Mack：','text':'确实ssss！'}]",
+             "userid": 1002,
+             "username": "hellokitty",
+             "text": "千里冰封",
+             "time": "2016-9-13 8:30",
+             "photo": "../Img/Userphoto/3.jpg"
+         },
+         {
+             "id": 1003,
+             "userid": 1003,
+             "username": "Gejy",
+             "text": "万里雪飘，望长城内外，惟余莽莽，大河上下，顿失滔滔",
+             "time": "2016-9-12 9:30",
+             "photo": "../Img/Userphoto/4.jpg"
+         },
+         {
+             "id": 1004,
+             "userid": 1004,
+             "username": "Lisy",
+             "text": "山舞银蛇，原驰蜡象，欲与天公试比高，须晴日，看银装束裹，分外妖娆",
+             "time": "2016-9-20 8:30",
+             "photo": "../Img/Userphoto/5.jpg"
+         }
+         ,
+         {
+             "id": 1005,
+             "userid": 1005,
+             "username": "Hony",
+             "text": "hello world",
+             "time": "2016-9-12 8:30",
+             "photo": "../Img/Userphoto/6.jpg"
+         },
+         {
+             "id": 1006,
+             "userid": 1006,
+             "username": "Ask",
+             "text": "hello world",
+             "time": "2016-9-12 8:30",
+             "photo": "../Img/Userphoto/7.jpg"
+         },
+         {
+             "id": 1007,
+             "userid": 1007,
+             "username": "Gely",
+             "text": "hello world",
+             "time": "2016-9-12 8:30",
+             "photo": "../Img/Userphoto/8.jpg"
+         },
+         {
+             "id": 1008,
+             "userid": 1008,
+             "username": "Gery",
+             "text": "hello world",
+             "time": "2016-9-12 8:30",
+             "photo": "../Img/Userphoto/9.jpg"
+         },
+         {
+             "id": 1009,
+             "userid": 1009,
+             "username": "Tomas",
+             "text": "hello world",
+             "time": "2016-9-12 8:30",
+             "photo": "../Img/Userphoto/10.jpg"
+         },
+         {
+             "id": 1010,
+             "userid": 1010,
+             "username": "Frank",
+             "text": "hello world",
+             "time": "2016-9-12 8:30",
+             "photo": ""
+         },
+         {
+             "id": 1011,
+             "userid": 1011,
+             "username": "Jery",
+             "text": "hello world",
+             "time": "2016-9-12 8:30",
+             "photo": "../Img/Userphoto/12.jpg"
+         },
+         {
+             "id": 1012,
+             "userid": 1012,
+             "username": "Json",
+             "text": "hello world",
+             "time": "2016-9-12 8:30",
+             "photo": "../Img/Userphoto/13.jpg"
+         },
+         {
+             "id": 1013,
+             "userid": 1013,
+             "username": "Jack",
+             "text": "hello world",
+             "time": "2016-9-12 8:30",
+             "photo": "../Img/Userphoto/14.jpg"
+         }
+     ]
+ };
+// $.ajax({
+//     url: '../../Mock/remark.json',
+//     type: "get",
+//     async: false,
+//     dataType: "json",
+//     success:function (data) {
+//         datasouce=data;
+//     }
+// })
+ var ondeleteremarks= function (data) {
+      deleteremarkbyid(data);
+     //alert(data);
+ };
+ var onaddreply=function (data,id) {
+      addremarktotopic(data,id);
+//     alert(data.text);
+ };
+ function ongetdata (topicid, size, index, filter) {
+     return getdata(topicid, size, index, filter);
+ };
+
+gtUI.bind({
+    scope: "el",
+    model:'gt:remarklist',
+})
+//根据id删除评论
+function deleteremarkbyid(id) {
+     for(var i=0;i<datasouce.data.length;i++){
+         if(datasouce.data[i].id==id){
+             datasouce.data.splice(i,1);
+             return;
+         }
+     }
+ }
+ //添加评论
+ function addremarktotopic(remarkdata,id) {
+    remarkdata.id=1001+datasouce.data.length;
+    datasouce.data.push(remarkdata);
+ }
+//getdata
+function getdata(topicid, size, index, filter) {
+    var obj={};
+    obj.userinfo=datasouce.userinfo
+    obj.totalremarks=datasouce.totalremarks
+    obj.topicid=datasouce.topicid
+   var modeldata=datasouce;
+    
+    if (topicid==modeldata.topicid) {
+        var redata = [];
+            if (filter == "time") {
+                for (var i = 0; i < modeldata.data.length; i++) {
+                    if (isToday(modeldata.data[i].time)) {
+                        redata.push(modeldata.data[i]);
+                    }
+                }
+            } else if(filter=="myremark"){
+                for (var i = 0; i < modeldata.data.length; i++) {
+                    if (modeldata.data[i].userid == modeldata.userinfo.userid) {
+                        redata.push(modeldata.data[i]);
+                    }
+                }
+            }else {
+                for(var i = 0; i < modeldata.data.length; i++){
+                    redata.push(modeldata.data[i]);
+                }
+            }
+        obj.data = redata;
+        obj.data.sort(compare("time"))
+        if(!index)
+        {
+            index=0;
+        }
+        if (size + index >= obj.totalremarks) {
+            obj.data = obj.data.slice(index);
+        } else {
+            obj.data = obj.data.slice(index, size + index);
+        }
+    }else {
+        obj=null;
+    }
+    return obj;
+}
+//判断是否是今天
+function isToday(str) {
+    var history = new Date(str);
+    var today = new Date();
+    if (history.getFullYear() == today.getFullYear() && history.getMonth() == today.getMonth() && (today.getDate() - history.getDate()) < 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+//比较器
+function compare(propertyName) {
+    return function (object1, object2) {
+        var value1 = object1[propertyName];
+        var value2 = object2[propertyName];
+        if (value2 < value1) {
+            return 1;
+        }
+        else if (value2 > value1) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
+    }
+}
+</script>
+</body>
+</html>

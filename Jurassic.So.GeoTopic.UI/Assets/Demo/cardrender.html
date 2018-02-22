@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../Js/lib/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <script src="../Js/lib/jquery-2.0.0.min.js"></script>
+    <script src="../Js/lib/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+
+    <script src="../Js/lib/vue.js"></script>
+    <script src="../Js/lib/vue-resource.min.js"></script>
+    <script src="../Js/gtUI.js"></script>
+</head>
+
+<body>
+<div id="gtui">
+    <gt:cards :id="card1" :topicId="topicId"></gt:cardrender>
+</div>
+<script>
+var topicId = 12;
+    var layoutdata = [{
+        "cells": [{
+            "id": "G1",
+            "type": "Present",
+            "url": "/GeoModule/GetView",
+            "title": "",
+            "param": {
+                "fields": {"jpeg": 1}, 
+                "viewtype": "ptrender", 
+                "method": "get"
+            }
+        }, {
+            "id": "G1",
+            "type": "Present",
+            "url": "/GeoModule/GetView",
+            "title": "",
+            "param": {"fields": {"jpeg": 1}, "viewtype": "ptrender", "method": "get"}
+        }, {
+            "id": "G1",
+            "type": "Present",
+            "url": "/GeoModule/GetView",
+            "title": "",
+            "param": {"fields": {"jpeg": 1}, "viewtype": "ptrender", "method": "get"}
+        }],
+        "layout": {
+            "style": null,
+            "Rows": [{
+                "style": null,
+                "Cols": [{
+                    "style": null,
+                    "Rows": [{"style": null, "Cols": [{"style": null, "Rows": [], "CellId": "G1"}]}],
+                    "CellId": null
+                }, {
+                    "style": null,
+                    "Rows": [{"style": null, "Cols": [{"style": null, "Rows": [], "CellId": "G1"}]}],
+                    "CellId": null
+                }]
+            }, {
+                "style": null,
+                "Cols": [{
+                    "style": null,
+                    "Rows": [{"style": null, "Cols": [{"style": null, "Rows": [], "CellId": "G1"}]}],
+                    "CellId": null
+                }]
+            }]
+        }
+    }];
+
+
+    // gtUI.bind({
+    //     scope: "gtui",
+    //     model: "gt:cardrender"
+    // });
+</script>
+</body>
+</html>
