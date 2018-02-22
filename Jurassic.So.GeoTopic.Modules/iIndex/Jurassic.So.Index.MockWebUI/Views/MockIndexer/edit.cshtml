@@ -1,0 +1,112 @@
+﻿@using Jurassic.So.Infrastructure
+@model Jurassic.So.Index.MockIndexerController.OutputIndexInfo
+@{
+    //ViewBag.Title = this.Model.S_Url.Length == 0 ? "新增索引数据" : "编辑索引数据";
+    var command = this.Model.S_Url.IsNullOrEmpty() ? "Save" : "Update";
+}
+<style>
+    /*定义操作区工具栏样式*/
+    .mini-toolbar {
+        border: 1px solid #d5d5d5;
+        background: #ffffff;
+        border-bottom: 1px solid #d5d5d5 !important;
+    }
+
+    td {
+        height: 30px;
+        padding-right: 10px;
+    }
+</style>
+@section UserToolbar
+{
+    <div class="mini-toolbar" style="border-bottom:0;">
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    <a class="mini-button frame-submit" iconcls="icon-new-save" plain="true">保存</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+<div class="form-div frame-fit" id="form1">
+    <table>
+        <tr>
+            <td class="right">
+                索引质量
+            </td>
+            <td>
+                <input name="indexquality" value="@Model.IndexQuality" class="mini-textbox" required="true" style="width:400px;" />
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                索引日期
+            </td>
+            <td>
+                <input name="indexeddate" value="@Model.IndexedDate" class="mini-textbox" required="true" style="width:400px;" />
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                索引URL
+            </td>
+            <td>
+                <input name="S_Url" value="@Model.S_Url" class="mini-textbox" required="true" style="width:400px;" />
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                索引数据
+            </td>
+            <td>
+                <input name="metadata" value="@Model.Metadata" class="mini-textarea" required="true" style="width:400px;height:200px;" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+    mini.parse();
+
+    var command = "@command";
+
+    function buildRequest() {
+        var form = new mini.Form("#form1");
+        var data = form.getData();
+        data.action = command;
+        var metadata = JSON.parse(data.metadata);
+        metadata.indexeddate = data.indexeddate;
+        delete data.indexeddate;
+        if (!metadata.source) {
+            metadata.source = {};
+        }
+        metadata.source.url = data.S_Url;
+        delete data.S_Url;
+        data.kmds = new Array();
+        data.kmds.push(metadata);
+        delete data.metadata;
+        return JSON.stringify(data);
+        //metadata.isDictionary = true;
+        //var data2 = mvcParamBinding(data);
+        //return JSON.stringify(data2);
+    }
+
+    $.regButton({
+        text: "保存",
+        beforeSubmit: function (ajax) {
+            $.ajax({
+                type: "POST",
+                url: "/api/IndexerService/SendIndex",
+                contentType: "application/json",
+                data: buildRequest(),
+                success: function (data) {
+                    command = "Update";
+                    mini.alert("保存成功！");
+                    top.reloadData();
+                }
+            });
+            return false;
+        }
+    });
+</script>

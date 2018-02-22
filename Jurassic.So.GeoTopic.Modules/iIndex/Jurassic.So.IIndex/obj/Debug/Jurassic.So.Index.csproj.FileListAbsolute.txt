@@ -1,0 +1,2 @@
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iIndex\Jurassic.So.IIndex\bin\Debug\Jurassic.So.Index.xml
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iIndex\Jurassic.So.IIndex\obj\Debug\Jurassic.So.Index.csprojResolveAssemblyReference.cache

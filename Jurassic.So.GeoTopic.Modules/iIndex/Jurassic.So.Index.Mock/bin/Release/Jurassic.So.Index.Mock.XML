@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Jurassic.So.Index.Mock</name>
+    </assembly>
+    <members>
+        <member name="T:Jurassic.So.Index.IServiceMockConfig">
+            <summary>服务模拟配置接口</summary>
+        </member>
+        <member name="P:Jurassic.So.Index.IServiceMockConfig.RootPath">
+            <summary>根路径</summary>
+        </member>
+        <member name="P:Jurassic.So.Index.IServiceMockConfig.DataDir">
+            <summary>模拟数据存取相对路径</summary>
+        </member>
+        <member name="P:Jurassic.So.Index.IServiceMockConfig.DataPath">
+            <summary>模拟数据存取路径</summary>
+        </member>
+        <member name="T:Jurassic.So.Index.MockApiInjectModule">
+            <summary>模拟API注入模块</summary>
+        </member>
+        <member name="M:Jurassic.So.Index.MockApiInjectModule.Load">
+            <summary>加载注入</summary>
+        </member>
+        <member name="T:Jurassic.So.Index.AutoMapperProfile">
+            <summary>AutoMapper映射配置</summary>
+        </member>
+        <member name="M:Jurassic.So.Index.AutoMapperProfile.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="T:Jurassic.So.Index.ServiceMockConfig">
+            <summary>服务模拟配置接口</summary>
+        </member>
+        <member name="M:Jurassic.So.Index.ServiceMockConfig.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="M:Jurassic.So.Index.ServiceMockConfig.Set(System.String)">
+            <summary>设置</summary>
+        </member>
+        <member name="P:Jurassic.So.Index.ServiceMockConfig.RootPath">
+            <summary>根路径</summary>
+        </member>
+        <member name="P:Jurassic.So.Index.ServiceMockConfig.DataDir">
+            <summary>模拟数据存取相对路径</summary>
+        </member>
+        <member name="P:Jurassic.So.Index.ServiceMockConfig.DataPath">
+            <summary>模拟数据存取路径</summary>
+        </member>
+        <member name="T:Jurassic.So.Index.MockIndexer">
+            <summary>模拟索引服务</summary>
+        </member>
+        <member name="M:Jurassic.So.Index.MockIndexer.#ctor(Jurassic.So.Index.IServiceMockConfig)">
+            <summary>构造函数</summary>
+        </member>
+        <member name="P:Jurassic.So.Index.MockIndexer.Config">
+            <summary>配置</summary>
+        </member>
+        <member name="P:Jurassic.So.Index.MockIndexer.DataFile">
+            <summary>数据文件</summary>
+        </member>
+        <member name="P:Jurassic.So.Index.MockIndexer.Items">
+            <summary>索引项集合</summary>
+        </member>
+        <member name="M:Jurassic.So.Index.MockIndexer.SendIndex(Jurassic.PKS.Service.Index.IndexInfo)">
+            <summary>插入/更新/删除索引信息</summary>
+        </member>
+        <member name="M:Jurassic.So.Index.MockIndexer.SendIndexAsync(Jurassic.PKS.Service.Index.IndexInfo)">
+            <summary>插入/更新/删除索引信息</summary>
+        </member>
+    </members>
+</doc>

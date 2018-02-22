@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Jurassic.So.Index.Mongo</name>
+    </assembly>
+    <members>
+        <member name="T:Jurassic.So.Index.Mongo.AutoMapperProfile">
+            <summary>AutoMapper映射配置</summary>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.AutoMapperProfile.#ctor">
+            <summary>构造函数</summary>
+        </member>
+        <member name="T:Jurassic.So.Index.Mongo.AutoMapperProfile.MetadatasResolver">
+            <summary>元数据解析器</summary>
+        </member>
+        <member name="T:Jurassic.So.Index.Mongo.Indexer">
+            <summary>Mongo索引服务</summary>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.Indexer.SendIndex(Jurassic.PKS.Service.Index.IndexInfo)">
+            <summary>批量保存/更新/删除索引信息</summary>
+            <param name="indexInfo">索引操作信息</param>
+            <returns>索引操作结果</returns>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.Indexer.SendIndexAsync(Jurassic.PKS.Service.Index.IndexInfo)">
+            <summary>批量保存/更新/删除索引信息</summary>
+            <param name="indexInfo">索引操作信息</param>
+            <returns>索引操作结果</returns>
+        </member>
+        <member name="T:Jurassic.So.Index.Mongo.IndexerProvider">
+            <summary>
+            索引服务Provider
+            </summary>
+        </member>
+        <member name="F:Jurassic.So.Index.Mongo.IndexerProvider._access">
+            <summary>Mongo索引数据访问服务</summary>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.IndexerProvider.SaveAsync(Jurassic.PKS.Service.MetadataCollection)">
+            <summary>
+            保存索引
+            </summary>
+            <param name="metadatas">元数据集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.IndexerProvider.UpdateAsync(Jurassic.PKS.Service.MetadataCollection)">
+            <summary>
+            更新索引
+            </summary>
+            <param name="metadatas">元数据集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.IndexerProvider.DeleteAsync(Jurassic.PKS.Service.MetadataCollection)">
+            <summary>
+            删除索引
+            </summary>
+            <param name="metadatas">元数据集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.IndexerProvider.DicConvertToBsonDoc``1(``0)">
+            <summary>
+            Dictionary转化为BsonDocument
+            </summary>
+            <param name="metadata">基类为dictionary的元数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.IndexerProvider.Save2Async(Jurassic.PKS.Service.MetadataCollection)">
+            <summary>保存</summary>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.IndexerProvider.Update2Async(Jurassic.PKS.Service.MetadataCollection)">
+            <summary>更新</summary>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.IndexerProvider.BuildUpdateDefinition(MongoDB.Bson.BsonDocument,System.String)">
+            <summary>
+            构建更新操作定义 
+            </summary>
+            <param name="bc">bsondocument文档</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.IndexerProvider.Delete2Async(Jurassic.PKS.Service.MetadataCollection)">
+            <summary>删除</summary>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.IndexerProvider.MetadataColToBsonDocList(Jurassic.PKS.Service.MetadataCollection)">
+            <summary>
+            元数据集合转化为层级结构的BsonDocumnet
+            </summary>
+            <param name="metadatas">元数据集合（KMD扁平存储）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.IndexerProvider.KmdsToBsonDocList(System.Collections.Generic.List{Jurassic.PKS.Service.KMD})">
+            <summary>
+            kmd集合转化为
+            </summary>
+            <param name="kmds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.IndexerProvider.KmdToIndex(Jurassic.PKS.Service.KMD)">
+            <summary>
+            为KMD设置IIID
+            </summary>
+            <param name="kmd">元数据扁平结构</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.IndexerProvider.JsonConvertToBsonDoc(System.String)">
+            <summary>
+            json转化为BsonDocument
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.IndexerProvider.SaveAsync(System.Collections.Generic.List{MongoDB.Bson.BsonDocument})">
+            <summary>
+            保存BsonDocument
+            </summary>
+            <param name="docs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.IndexerProvider.DeleteAsync(System.Collections.Generic.IEnumerable{MongoDB.Bson.BsonDocument})">
+            <summary>
+            删除BsonDocument
+            </summary>
+            <param name="docs"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Jurassic.So.Index.Mongo.JObjectExtensions">
+            <summary>
+            JObject扩展
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.JObjectExtensions.ToDictionary(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            将JObject转化成字典
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Index.Mongo.JObjectExtensions.ToArray(Newtonsoft.Json.Linq.JArray)">
+            <summary>
+            
+            </summary>
+            <param name="array"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

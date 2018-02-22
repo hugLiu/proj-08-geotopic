@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "索引服务模拟";
+}
+@section UserToolbar
+{
+    <div class="mini-toolbar" style="border-bottom:0;">
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    <a class="mini-button frame-submit" iconcls="icon-new-add" plain="true">新增</a>
+                    <a class="mini-button frame-submit" iconcls="icon-new-save" plain="true">编辑</a>
+                    <a class="mini-button frame-submit" iconcls="icon-new-delete" plain="true">删除</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+<div id="itemsGrid" class="mini-datagrid frame-fit frame-search-grid" style="width:100%;"
+     url="@Url.Action("GetAll")" pagesize="20" allowresize="true" multiselect="false"
+     onrowdblclick="edit()">
+    <div property="columns">
+        <div type="indexcolumn" width=35></div>
+        <div field="S_Url" headeralign="left" allowsort="true" width=200>索引URL</div>
+        <div field="IndexQuality" headeralign="center" allowsort="true" width=50>索引质量</div>
+        <div field="IndexedDate" headeralign="center" allowsort="true" width=110 dateFormat="yyyy-MM-dd HH:mm:ss">索引日期</div>
+        <div field="Metadata" headeralign="left" allowsort="true" width=600>索引数据</div>
+    </div>
+</div>
+<div id="win1" class="mini-window" title="Window" style="width:400px;height:250px;"
+     showmaxbutton="false" showcollapsebutton="false" showshadow="true"
+     showtoolbar="true" showfooter="true" showmodal="true" allowresize="false" allowdrag="true">
+    <div property="toolbar" style="padding:5px;">
+        <input type='button' value='Hide' onclick="hideWindow()" style='vertical-align:middle;' />
+    </div>
+    <div property="footer" style="text-align:right;padding:5px;padding-right:15px;">
+        <input type='button' value='Hide' onclick="hideWindow()" style='vertical-align:middle;' />
+    </div>
+</div>
+<script type="text/javascript">
+    mini.parse();
+
+    var itemsGrid = mini.get('#itemsGrid')
+    itemsGrid.load();
+
+    function getSelectedIds() {
+        var idArr = [];
+        var rows = itemsGrid.getSelecteds();
+        for (var i = 0; i < rows.length; i++) {
+            idArr.push(rows[i].S_Url);
+        }
+        return idArr.join(',');
+    }
+
+    function reloadData() {
+        itemsGrid.reload();
+        if (window.frames.length > 0) {
+            window.frames[0].window.close();
+        }
+        //itemsGrid
+    }
+
+    function edit(grid, row) {
+        var row = row || itemsGrid.getSelected();
+        if (row) {
+            mini.open({
+                url: "/MockIndexer/Edit?id=" + row.S_Url,
+                title: "编辑索引数据",
+                width: 500,
+                height: 400
+            });
+        } else {
+            mini.alert("请选择一个用户！");
+        }
+    }
+
+    function addNew() {
+        mini.open({
+            url: "/MockIndexer/Edit",
+            title: "新增索引数据",
+            width: 500,
+            height: 400
+        });
+    }
+
+    $.regButton({
+        text: "编辑",
+        noSubmit: edit
+    });
+
+    $.regButton({
+        text: "新增",
+        noSubmit: addNew
+    });
+
+    function buildDeleteRequest(rows) {
+        var data = {};
+        data.action = "Delete";
+        data.kmds = new Array();
+        for (var i = 0; i < rows.length; i++) {
+            var metadata = {};
+            metadata.source = {};
+            metadata.source.url = rows[i].S_Url;
+            data.kmds.push(metadata);
+        }
+        return JSON.stringify(data);
+    }
+
+    $.regButton({
+        text: "删除",
+        beforeSubmit: function (ajax) {
+            var rows = itemsGrid.getSelecteds();
+            if (!confirm("是否确定删除当前选择的行？")) {
+                return false;
+            }
+            $.ajax({
+                type: "POST",
+                url: "/api/IndexerService/SendIndex",
+                contentType: "application/json",
+                data: buildDeleteRequest(rows),
+                success: reloadData
+            });
+            return false;
+        },
+        afterSubmit: reloadData
+    });
+</script>

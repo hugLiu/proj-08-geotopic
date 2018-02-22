@@ -1,0 +1,92 @@
+﻿@model Jurassic.So.IIndex.IndexInfo
+@{
+    ViewBag.Title = "索引服务模拟";
+    ViewBag.ShowBreadCrumb = false;
+    ViewBag.ShowSearchBox = false;
+}
+
+@section UserToolbar
+{
+    <div class="mini-toolbar" style="border-bottom:0;">
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    <a class="mini-button frame-submit" iconcls="icon-new-add" plain="true">添加</a>
+                    <a class="mini-button frame-submit" iconcls="icon-new-save" plain="true">保存</a>
+                    <a class="mini-button frame-submit" iconcls="icon-new-delete" plain="true">删除</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+<div class="form-div frame-fit" id="form1">
+    <table border="0" cellpadding="1" cellspacing="2" style="width: 428px; table-layout: fixed;">
+        <tr>
+            <td class="col-md-10">
+                <input name="command" class="mini-hidden" value="@Model.Command" />
+                <input labelfield="true" label="索引质量：" name="indexQuality" value="@Model.IndexQuality" class="mini-textbox" maxlength="10" style="width:400px;" />
+            </td>
+        </tr>
+        <tr>
+            <td class="col-md-10">
+                <input labelfield="true" label="索引元数据：" name="metadata" value="@Model.MetaData" required="true" class="mini-textarea" style="width:700px;height:300px;" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script src="~/scripts/mvcParamBinding.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    function beforeSubmit(command) {
+        var form = new mini.Form("#form1");
+        var data = form.getData();
+        data.command = command;
+        var metadata = JSON.parse(data.metadata);
+        data.metadata = metadata;
+        return JSON.stringify(data);
+        //metadata.isDictionary = true;
+        //var data2 = mvcParamBinding(data);
+        //return JSON.stringify(data2);
+    }
+
+    mini.parse();
+
+    $.ajaxSetup({ contentType: "application/json" });
+
+    $.regButton({
+        text: "添加",
+        beforeSubmit: function (ajax) {
+            ajax.url = "/api/Indexer/SendIndex";
+            ajax.data = beforeSubmit("Insert");
+        },
+        afterSubmit: function (data) {
+            mini.alert("添加成功！");
+        }
+    });
+
+    $.regButton({
+        text: "保存",
+        beforeSubmit: function (ajax) {
+            ajax.url = "/api/Indexer/SendIndex";
+            ajax.data = beforeSubmit("Update");
+        },
+        afterSubmit: function (data) {
+            mini.alert("保存成功！");
+        }
+    });
+
+
+    $.regButton({
+        text: "删除",
+        beforeSubmit: function (ajax) {
+            ajax.url = "/api/Indexer/SendIndex";
+            ajax.data = beforeSubmit("Delete");
+        },
+        afterSubmit: function (data) {
+            mini.alert("删除成功！");
+        }
+    });
+</script>
+
