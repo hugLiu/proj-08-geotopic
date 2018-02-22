@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Jurassic.So.SearchMock</name>
+    </assembly>
+    <members>
+        <member name="T:Jurassic.So.SearchMock.MongoSearchMock">
+            <summary>
+                mongosearch demo 程序
+            </summary>
+        </member>
+        <member name="F:Jurassic.So.SearchMock.MongoSearchMock._search">
+            <summary>
+            mongo搜索 正式实现
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.SearchMock.MongoSearchMock.MatchAsync(Jurassic.PKS.Service.Search.MatchCondition)">
+            <summary>
+            匹配搜索（异步）
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.SearchMock.MongoSearchMock.Match(Jurassic.PKS.Service.Search.MatchCondition)">
+            <summary>
+            匹配搜索同步
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.SearchMock.MongoSearchMock.GetMetadataDefinitionAsync(System.String[])">
+            <summary>
+            获得元数据定义（异步）
+            </summary>
+            <param name="tagnames"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.SearchMock.MongoSearchMock.GetMetadataDefinition(System.String[])">
+            <summary>
+            获得元数据定义
+            </summary>
+            <param name="tagnames"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.SearchMock.MongoSearchMock.StatisticsAsync">
+            <summary>
+            统计（异步）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.SearchMock.MongoSearchMock.Statistics">
+            <summary>
+            统计
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

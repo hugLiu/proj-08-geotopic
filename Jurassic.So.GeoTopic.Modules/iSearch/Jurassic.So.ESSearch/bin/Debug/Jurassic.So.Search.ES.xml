@@ -1,0 +1,404 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Jurassic.So.Search.ES</name>
+    </assembly>
+    <members>
+        <member name="T:Jurassic.So.Search.ES.EsTermQueryBuilder">
+            <summary>
+            二元条件表达式对应的ES查询
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.EsTermQueryBuilder.BuildQuery(Jurassic.PKS.Service.BinaryConditionExpression)">
+            <summary>
+            构建查询条件容器
+            </summary>
+            <param name="exp">二元条件表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.EsTermQueryBuilder.RangeQuery(System.String,System.Object,Jurassic.PKS.Service.BinaryOperator)">
+            <summary>
+            获得范围查询的查询容器
+            </summary>
+            <param name="field">字段</param>
+            <param name="value">范围值</param>
+            <param name="op">操作符</param>
+            <returns></returns>
+        </member>
+        <member name="T:Jurassic.So.Search.ES.EsBoolQueryBuilder">
+            <summary>
+            组合表达式对应的ES查询
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.EsBoolQueryBuilder.BuildQuery(Jurassic.PKS.Service.ConditionCollectionExpression)">
+            <summary>
+            构建查询条件容器
+            </summary>
+            <param name="exp">组合条件表达式</param>
+            <returns></returns>
+        </member>
+        <member name="T:Jurassic.So.Search.ES.EsQueryBuilderExtension">
+            <summary>
+            ES查询条件容器构建扩展
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.EsQueryBuilderExtension.ToEsQuery(Jurassic.PKS.Service.IConditionalExpression)">
+            <summary>
+            自定义条件表达式转化为查询条件容器
+            </summary>
+            <param name="exp">自定义条件表达式</param>
+            <returns>返回查询条件容器</returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.EsQueryBuilderExtension.KeyWord(System.String)">
+            <summary>
+            获得字段的多字段（keyword 不分词字段）名称
+            </summary>
+            <param name="field"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Jurassic.So.Search.ES.IEsQueryBuilder`1">
+            <summary>
+            ES查询条件构建
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.IEsQueryBuilder`1.BuildQuery(`0)">
+            <summary>
+            构建查询条件
+            </summary>
+            <param name="exp">自定义条件表达式</param>
+            <returns>查询条件</returns>
+        </member>
+        <member name="T:Jurassic.So.Search.ES.ESAccess`1">
+            <summary>
+            ES数据访问
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Jurassic.So.Search.ES.ESAccess`1.Client">
+            <summary>
+            ES客户端
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.IndexOne(`0)">
+            <summary>
+            索引一个文档
+            </summary>
+            <param name="doc">文档</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.IndexOneAsync(`0)">
+            <summary>
+            索引一个文档（异步）
+            </summary>
+            <param name="doc">文档</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.DeleteByQuery(Nest.QueryContainer)">
+            <summary>
+            删除索引，支持批量
+            </summary>
+            <param name="query">查询符合条件的索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.DeleteByQueryAsync(Nest.QueryContainer)">
+            <summary>
+            删除索引，支持批量 （异步）
+            </summary>
+            <param name="query">查询符合条件的索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.UpdateAFields(Nest.IUpdateRequest{`0,`0})">
+            <summary>
+            更新全部字段（All Fields）
+            </summary>
+            <param name="request">更新请求</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.UpdateAFieldsAsync(Nest.IUpdateRequest{`0,`0})">
+            <summary>
+            更新全部字段（All Fields）（异步）
+            </summary>
+            <param name="request">更新请求</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.UpdatePFields``1(Nest.IUpdateRequest{`0,``0})">
+            <summary>
+            更新部分字段（Patial Fields）
+            </summary>
+            <typeparam name="T2">包含部分字段的实体类</typeparam>
+            <param name="request">更新请求</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.UpdatePFieldsAsync``1(Nest.IUpdateRequest{`0,``0})">
+            <summary>
+            更新部分字段（Patial Fields）（异步）
+            </summary>
+            <typeparam name="T2">包含部分字段的实体类</typeparam>
+            <param name="request">更新请求</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.UpdatePFields(Nest.IUpdateRequest{`0,System.Object})">
+            <summary>
+            更新部分字段（Patial Fields）T2=》object
+            </summary>
+            <param name="request">更新请求</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.UpdatePFieldsAsync(Nest.IUpdateRequest{`0,System.Object})">
+            <summary>
+            更新部分字段（Patial Fields）T2=》object（异步）
+            </summary>
+            <param name="request">更新请求</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.Get(System.String)">
+            <summary>
+            根据文档唯一ID查询指定文档
+            </summary>
+            <param name="id">文档ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.GetAsync(System.String)">
+            <summary>
+            根据文档唯一ID查询指定文档(异步)
+            </summary>
+            <param name="id">文档ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.MultiGet(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            根据多个id返回指定的文档列表
+            </summary>
+            <param name="ids">id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.MultiGetAsync(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            根据多个id返回指定的文档列表（异步）
+            </summary>
+            <param name="ids">id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.PagingQuery(Nest.QueryContainer,Nest.SortDescriptor{`0},Nest.SourceFilterDescriptor{`0},Nest.AggregationContainerDescriptor{`0},System.Int32,System.Int32)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="query">查询条件</param>
+            <param name="sort">排序规则</param>
+            <param name="fields">返回字段</param>
+            <param name="aggs">聚合条件</param>
+            <param name="from">记录开始</param>
+            <param name="size">记录数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.PagingQueryAsync(Nest.QueryContainer,Nest.SortDescriptor{`0},Nest.SourceFilterDescriptor{`0},Nest.AggregationContainerDescriptor{`0},System.Int32,System.Int32)">
+            <summary>
+            分页查询（异步）
+            </summary>
+            <param name="query">查询条件</param>
+            <param name="sort">排序规则</param>
+            <param name="fields">返回字段</param>
+            <param name="aggs">聚合条件</param>
+            <param name="from">记录开始</param>
+            <param name="size">记录数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.GetDocuments(Nest.QueryContainer,Nest.SortDescriptor{`0},Nest.SourceFilterDescriptor{`0},System.Int32,System.Int32)">
+            <summary>
+            分页查询，只返回文档信息
+            </summary>
+            <param name="query">查询条件</param>
+            <param name="sort">排序规则</param>
+            <param name="fields">返回字段</param>
+            <param name="from">记录开始</param>
+            <param name="size">记录数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.GetDocumentsAsync(Nest.QueryContainer,Nest.SortDescriptor{`0},Nest.SourceFilterDescriptor{`0},System.Int32,System.Int32)">
+            <summary>
+            分页查询，只返回文档信息（异步）
+            </summary>
+            <param name="query">查询条件</param>
+            <param name="sort">排序规则</param>
+            <param name="fields">返回字段</param>
+            <param name="from">记录开始</param>
+            <param name="size">记录数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.ESAccess`1.BuildSearchDescriptor(Nest.QueryContainer,Nest.SortDescriptor{`0},Nest.ISourceFilter,Nest.IAggregationContainer,System.Int32,System.Int32)">
+            <summary>
+            构建查询描述器
+            </summary>
+            <param name="query"></param>
+            <param name="sort"></param>
+            <param name="fields"></param>
+            <param name="aggs"></param>
+            <param name="from"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Jurassic.So.Search.ES.EsClient">
+            <summary>
+            ES客户端
+            </summary>
+        </member>
+        <member name="P:Jurassic.So.Search.ES.EsClient.Client">
+            <summary>
+            ES链接客户端
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.EsClient.CreateUri(System.Int32,System.String)">
+            <summary>
+            创建url
+            </summary>
+            <param name="port">端口号</param>
+            <param name="host">IP地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.EsClient.#ctor(System.String)">
+            <summary>
+            根据uri单个节点ES客户端
+            </summary>
+            <param name="uri"></param>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.EsClient.#ctor(System.Int32,System.String)">
+            <summary>
+            根据ip和端口创建ES客户端
+            </summary>
+            <param name="port"></param>
+            <param name="host"></param>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.EsClient.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            多个节点ES客户端
+            </summary>
+            <param name="uris"></param>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.EsClient.Create(System.String[])">
+            <summary>
+            创建ES客户端静态方法
+            </summary>
+            <param name="uris"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Jurassic.So.Search.ES.EsSearch">
+            <summary>
+            ES搜索
+            </summary>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.EsSearch.SearchAsync(Jurassic.PKS.Service.Search.SearchCondition)">
+            <summary>
+            ES查询（异步）
+            </summary>
+            <param name="request">请求查询条件</param>
+            <returns>自定义查询结果</returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.EsSearch.Search(Jurassic.PKS.Service.Search.SearchCondition)">
+            <summary>
+            ES查询
+            </summary>
+            <param name="request">请求查询条件</param>
+            <returns>自定义查询结果</returns>
+        </member>
+        <member name="T:Jurassic.So.Search.ES.SearchProvider`1">
+            <summary>
+            ES搜索Provider
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.SearchProvider`1.BuildFilterQuery(Jurassic.PKS.Service.IConditionalExpression)">
+            <summary>
+            根据过滤条件构建查询
+            </summary>
+            <param name="filterExp">过滤条件表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.SearchProvider`1.BuildFullTextQuery(System.String,Jurassic.PKS.Service.Search.RankCollection)">
+            <summary>
+            根据输入短语构建全文查询
+            </summary>
+            <param name="sentence"></param>
+            <param name="ranks"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.SearchProvider`1.BuildCustomScoreQuery(System.String,Jurassic.PKS.Service.Search.RankCollection)">
+            <summary>
+            创建自定义得分的查询
+            </summary>
+            <param name="sentence">输入短语</param>
+            <param name="ranks">排序规则</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.SearchProvider`1.BuildScoreFunctions(System.String,Jurassic.PKS.Service.Search.RankCollection)">
+            <summary>
+            构建得分函数
+            </summary>
+            <param name="sentence">输入短语</param>
+            <param name="ranks">排序规则</param>
+            <returns>返回一个或多个得分函数定义</returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.SearchProvider`1.GetBoostFields(Jurassic.PKS.Service.Search.RankCollection)">
+            <summary>
+            获得带权重的字段
+            </summary>
+            <param name="ranks">字段权重</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.SearchProvider`1.CombineShouldQuery(Nest.QueryContainer[])">
+            <summary>
+            合并多个查询为Should组合查询
+            </summary>
+            <param name="querys">多个查询条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.SearchProvider`1.CombineMustQuery(Nest.QueryContainer[])">
+            <summary>
+            合并多个查询为Must组合查询
+            </summary>
+            <param name="querys">多个查询条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.SearchProvider`1.CombineMustNotQuery(Nest.QueryContainer[])">
+            <summary>
+            合并多个查询为MustNot组合查询
+            </summary>
+            <param name="querys">多个查询条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.SearchProvider`1.BuildSort(Jurassic.PKS.Service.Search.SortRuleCollection)">
+            <summary>
+            根据排序规则构建排序器
+            </summary>
+            <param name="sorts">排序规则</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.SearchProvider`1.GetOrderScript(Jurassic.PKS.Service.Search.Sort,System.String)">
+            <summary>
+            获得排序脚本
+            </summary>
+            <param name="sort">排序规则</param>
+            <param name="field">排序字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.SearchProvider`1.BuildAggs(Jurassic.PKS.Service.Search.GroupRule)">
+            <summary>
+            根据聚合条件构建聚合器
+            </summary>
+            <param name="groups">聚合条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Jurassic.So.Search.ES.SearchProvider`1.BuildFields(Jurassic.PKS.Service.Search.FieldCollection)">
+            <summary>
+            构建返回字段过滤器
+            </summary>
+            <param name="fields">字段投影</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
