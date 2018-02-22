@@ -1,0 +1,13 @@
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data.Entities\bin\Debug\Jurassic.So.Data.Entities.dll.config
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data.Entities\bin\Debug\Jurassic.So.Data.Entities.XML
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data.Entities\bin\Debug\Jurassic.So.Data.Entities.dll
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data.Entities\bin\Debug\Jurassic.So.Data.Entities.pdb
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data.Entities\bin\Debug\EntityFramework.dll
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data.Entities\bin\Debug\EntityFramework.SqlServer.dll
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data.Entities\bin\Debug\EntityFramework.xml
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data.Entities\bin\Debug\EntityFramework.SqlServer.xml
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data.Entities\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data.Entities\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data.Entities\obj\Debug\Jurassic.So.Data.Entities.dll
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data.Entities\obj\Debug\Jurassic.So.Data.Entities.pdb
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iData\Jurassic.So.Data.Entities\obj\Debug\Jurassic.So.Data.Entities.csprojResolveAssemblyReference.cache
