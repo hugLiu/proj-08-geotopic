@@ -1,0 +1,5 @@
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iSemantics\Jurassic.So.Semantics\bin\Debug\Jurassic.So.Semantics.dll
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iSemantics\Jurassic.So.Semantics\bin\Debug\Jurassic.So.Semantics.pdb
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iSemantics\Jurassic.So.Semantics\obj\Debug\Jurassic.So.Semantics.csprojResolveAssemblyReference.cache
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iSemantics\Jurassic.So.Semantics\obj\Debug\Jurassic.So.Semantics.dll
+E:\projs\搜索业务部\02产品\01GeoTopic1.0\开发库\04编码\源代码\Jurassic.So.GeoTopic.Modules\iSemantics\Jurassic.So.Semantics\obj\Debug\Jurassic.So.Semantics.pdb
